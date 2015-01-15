@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="1.7" type="plugin" group="system">
+	<name>System - One</name>
+	<author>delius bvba</author>
+	<creationDate>March 2011</creationDate>
+	<copyright>Copyright (C) 2011 delius bvba. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>info@delius.be</authorEmail>
+	<authorUrl>www.delius.be</authorUrl>
+	<version>1.7.0</version>
+	<description>Prepares the One environment</description>
+	<files>
+		<filename plugin="one">one.php</filename>
+		<folder>lib</folder>
+	</files>
+	<media folder="cone">
+    	<folder>one</folder>
+	</media>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="enableDebug" type="radio" description="Do you want to enable debug mode for one content" label="Enable debug" default="0">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>
