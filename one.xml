@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="1.7" type="plugin" group="system">
+<extension version="3.0" type="plugin" group="system" method="upgrade">
 	<name>System - One</name>
-	<author>delius bvba</author>
-	<creationDate>March 2011</creationDate>
-	<copyright>Copyright (C) 2011 delius bvba. All rights reserved.</copyright>
+	<author>Paul Delbar</author>
+	<creationDate>January 2015</creationDate>
+	<copyright>Copyright (C) 2015 Paul Delbar. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
-	<authorEmail>info@delius.be</authorEmail>
-	<authorUrl>www.delius.be</authorUrl>
-	<version>1.7.0</version>
+	<authorEmail>paul.delbar@gmail.com</authorEmail>
+	<authorUrl>pauldelbar.com</authorUrl>
+	<version>3.0</version>
 	<description>Prepares the One environment</description>
 	<files>
 		<filename plugin="one">one.php</filename>
-		<folder>lib</folder>
+		<filename>LICENSE</filename>
+		<filename>README.md</filename>
+		<folder>core</folder>
 	</files>
-	<media folder="cone">
-    	<folder>one</folder>
-	</media>
 	<config>
 		<fields name="params">
 			<fieldset name="basic">
