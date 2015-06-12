@@ -26,7 +26,7 @@ class One_Behavior_Scheme_Slug extends One_Behavior_Scheme
 	 * @param One_Scheme $scheme
 	 * @param One_Model $model
 	 */
-	public function afterLoadModel( $scheme, $model )
+	public function afterLoadModel( One_Scheme $scheme, One_Model $model )
 	{
 		if(null !== $scheme->getAttribute('slug')) { // don't create the slug if the attribute "slug" actually exists
 			return;

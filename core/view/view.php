@@ -87,18 +87,17 @@ class One_View
 	{
 //    $cps = One::getInstance()->getCustomPaths();
 
-		if(!is_null($language)) {
-			$useLang = substr($language, 0, 5);
-		}
-		else {
-			$useLang = substr(One::getInstance()->getLanguage(), 0, 5);
-		}
-    $app = One::getInstance()->getApplication();
+//		if(!is_null($language)) {
+//			$useLang = substr($language, 0, 5);
+//		}
+//		else {
+//			$useLang = substr(One::getInstance()->getLanguage(), 0, 5);
+//		}
+//    $app = One::getInstance()->getApplication();
 
     $pattern = "%ROOT%/views/"
              . "{" . ($schemeName != '' ? "%APP%/$schemeName," : "") . "%APP%,default}" . DS
-             . "{%LANG%/,}"
-                . $file;
+             . "{%LANG%/,}";
 
     $this->templater->addSearchPath($pattern);
 	}

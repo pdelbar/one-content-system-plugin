@@ -16,7 +16,7 @@ class One_Permission_Rule_Jbackend extends One_Permission_Rule // @TODO move to 
 		$this->rules = array();
 	}
 
-	public function authorize( $args )
+	public function authorize( array $args )
 	{
 		$app = JFactory::getApplication();
 		return ( preg_match( '/admin(istrator)?/i', $app->getName() ) > 0 );

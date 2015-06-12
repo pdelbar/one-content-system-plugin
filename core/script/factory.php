@@ -19,7 +19,7 @@ class One_Script_Factory
 	//--------------------------------------------------------------------------------
 	//TODO: for http: protocol, check whether url_fopen is active, else use curl (if that is available)
 
-	function load( $name, $path = "" )
+    static function load( $name, $path = "" )
 	{
 		self::$error = "";
 
@@ -63,7 +63,7 @@ class One_Script_Factory
 	// searchFile : use the searchPath to locate the file and load its contents
 	//--------------------------------------------------------------------------------
 
-	public function searchFile( $filename, $path, $mode = 'nano' )
+    static public function searchFile( $filename, $path, $mode = 'nano' )
 	{
 		// try the file as specified
 		$path = $path . $filename;
@@ -173,14 +173,14 @@ class One_Script_Factory
 
 	//--------------------------------------------------------------------------------
 
-	function addSearchPath( $template )
+    static function addSearchPath( $template )
 	{
 		self::$nsLoadPath[] = $template;
 	}
 
 	//--------------------------------------------------------------------------------
 
-	function clearSearchPath( )
+	static function clearSearchPath( )
 	{
 		self::$nsLoadPath = array();
 	}
@@ -189,7 +189,7 @@ class One_Script_Factory
 	// loadFileContents : load the contents of this file
 	//--------------------------------------------------------------------------------
 
-	function loadFileContents( $path, $mode = 'nano' )
+    static function loadFileContents( $path, $mode = 'nano' )
 	{
 //		echo "(loading $path in mode $mode)";
 		$contents = "";
@@ -242,24 +242,24 @@ class One_Script_Factory
 
 	//--------------------------------------------------------------------------------
 
-	function saveSearchPath()
+    static function saveSearchPath()
 	{
 		self::$nsSavedLoadPath = self::$nsLoadPath;
 	}
 
 	//--------------------------------------------------------------------------------
 
-	function restoreSearchPath()
+    static function restoreSearchPath()
 	{
 		self::$nsLoadPath = self::$nsSavedLoadPath;
 	}
 
-	public static function getSearchPath()
+    static public function getSearchPath()
 	{
 		return self::$nsLoadPath;
 	}
 
-	public static function setSearchPath( $pathArray )
+    static public  function setSearchPath( $pathArray )
 	{
 		self::$nsLoadPath = $pathArray;
 	}
