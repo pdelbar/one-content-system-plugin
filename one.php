@@ -28,6 +28,7 @@ class plgSystemOne extends JPlugin
 
 	protected function initializeOne()
 	{
+		require_once(dirname(__FILE__).'/core/config.php');
 		require_once(dirname(__FILE__).'/core/one.php');
 
 		$app = JFactory::getApplication();
@@ -36,23 +37,25 @@ class plgSystemOne extends JPlugin
 			$application = 'admin';
 		}
 
-		One::getInstance($application)
+		One_Config::getInstance($application)
 			->setUrl(JURI::root().'/plugins/system/one')
 			->setSiterootUrl(JURI::root())
 			->setAddressOne('/index.php?option=com_one')
 //			->setCustomPath(JPATH_SITE.'/media/one')
 			->setUserStore('mysql')
-			->setTemplater('One_Templater_Nano')
+//			->setTemplater('One_Templater_Nano')
 			->setLanguage(JFactory::getLanguage()->getTag())
 			->setDomType('joomla')
 			->setExitOnError($this->params->get('exitOnError'))
 			;
-		require_once(One::getInstance()->getPath().'/tools.php');
+		require_once(One_Config::getInstance()->getPath().'/tools.php');
 
 		// set default toolset used in backend
 		One_Button::setToolset('joomla');
 
-		if(1 == intval($this->params->get('enableDebug', 0)))
+		define('ONEFORMCHROME',$this->params->get('formChrome', ''));
+
+      if(1 == intval($this->params->get('enableDebug', 0)))
 		{
 			One_Query::setDebug(true);
 		}

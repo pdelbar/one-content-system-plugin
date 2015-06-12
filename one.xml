@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="3.0" type="plugin" group="system" method="upgrade">
+<extension version="1.7" type="plugin" group="system">
 	<name>System - One</name>
 	<author>Paul Delbar</author>
 	<creationDate>January 2015</creationDate>
 	<copyright>Copyright (C) 2015 Paul Delbar. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<authorEmail>paul.delbar@gmail.com</authorEmail>
-	<authorUrl>pauldelbar.com</authorUrl>
+	<authorUrl>www.pauldelbar.com</authorUrl>
 	<version>3.0</version>
 	<description>Prepares the One environment</description>
 	<files>
 		<filename plugin="one">one.php</filename>
-		<filename>LICENSE</filename>
-		<filename>README.md</filename>
-		<folder>core</folder>
+		<folder>lib</folder>
 	</files>
+	<media folder="cone">
+    	<folder>one</folder>
+	</media>
 	<config>
 		<fields name="params">
 			<fieldset name="basic">
-				<field name="enableDebug" type="radio" description="Do you want to enable debug mode for one content" label="Enable debug" default="0">
-					<option value="1">Yes</option>
-					<option value="0">No</option>
-				</field>
+                <field name="enableDebug" type="radio" description="Do you want to enable debug mode for one content" label="Enable debug" default="0">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </field>
+                <field name="formChrome" type="radio" description="Chrome for form elements" label="Form chrome" default="" class="btn-group">
+                    <option value="">Default</option>
+                    <option value="bootstrap2">Bootstrap 2</option>
+                </field>
 			</fieldset>
 		</fields>
 	</config>
