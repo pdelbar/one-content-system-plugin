@@ -31,7 +31,7 @@ class One_Permission_Rule implements One_Permission_Rule_Interface
 	 * @param array $args
 	 * @return boolean
 	 */
-	public function authorize( $args )
+	public function authorize( array $args )
 	{
 		if( trim( $this->options['type'] ) != '' )
 		{

@@ -16,7 +16,7 @@ class One_Permission_Rule_Always extends One_Permission_Rule
 		$this->rules = array();
 	}
 
-	public function authorize( $args )
+	public function authorize( array $args )
 	{
 		return true;
 	}
