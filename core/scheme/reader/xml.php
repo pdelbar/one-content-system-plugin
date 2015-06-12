@@ -3,12 +3,12 @@
  * The One_Scheme_Reader_Xml class loads One_Scheme definitions and instantiates them
  * as a factory pattern.
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
+
+
+  * @TODO review this file and clean up historical code/comments
  * @subpackage Scheme
- * @filesource one/lib/scheme/Reader/Xml.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+ONEDISCLAIMER
+
  **/
 
 //@TODO: wtf are subschemes ??
@@ -19,7 +19,7 @@ class One_Scheme_Reader_Xml implements One_Scheme_Reader_Interface
 	 * Loads a scheme along with it's attributes, behaviors, relations, tasks, store and other information about the scheme
 	 *
 	 * @param $schemeName
-	 * @return One_Scheme_Interface
+	 * @return One_Scheme
 	 */
 	public static function load($schemeName)
 	{
@@ -36,7 +36,7 @@ class One_Scheme_Reader_Xml implements One_Scheme_Reader_Interface
 			$subscheme = $schemeMatch[2];
 		}
 
-		$schemepath = One::getInstance()->locate('meta'.DS.'scheme'.DS.$fileName.'.xml');
+		$schemepath = One_Config::getInstance()->locate('meta'.DS.'scheme'.DS.$fileName.'.xml');
     if ($schemepath === null) {
 				throw new One_Exception('INVALID_SCHEME^^schemename='.$fileName);
     }
@@ -458,10 +458,10 @@ class One_Scheme_Reader_Xml implements One_Scheme_Reader_Interface
 	 */
 	protected static function parseInclude(One_Scheme $scheme, $include, $name = NULL)
 	{
-		$filename = One::getInstance()->getCustomPath().DS.'conditions'.DS.strtolower($include).'.xml';
+		$filename = One_Config::getInstance()->getCustomPath().DS.'conditions'.DS.strtolower($include).'.xml';
 		if(!file_exists($filename))
 		{
-			$filename = One::getInstance()->getPath().DS.'conditions'.DS.strtolower($include).'.xml';
+			$filename = One_Config::getInstance()->getPath().DS.'conditions'.DS.strtolower($include).'.xml';
 			if(!file_exists($filename)) {
 				return;
 			}

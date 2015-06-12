@@ -2,12 +2,12 @@
 /**
  * Treats a scheme-attribute as an int
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
+
+
+  * @TODO review this file and clean up historical code/comments
  * @subpackage
- * @filesource one/lib/type/int.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+ONEDISCLAIMER
+
  **/
 class One_Type_Int extends One_Type
 {

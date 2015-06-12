@@ -2,12 +2,12 @@
 /**
  * Treats a scheme-attribute as a boolean
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
+
+
+  * @TODO review this file and clean up historical code/comments
  * @subpackage Type
- * @filesource one/lib/type/boolean.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+ONEDISCLAIMER
+
  **/
 class One_Type_Boolean extends One_Type
 {
@@ -37,4 +37,10 @@ class One_Type_Boolean extends One_Type
 		}
 		return $value;
 	}
+
+  public function defaultWidgetClass()
+  {
+    return 'One_Form_Widget_Scalar_Checkbox';
+  }
+
 }

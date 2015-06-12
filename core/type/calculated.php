@@ -3,10 +3,10 @@
  * Create a calculated field, this field should not be included in Query_Objects (for now)
  *
  * @author traes
- * @copyright 2010 delius bvba
- * @package one|content
+
+  * @TODO review this file and clean up historical code/comments
  * @subpackage Type
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
  **/
 class One_Type_Calculated extends One_Type
 {

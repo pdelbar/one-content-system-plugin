@@ -2,12 +2,12 @@
 /**
  * Class that parses nano template files
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
+
+
+  * @TODO review this file and clean up historical code/comments
  * @subpackage Template
- * @filesource one/lib/template/template.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+ONEDISCLAIMER
+
  **/
 class One_Templater_Nano extends One_Templater_Abstract
 {

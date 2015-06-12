@@ -3,11 +3,11 @@
  * This widget lets you create children for a relation whilst in the original scheme
  * UNFINISHED, DO NOT USE
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @filesource one/lib/form/widget/scalar/child.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+
+  * @TODO review this file and clean up historical code/comments
+ONEDISCLAIMER
+
  **/
 Class One_Form_Widget_Scalar_Child extends One_Form_Widget_Scalar
 {
@@ -62,13 +62,13 @@ Class One_Form_Widget_Scalar_Child extends One_Form_Widget_Scalar
 		$name  = $this->getName();
 		$childScheme = $this->getCfg( 'scheme' );
 
-		$dom->add( '<script src="' . One::getInstance()->getUrl() . 'lib/libraries/js/jquery.js" type="text/javascript"></script>', '_head' );
+		$dom->add( '<script src="' . One_Config::getInstance()->getUrl() . 'lib/libraries/js/jquery.js" type="text/javascript"></script>', '_head' );
 		$dom->add( '<script type="text/javascript">jQuery.noConflict();</script>', 'head' );
-		$dom->add( '<script src="' . One::getInstance()->getUrl() . 'lib/libraries/js/jquery/jquery.color.js" type="text/javascript"></script>', '_head' );
-		$dom->add( '<script src="' . One::getInstance()->getUrl() . 'lib/libraries/js/jquery.simplemodal-1.3.3.js" type="text/javascript"></script>', '_head' );
-		$dom->add( '<script src="' . One::getInstance()->getUrl() . 'lib/libraries/js/managerToolbar.js" type="text/javascript"></script>', '_head' );
-		$dom->add( '<link rel="stylesheet" href="' . One::getInstance()->getUrl() . 'lib/libraries/js/toolbar.css" type="text/css" />', '_head' );
-		$dom->add( '<link rel="stylesheet" href="' . One::getInstance()->getUrl() . 'lib/libraries/js/toolbar.ie6.css" type="text/css" />', '_head' );
+		$dom->add( '<script src="' . One_Config::getInstance()->getUrl() . 'lib/libraries/js/jquery/jquery.color.js" type="text/javascript"></script>', '_head' );
+		$dom->add( '<script src="' . One_Config::getInstance()->getUrl() . 'lib/libraries/js/jquery.simplemodal-1.3.3.js" type="text/javascript"></script>', '_head' );
+		$dom->add( '<script src="' . One_Config::getInstance()->getUrl() . 'lib/libraries/js/managerToolbar.js" type="text/javascript"></script>', '_head' );
+		$dom->add( '<link rel="stylesheet" href="' . One_Config::getInstance()->getUrl() . 'lib/libraries/js/toolbar.css" type="text/css" />', '_head' );
+		$dom->add( '<link rel="stylesheet" href="' . One_Config::getInstance()->getUrl() . 'lib/libraries/js/toolbar.ie6.css" type="text/css" />', '_head' );
 
 		$content = '<div class="childPopupPanel">
 			<a href="#" onclick="jModal( \'' . $id . 'NsBox\', \'' . $childScheme . '\' ); return false;">Lookup</a>

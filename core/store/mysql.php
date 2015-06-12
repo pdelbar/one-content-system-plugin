@@ -3,14 +3,16 @@
 /**
  * Defines how MySQL should be addressed to perform certain storage and retrieval actions
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
+
+
+  * @TODO review this file and clean up historical code/comments
  * @subpackage Store
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
  **/
-class One_Store_Mysql implements One_Store_Interface
+class One_Store_Mysql extends One_Store
 {
+  const QUERYCLASS = 'One_Query_Sql';
+
 	/**
 	 * @var One_Renderer The One_Renderer used for this scheme
 	 */
@@ -50,7 +52,7 @@ class One_Store_Mysql implements One_Store_Interface
 	}
 
 	/**
-	 * Return the One_Renderer for this One_Store_Interface
+	 * Return the One_Renderer for this One_Store
 	 *
 	 * @return One_Renderer
 	 */
@@ -70,7 +72,7 @@ class One_Store_Mysql implements One_Store_Interface
 	 */
 	public function select( &$scheme, $selectors )
 	{
-		$query = new One_Query( $scheme );
+		$query = One_Repository::selectQuery( $scheme );
 
 		if (count($selectors))
 		{
@@ -104,7 +106,7 @@ class One_Store_Mysql implements One_Store_Interface
 
 		// not found : create a new instance
 		// @TODO: use a specific class specified in the scheme
-		$model = One_Repository::getInstance( $scheme->getName() );
+		$model = One::make( $scheme->getName() );
 
 		$model->fromArray( $row );
 
@@ -123,7 +125,7 @@ class One_Store_Mysql implements One_Store_Interface
 	 * @param mixed $identityValue
 	 * @return One_Model
 	 */
-	public function selectOne(One_Scheme_Interface $scheme, $identityValue)
+	public function selectOne(One_Scheme $scheme, $identityValue)
 	{
 		$cached = One_Model_IdentityMap::find($scheme->getName(), $identityValue);
 		if($cached) {
@@ -132,7 +134,7 @@ class One_Store_Mysql implements One_Store_Interface
 
 		$db = $this->db($scheme);
 		$renderer = $this->getRenderer();
-		$query = new One_Query($scheme);
+		$query = One_Repository::selectQuery( $scheme );
 
 		$idAttr = $scheme->getIdentityAttribute();
 		$column = $idAttr->getName();
@@ -255,7 +257,7 @@ class One_Store_Mysql implements One_Store_Interface
 	 * @param One_Model $model
 	 * @param One_Link $link
 	 */
-	public function addRelations(One_Model_Interface $model, One_Link_Interface $link)
+	public function addRelations(One_Model $model, One_Link_Interface $link)
 	{
 		$added = $model->getAddedRelations();
 
@@ -305,7 +307,7 @@ class One_Store_Mysql implements One_Store_Interface
 	 * @param One_Model $model
 	 * @param One_Link $link
 	 */
-	public function saveRelations(One_Model_Interface $model, One_Link_Interface $link)
+	public function saveRelations(One_Model $model, One_Link_Interface $link)
 	{
 		$modified = $model->getModifiedRelations();
 
@@ -355,7 +357,7 @@ class One_Store_Mysql implements One_Store_Interface
 	 * @param One_Model $model
 	 * @param One_Link $link
 	 */
-	public function deleteRelations(One_Model_Interface $model, One_Link_Interface $link)
+	public function deleteRelations(One_Model $model, One_Link_Interface $link)
 	{
 		$deleted = $model->getDeletedRelations();
 
@@ -405,7 +407,7 @@ class One_Store_Mysql implements One_Store_Interface
 	 *
 	 * @param One_Model $model
 	 */
-	public function insert(One_Model_Interface $model)
+	public function insert(One_Model $model)
 	{
 		$scheme = One_Repository::getScheme($model->getSchemeName());
 		$db = $this->db($scheme);
@@ -504,7 +506,7 @@ class One_Store_Mysql implements One_Store_Interface
 	 *
 	 * @param One_Model $model
 	 */
-	public function update(One_Model_Interface $model)
+	public function update(One_Model $model)
 	{
 		$scheme = One_Repository::getScheme($model->getSchemeName());
 		$db = $this->db($scheme);
@@ -603,7 +605,7 @@ class One_Store_Mysql implements One_Store_Interface
 	 *
 	 * @param One_Model $model
 	 */
-	public function delete(One_Model_Interface $model)
+	public function delete(One_Model $model)
 	{
 		$scheme = One_Repository::getScheme($model->getSchemeName());
 		$db = $this->db($scheme);
@@ -644,7 +646,7 @@ class One_Store_Mysql implements One_Store_Interface
 	 * @param One_Scheme $scheme
 	 * @return string
 	 */
-	public function getDatasource( One_Scheme_Interface $scheme )
+	public function getDatasource( One_Scheme $scheme )
 	{
 		$source = $scheme->getView();
 		if( is_null( $source ) )
@@ -661,7 +663,7 @@ class One_Store_Mysql implements One_Store_Interface
 	 * @param One_Scheme $scheme
 	 * @return string Table name used for the scheme
 	 */
-	protected function getTable(One_Scheme_Interface $scheme)
+	protected function getTable(One_Scheme $scheme)
 	{
 		$resources = $scheme->getResources();
 		if(isset($resources['table'])) {
@@ -674,10 +676,10 @@ class One_Store_Mysql implements One_Store_Interface
 
 	/**
 	 * Function to set the proper encoding
-	 * @param One_Scheme_Interface $scheme
+	 * @param One_Scheme $scheme
 	 * @param string $encoding (utf8, iso-8859-1, ...)
 	 */
-	public function setEncoding(One_Scheme_Interface $scheme, $encoding)
+	public function setEncoding(One_Scheme $scheme, $encoding)
 	{
 		$db  = $this->db( $scheme );
 		$sql = 'set names "'.mysql_real_escape_string($encoding).'"';

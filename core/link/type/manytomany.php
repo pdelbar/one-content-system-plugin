@@ -3,11 +3,11 @@
  * The manyToMany link type is used to link multiple objects to each
  * other. A secundary lookup table is used for this purpose.
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @filesource one/lib/link/type/manytomany.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+
+  * @TODO review this file and clean up historical code/comments
+ONEDISCLAIMER
+
  **/
 class One_Link_Type_Manytomany extends One_Link_Type_Abstract
 {
@@ -26,7 +26,7 @@ class One_Link_Type_Manytomany extends One_Link_Type_Abstract
 	 *
 	 * @return array
 	 */
-	public function getRelated(One_Link_Interface $link, One_Model_Interface $model, array $options = array())
+	public function getRelated(One_Link_Interface $link, One_Model $model, array $options = array())
 	{
 		$linkName = $link->getName();
 
@@ -48,7 +48,7 @@ class One_Link_Type_Manytomany extends One_Link_Type_Abstract
 		// @TODO This should actually be handled in One_Query
 		if($source->getConnection()->getName() == $link->meta['connection'] && $link->meta['connection'] == $target->getConnection()->getName())
 		{
-			$lQ = new One_Query($source);
+			$lQ = One_Repository::selectQuery($source);
 			$lQ->setSelect(array($linkName.':*'));
 			$lQ->where($sourceId, 'eq', $localValue);
 
@@ -80,7 +80,7 @@ class One_Link_Type_Manytomany extends One_Link_Type_Abstract
 			$omtms->addAttribute($localAtt);
 			$omtms->addAttribute($remoteAtt);
 
-			$joinQ = new One_Query($omtms);
+			$joinQ = One_Repository::selectQuery($omtms);
 			$joinQ->setSelect(array($fkRemote));
 			$joinQ->where($fkLocal, 'eq', $localValue);
 
@@ -95,7 +95,7 @@ class One_Link_Type_Manytomany extends One_Link_Type_Abstract
 					$relatedIDs[] = $row->$fkRemote;
 				}
 
-				$lQ = new One_Query($target);
+				$lQ = One_Repository::selectQuery($target);
 				$lQ->where($targetId, 'in', $relatedIDs);
 
 				$lQ->setOptions($options);
@@ -111,7 +111,7 @@ class One_Link_Type_Manytomany extends One_Link_Type_Abstract
 	}
 
 
-	public function countRelated(One_Link_Interface $link, One_Model_Interface $model, array $options = array())
+	public function countRelated(One_Link_Interface $link, One_Model $model, array $options = array())
 	{
 		$nRelated = 0;
 
@@ -135,7 +135,7 @@ class One_Link_Type_Manytomany extends One_Link_Type_Abstract
 		// @TODO This should actually be handled in One_Query
 		if($source->getConnection()->getName() == $link->meta['connection'] && $link->meta['connection'] == $target->getConnection()->getName())
 		{
-			$lQ = new One_Query($source);
+			$lQ = One_Repository::selectQuery($source);
 			$lQ->setSelect(array($linkName.':*'));
 			$lQ->where($sourceId, 'eq', $localValue);
 
@@ -167,7 +167,7 @@ class One_Link_Type_Manytomany extends One_Link_Type_Abstract
 			$omtms->addAttribute($localAtt);
 			$omtms->addAttribute($remoteAtt);
 
-			$joinQ = new One_Query($omtms);
+			$joinQ = One_Repository::selectQuery($omtms);
 			$joinQ->setSelect(array($fkRemote));
 			$joinQ->where($fkLocal, 'eq', $localValue);
 
@@ -182,7 +182,7 @@ class One_Link_Type_Manytomany extends One_Link_Type_Abstract
 					$relatedIDs[] = $row->$fkRemote;
 				}
 
-				$lQ = new One_Query($target);
+				$lQ = One_Repository::selectQuery($target);
 				$lQ->where($targetId, 'in', $relatedIDs);
 
 				$lQ->setOptions($options);

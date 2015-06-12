@@ -2,9 +2,9 @@
 /**
  * Handles a pane-slider container for Joomla! 2.x
  *
- * @author delius
+
  * @copyright 2012 delius bvba
- * @package one|content
+  * @TODO review this file and clean up historical code/comments
  **/
 Class One_Form_Container_Jpaneslider extends One_Form_Container_Abstract
 {

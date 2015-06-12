@@ -2,11 +2,11 @@
 /**
  * Handles the multi-relational widget
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @filesource one/lib/form/widget/multi/relational.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+
+  * @TODO review this file and clean up historical code/comments
+ONEDISCLAIMER
+
  **/
 class One_Form_Widget_Multi_Relational extends One_Form_Widget_Abstract
 {
@@ -182,7 +182,7 @@ class One_Form_Widget_Multi_Relational extends One_Form_Widget_Abstract
 				if( selfscheme == scheme )
 					self = "&selfId=" + selfId;
 				var aj = new AjaxObject101();
-				aj.sndReq( "post", "' . One::getInstance()->getUrl() . '/lib/form/ajax/relational.php", "searchscheme=" + scheme + "&dd=f" + id + "&target=" + targetAttribute + "&phrase=" + phrase + self );
+				aj.sndReq( "post", "' . One_Config::getInstance()->getUrl() . '/lib/form/ajax/relational.php", "searchscheme=" + scheme + "&dd=f" + id + "&target=" + targetAttribute + "&phrase=" + phrase + self );
 			}
 
 			function addChosenOptions( id )

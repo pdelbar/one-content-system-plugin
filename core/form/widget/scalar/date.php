@@ -2,11 +2,11 @@
 /**
  * Handles the date widget
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @filesource one/lib/form/widget/scalar/date.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+
+  * @TODO review this file and clean up historical code/comments
+ONEDISCLAIMER
+
  **/
 Class One_Form_Widget_Scalar_Date extends One_Form_Widget_Scalar
 {
@@ -250,7 +250,7 @@ Class One_Form_Widget_Scalar_Date extends One_Form_Widget_Scalar
 			}
 
 			$tf  = new One_Form_Widget_Scalar_Textfield($id, $name, NULL, $extraParams);
-			$trigger = new One_Form_Widget_Image($id . 'trigger', $name . 'trigger', NULL, array('src' => One::getInstance()->getUrl() . '/vendor/images/calendar.png', 'alt' => 'Show calendar', 'title' => 'Show calendar'));
+			$trigger = new One_Form_Widget_Image($id . 'trigger', $name . 'trigger', NULL, array('src' => One_Config::getInstance()->getUrl() . '/vendor/images/calendar.png', 'alt' => 'Show calendar', 'title' => 'Show calendar'));
 
 			$tf->render($model, $dom);
 			$trigger->render($model, $dom);

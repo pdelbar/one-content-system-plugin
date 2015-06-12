@@ -2,11 +2,11 @@
 /**
  * Handles the captcha widget
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @filesource one/lib/form/widget/captcha.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+
+  * @TODO review this file and clean up historical code/comments
+ONEDISCLAIMER
+
  **/
 class One_Form_Widget_Captcha extends One_Form_Widget_Abstract
 {
@@ -81,13 +81,13 @@ class One_Form_Widget_Captcha extends One_Form_Widget_Abstract
 
 	private function generateCaptcha()
 	{
-		require_once(One::getInstance()->getPath() . DS . 'lib' . DS . 'libraries' . DS . 'captcha.php');
+		require_once(One_Config::getInstance()->getPath() . DS . 'lib' . DS . 'libraries' . DS . 'captcha.php');
 
 		// Generate captcha
 		$captcha = Text_CAPTCHA::factory('Image');
 		$imageOptions = array(
 	            'font_size'        => (!is_null($this->getCfg('font_size'))) ? $this->getCfg('font_size') : 20,
-	            'font_path'        => (!is_null($this->getCfg('font_path'))) ? $this->getCfg('font_path') : One::getInstance()->getPath() . DS . 'lib' . DS . 'libraries' . DS . 'Image',
+	            'font_path'        => (!is_null($this->getCfg('font_path'))) ? $this->getCfg('font_path') : One_Config::getInstance()->getPath() . DS . 'lib' . DS . 'libraries' . DS . 'Image',
 	            'font_file'        => (!is_null($this->getCfg('font_file'))) ? $this->getCfg('font_file') : 'arial.ttf',
 	            'text_color'       => (!is_null($this->getCfg('text_color'))) ? $this->getCfg('text_color') : '#66720F',
 	            'lines_color'      => (!is_null($this->getCfg('lines_color'))) ? $this->getCfg('lines_color') : '#66720F',

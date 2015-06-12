@@ -2,11 +2,11 @@
 /**
  * Factory class for getting instances of One_Query_Renderer_Interface
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
+
+
+  * @TODO review this file and clean up historical code/comments
  * @subpackage Query
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
  * @abstract
  **/
 class One_Query_Renderer

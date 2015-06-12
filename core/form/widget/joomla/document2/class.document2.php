@@ -2,11 +2,11 @@
 /**
  * Handles the view for selecting documents
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @filesource one/lib/form/widget/joomla/document/class.document.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+
+  * @TODO review this file and clean up historical code/comments
+ONEDISCLAIMER
+
  **/
 class One_Document2_Widget
 {

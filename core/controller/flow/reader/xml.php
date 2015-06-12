@@ -3,17 +3,17 @@ class One_Controller_Flow_Reader_XML implements One_Controller_Flow_Reader_Inter
 {
 	/**
 	 * Parse the flow definition and return an array with all redirects
-	 * @param One_Scheme_Interface $scheme
+	 * @param One_Scheme $scheme
 	 * @return array
 	 */
-	public static function load(One_Scheme_Interface $scheme)
+	public static function load(One_Scheme $scheme)
 	{
 		$defaultFile = self::getFlowFile('default');
 		$file = self::getFlowFile($scheme->getName());
 
 		$redirects = self::parseFile($defaultFile, true);
 
-		if($file !== false) {
+		if($file !== null) {
 			$redirects = array_merge($redirects, self::parseFile($file));
 		}
 
@@ -91,22 +91,29 @@ class One_Controller_Flow_Reader_XML implements One_Controller_Flow_Reader_Inter
 
 	public function getFlowFile($fileName)
 	{
-		$paths = array();
-		$paths[] = One::getInstance()->getCustomPath().'/meta/flows/'.One::getInstance()->getApplication().'/';
-		$paths[] = One::getInstance()->getPath().'/meta/flows/'.One::getInstance()->getApplication().'/';
-		$paths[] = One::getInstance()->getCustomPath().'/meta/flows/';
-		$paths[] = One::getInstance()->getPath().'/meta/flows/';
+    // search for appropriate flow definition xml file
 
-		$validFile = false;
-		foreach($paths as $path)
-		{
-			$filePath = $path.$fileName.'.xml';
-			if(file_exists($filePath)) {
-				$validFile = true;
-				break;
-			}
-		}
+    $pattern = "%ROOT%/meta/flows/";
+    $filepath = One_Loader::locateUsing($fileName.'.xml',$pattern);
+    return $filepath;
 
-		return ((!$validFile) ? false : $filePath);
+//
+//
+//    $paths = array();
+//		$paths[] = One::getInstance()->getCustomPath().'/meta/flows/'.One::getInstance()->getApplication().'/';
+//		$paths[] = One::getInstance()->getCustomPath().'/meta/flows/';
+//		$paths[] = One::getInstance()->getPath().'/meta/flows/';
+//
+//		$validFile = false;
+//		foreach($paths as $path)
+//		{
+//			$filePath = $path.$fileName.'.xml';
+//			if(file_exists($filePath)) {
+//				$validFile = true;
+//				break;
+//			}
+//		}
+//
+//		return ((!$validFile) ? false : $filePath);
 	}
 }

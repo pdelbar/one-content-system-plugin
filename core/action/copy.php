@@ -2,9 +2,9 @@
 /**
  * This class handles the copying of an item
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
+
+
+  * @TODO review this file and clean up historical code/comments
  **/
 class One_Action_Copy extends One_Action
 {
@@ -60,13 +60,6 @@ class One_Action_Copy extends One_Action
 //			$copy->$attr = $model->$attr;
 //		}
 
-		// if the scheme has a published behavior, set the clone as unpublished
-		if($this->scheme->hasBehavior('published'))
-		{
-			$pubOptions = $this->scheme->getBehaviorOptions('published');
-			$pubAttr = $pubOptions['attribute'];
-			$copy->$pubAttr = 0;
-		}
 
 		$copy->$idAttrName = NULL;
 

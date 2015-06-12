@@ -2,11 +2,11 @@
 /**
  * This class handles a view for the current scheme that doesn't need a model
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @filesource one/lib/action/Show.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+
+  * @TODO review this file and clean up historical code/comments
+ONEDISCLAIMER
+
  **/
 class One_Action_Show extends One_Action
 {

@@ -15,14 +15,14 @@ interface One_Store_Connection_Interface
 
 	/**
 	 * Set the store
-	 * @param One_Store_Interface $store Store
+	 * @param One_Store $store Store
 	 * @return One_Store_Connection_Interface
 	 */
-	public function setStore(One_Store_Interface $store);
+	public function setStore(One_Store $store);
 
 	/**
 	 * Get the store
-	 * @return One_Store_Interface
+	 * @return One_Store
 	 */
 	public function getStore();
 }

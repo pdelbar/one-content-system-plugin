@@ -3,12 +3,12 @@
  * Parent class for all One_Types
  * One_Types are the type of an attribute (EG: int, string, text, boolean, ...)
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
+
+
+  * @TODO review this file and clean up historical code/comments
  * @subpackage Type
- * @filesource one/lib/core/type.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+ONEDISCLAIMER
+
  **/
 abstract class One_Type
 {
@@ -75,4 +75,9 @@ abstract class One_Type
 	{
 		throw new One_Exception_Deprecated('Use getName instead');
 	}
+
+  public function defaultWidgetClass()
+  {
+    return 'One_Form_Widget_Scalar_Textfield';
+  }
 }

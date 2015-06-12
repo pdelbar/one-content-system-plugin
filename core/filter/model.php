@@ -2,11 +2,11 @@
 /**
  * Filter that will allow querystring variables to affect the One_Query
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @filesource one/lib/filter/model.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+
+  * @TODO review this file and clean up historical code/comments
+ONEDISCLAIMER
+
  **/
 class One_Filter_Model implements One_Filter_Interface
 {
@@ -38,7 +38,7 @@ class One_Filter_Model implements One_Filter_Interface
 	/**
 	 * Apply filters to the queryscheme
 	 *
-	 * @param One_Query_Interface $q
+	 * @param One_Query $q
 	 */
 	public function affect(One_Query $query )
 	{

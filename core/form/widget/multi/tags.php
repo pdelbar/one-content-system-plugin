@@ -2,10 +2,8 @@
 /**
  * Handles the multi-tags widget
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+ONEDISCLAIMER
  **/
 Class One_Form_Widget_Multi_Tags extends One_Form_Widget_Abstract
 {
@@ -57,7 +55,7 @@ Class One_Form_Widget_Multi_Tags extends One_Form_Widget_Abstract
 
 				if(null === One_Repository::selectOne($tScheme->getName(), $usedKey))
 				{
-					$tModel = One_Repository::getInstance($tScheme->getName());
+					$tModel = One::make($tScheme->getName());
 					$tModel->$targetAttr = $usedValue;
 					$tModel->insert();
 					$usedKey = $tModel->$tIdAttr;
@@ -174,7 +172,7 @@ Class One_Form_Widget_Multi_Tags extends One_Form_Widget_Abstract
 				req.query = "formtags";
 
 				//pass request to server
-                jQuery.getJSON("'.One::getInstance()->getSiterootUrl().One::getInstance()->getAddressOne().'&scheme='.$tScheme->getName().'&task=json", req, function(data) {
+                jQuery.getJSON("'.One_Config::getInstance()->getSiterootUrl().One_Config::getInstance()->getAddressOne().'&scheme='.$tScheme->getName().'&task=json", req, function(data) {
 
               	 	//create array for response objects
                     var suggestions = [];

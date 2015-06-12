@@ -2,11 +2,11 @@
 /**
  * This class handles the list view of the chosen item
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @filesource one/lib/action/list.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+
+  * @TODO review this file and clean up historical code/comments
+ONEDISCLAIMER
+
  **/
 class One_Action_List extends One_Action
 {
@@ -63,7 +63,7 @@ class One_Action_List extends One_Action
 	protected function getData()
 	{
 		$schemeName = $this->scheme;
-		if($this->scheme instanceof One_Scheme_Interface) {
+		if($this->scheme instanceof One_Scheme) {
 			$schemeName = $this->scheme->getName();
 		}
 

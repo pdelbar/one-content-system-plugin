@@ -2,10 +2,8 @@
 /**
  * Filter that helps searching for results that contain the given string
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+ONEDISCLAIMER
  **/
 class One_Filter_Formtags implements One_Filter_Interface
 {

@@ -2,11 +2,11 @@
 /**
  * Authorisation-rule to allow a task in the Joomla! administrator application
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @filesource one/lib/permission/rule/jbackend.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+
+  * @TODO review this file and clean up historical code/comments
+ONEDISCLAIMER
+
  **/
 class One_Permission_Rule_Jbackend extends One_Permission_Rule // @TODO move to custom
 {

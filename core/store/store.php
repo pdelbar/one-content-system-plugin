@@ -1,20 +1,22 @@
 <?php
 /**
- * This is basicly a Factory for getting instances of One_Store_Interface
+ * This is basicly a Factory for getting instances of One_Store
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
+
+
+  * @TODO review this file and clean up historical code/comments
  * @subpackage Store
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
  **/
 class One_Store
 {
+  const QUERYCLASS = 'One_Query';
+
 	/**
-	 * Get a specified instance of One_Store_Interface
+	 * Get a specified instance of One_Store
 	 * @param string $type
 	 * @throws One_Exception
-	 * @return One_Store_Interface
+	 * @return One_Store
 	 */
 	public static function getInstance($type)
 	{
@@ -27,4 +29,25 @@ class One_Store
 			throw new One_Exception('A store of type "'.$type.'" does not exist');
 		}
 	}
+
+  /**
+   * Return the type of One_Query class required for this store
+   * @return string
+   */
+  protected function getQueryClass() {
+    $c = get_called_class();
+    return $c::QUERYCLASS;
+  }
+
+  /**
+   * Return the appropriate type of query object for this scheme
+   *
+   * @param One_Scheme $scheme
+   * @return One_Query
+   */
+  public function getQuery(One_Scheme $scheme)
+  {
+    $queryClass = $this->getQueryClass();
+    return new $queryClass($scheme);
+  }
 }

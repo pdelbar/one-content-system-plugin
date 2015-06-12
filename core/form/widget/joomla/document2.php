@@ -2,11 +2,11 @@
 /**
  * Handles the document widget for Joomla! that looks for documents
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @filesource one/lib/form/widget/joomla/document.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+
+  * @TODO review this file and clean up historical code/comments
+ONEDISCLAIMER
+
  **/
 Class One_Form_Widget_Joomla_Document2 extends One_Form_Widget_Abstract
 {
@@ -76,7 +76,7 @@ Class One_Form_Widget_Joomla_Document2 extends One_Form_Widget_Abstract
 						'class' => $this->getCfg('class'),
 						'label' => $this->getLabel(),
 						'lblLast' => $this->getCfg('lblLast'),
-						'oneUrl' => One::getInstance()->getUrl()
+						'oneUrl' => One_Config::getInstance()->getUrl()
 					);
 
 		$dom = $this->parse($model, $data);

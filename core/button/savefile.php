@@ -2,9 +2,9 @@
 /**
  * Class that shows the "savefile" button in the backend
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
+
+
+  * @TODO review this file and clean up historical code/comments
  **/
 class One_Button_Savefile extends One_Button
 {
@@ -15,7 +15,7 @@ class One_Button_Savefile extends One_Button
 	 */
 	public function render()
 	{
-		$output = '<td><a href="#" onclick="document.getElementById( \'code\' ).value = editorCode.getCode(); document.getElementById( \'task\' ).value = \'savefile\'; document.getElementById( \''.One_Button::getFormId().'\' ).submit(); "><img src="' . One::getInstance()->getUrl() . '/vendor/images/toolset/' . self::getToolset() . '/backto.png" title="Save file">';
+		$output = '<td><a href="#" onclick="document.getElementById( \'code\' ).value = editorCode.getCode(); document.getElementById( \'task\' ).value = \'savefile\'; document.getElementById( \''.One_Button::getFormId().'\' ).submit(); "><img src="' . One_Config::getInstance()->getUrl() . '/vendor/images/toolset/' . self::getToolset() . '/backto.png" title="Save file">';
 
 		if( self::showText() )
 			$output .= '<br />Save File';

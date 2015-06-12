@@ -7,7 +7,7 @@ abstract class One_Store_Connection_Abstract implements One_Store_Connection_Int
 	protected $_connectionName;
 
 	/**
-	 * @var One_Store_Interface The 'storage engine' to use
+	 * @var One_Store The 'storage engine' to use
 	 */
 	protected $_store;
 
@@ -87,9 +87,9 @@ abstract class One_Store_Connection_Abstract implements One_Store_Connection_Int
 	}
 
 	/**
-	 * Returns the One_Store_Interface for the connection
+	 * Returns the One_Store for the connection
 	 *
-	 * @return One_Store_Interface
+	 * @return One_Store
 	 */
 	public function getStore()
 	{
@@ -99,10 +99,10 @@ abstract class One_Store_Connection_Abstract implements One_Store_Connection_Int
 	/**
 	 * Set the store for the connection
 	 *
-	 * @param One_Store_Interface $store
+	 * @param One_Store $store
 	 * @return One_Store_Connection_Abstract
 	 */
-	public function setStore(One_Store_Interface $store)
+	public function setStore(One_Store $store)
 	{
 		$this->_store = $store;
 		return $this;

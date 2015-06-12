@@ -2,10 +2,8 @@
 /**
  * Class that holds the data of a specific relation
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+ONEDISCLAIMER
  **/
 class One_Link implements One_Link_Interface
 {

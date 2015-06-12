@@ -2,10 +2,8 @@
 /**
  * This class controls the actions being performed at the frontend of one|content
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+ONEDISCLAIMER
  **/
 class One_Controller implements One_Controller_Interface
 {

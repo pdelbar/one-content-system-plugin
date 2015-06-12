@@ -28,7 +28,7 @@ class One_Script_Loader {
   }
 
   static function _load($parts) {
-    $path = One::getInstance()->locate(implode("/", $parts) . '.php');
+    $path = One_Config::getInstance()->locate(implode("/", $parts) . '.php');
 
     if ($path === null) {
       return false;
@@ -40,7 +40,7 @@ class One_Script_Loader {
 	}
 
   public static function isPackage($pkName) {
-    $path = One::getInstance()->locate('script' . DS . 'package' . DS . $pkName . '.php');
+    $path = One_Config::getInstance()->locate('script' . DS . 'package' . DS . $pkName . '.php');
 //    echo '<br><b>', $pkName, '</b> is ', ($path === null ? 'NOT' : ' '), ' a package';
     return ($path !== null);
   }

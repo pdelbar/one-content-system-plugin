@@ -136,12 +136,12 @@ class One_Script_Package_One extends One_Script_Package
 
 	public function getOnePath()
 	{
-		return One::getInstance()->getPath();
+		return One_Config::getInstance()->getPath();
 	}
 
 	public function getOneSitePath()
 	{
-		return One::getInstance()->getUrl();
+		return One_Config::getInstance()->getUrl();
 	}
 
 	public function getFactory( $schemeName )
@@ -151,16 +151,16 @@ class One_Script_Package_One extends One_Script_Package
 
 	public function getScheme( $schemeName )
 	{
-		return One_Repository::getScheme( $schemeName );
+		return One::meta("schemes/$schemeName");
 	}
 
-	public function getIdentityValue( One_Model_Interface $model )
+	public function getIdentityValue( One_Model $model )
 	{
 		$idAttr = $model->getScheme()->getIdentityAttribute()->getName();
 		return $model->$idAttr;
 	}
 
-	public function getVar( One_Model_Interface $model, $var )
+	public function getVar( One_Model $model, $var )
 	{
 		$parts = explode( ':', $var, 2 );
 
@@ -182,7 +182,8 @@ class One_Script_Package_One extends One_Script_Package
 		return $instance;
 	}
 
-	public function parseModelScript( One_Model_Interface $model, $script )
+  //DEPRECATED
+	public function parseModelScript( One_Model $model, $script )
 	{
 		$ns      = new One_Script();
 		$output  = $ns->executeString( $script, array( 'model' => $model ) );
@@ -201,12 +202,12 @@ class One_Script_Package_One extends One_Script_Package
 
 	public function getCurrentLanguage()
 	{
-		return One::getInstance()->getLanguage();
+		return One_Config::getInstance()->getLanguage();
 	}
 
 	public function getOneInstance()
 	{
-		return One::getInstance();
+		return One_Config::getInstance();
 	}
 
 	public function getVendorInstance()

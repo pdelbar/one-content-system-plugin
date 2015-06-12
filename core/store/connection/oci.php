@@ -2,11 +2,11 @@
 /**
  * The One_Store_Connection_Oci class supplies the connection to a Oracle/OCI database
  *
- * @author delius
+
  * @copyright 2012 delius bvba
- * @package one|content
+  * @TODO review this file and clean up historical code/comments
  * @subpackage Store
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
  **/
 class One_Store_Connection_Oci extends One_Store_Connection_Abstract
 {

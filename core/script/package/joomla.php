@@ -3,7 +3,7 @@
 // package request : functions to access the request
 //------------------------------------------------------------------
 
-	class oneScriptPackageJoomla extends One_Script_Package
+	class One_Script_Package_Joomla extends One_Script_Package
 	{
 		public static function siteName()
 		{

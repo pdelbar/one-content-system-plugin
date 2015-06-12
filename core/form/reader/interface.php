@@ -2,9 +2,9 @@
 /**
  * One_Form_Reader Interface
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
+
+
+  * @TODO review this file and clean up historical code/comments
  * @subpackage Form
  **/
 interface One_Form_Reader_Interface

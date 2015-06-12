@@ -3,11 +3,11 @@
  * This class handles the search actions,
  * showing a search form as well as fetching and showing the results
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @filesource one/lib/action/search.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+
+  * @TODO review this file and clean up historical code/comments
+ONEDISCLAIMER
+
  **/
 class One_Action_Search extends One_Action
 {
@@ -41,7 +41,7 @@ class One_Action_Search extends One_Action
 		$this->authorize( $this->scheme, $model->id );
 
 		$results = NULL;
-		$model   = One_Repository::getInstance($this->scheme->getName());
+		$model   = One::make($this->scheme->getName());
 		$cx      = new One_Context();
 		$session = One_Repository::getSession();
 
@@ -98,11 +98,6 @@ class One_Action_Search extends One_Action
 		$filter->affect($query);
 
 		$this->processQueryConditions($query);
-
-		$searchOptions = $this->scheme->getBehaviorOptions('searchable');
-		if(isset($searchOptions['publishField'])) { // if a publishField is given, only return the published results
-			$query->where($searchOptions['publishField'], 'eq', 1);
-		}
 
 		$results = $query->execute();
 
@@ -212,9 +207,6 @@ class One_Action_Search extends One_Action
 								$tQ->where($tidAttr, $op, $value);
 
 
-								if(isset($tSearchOptions['publishField'])) { // if a publishField is given, only return the published results
-									$tQ->where($tSearchOptions['publishField'], 'eq', 1);
-								}
 
 								$tmpResults = $tQ->execute(false);
 
@@ -252,13 +244,7 @@ class One_Action_Search extends One_Action
 
 								foreach($relateds as $related)
 								{
-									if(isset($searchOptions['publishField'])) // if a publishField is given, only return the published results
-									{
-										$pubField = $searchOptions['publishField'];
-										if(0 == $related->$pubField) {
-											continue;
-										}
-									}
+
 
 									if(!isset($weights[$related->$idAttr]))
 									{
@@ -334,9 +320,7 @@ class One_Action_Search extends One_Action
 							$cQ->setSelect(array($idAttr));
 							$cQ->where($widgetData['name'], $op, $value);
 
-							if(isset($searchOptions['publishField'])) { // if a publishField is given, only return the published results
-								$cQ->where($searchOptions['publishField'], 'eq', 1);
-							}
+
 
 							$tmpResults = $cQ->execute(false);
 

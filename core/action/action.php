@@ -4,11 +4,11 @@
  * This class should never be instanciated on it's own
  * @todo if that's true, it should be abstract
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @filesource one/lib/action/action.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+
+  * @TODO review this file and clean up historical code/comments
+ *
+
  **/
 class One_Action implements One_Action_Interface
 {
@@ -28,7 +28,7 @@ class One_Action implements One_Action_Interface
 	protected $view;
 
 	/**
-	 * @var One_Scheme_Interface The One_Scheme_Interface used for the current action
+	 * @var One_Scheme The One_Scheme used for the current action
 	 */
 	protected $scheme;
 
@@ -43,7 +43,7 @@ class One_Action implements One_Action_Interface
 		$this->controller = $controller;
 		$this->options    = $options;
 
-		if(!($this->scheme instanceof One_Scheme_Interface)) {
+		if(!($this->scheme instanceof One_Scheme)) {
 			$this->scheme = One_Repository::getScheme($this->options['scheme']);
 		}
 	}
@@ -95,10 +95,10 @@ class One_Action implements One_Action_Interface
 	/**
 	 * Processes any possibly given filters and alters the One_Query object accordingly
 	 *
-	 * @param One_Query_Interface $query
+	 * @param One_Query $query
 	 * @param array $filters
 	 */
-	protected function processQueryConditions(One_Query_Interface $query, array $filters)
+	protected function processQueryConditions(One_Query $query, array $filters)
 	{
 		$condition = $this->getVariable('query', '');
 		if ($condition) {

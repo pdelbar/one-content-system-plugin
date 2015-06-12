@@ -3,11 +3,11 @@
  * One_Link_Type is the way how the relationship is built.
  * One-to-many, many-to-one or many-to-many
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @filesource one/lib/link/type.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+
+  * @TODO review this file and clean up historical code/comments
+ONEDISCLAIMER
+
  * @abstract
  **/
 abstract class One_Link_Type_Abstract implements One_Link_Type_Interface

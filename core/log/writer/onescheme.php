@@ -44,7 +44,7 @@ class One_Log_Writer_OneScheme implements One_Log_Writer_Interface
 		}
 
 		// Create the One_Model for the scheme
-		$model = One_Repository::getInstance($this->_scheme->getName());
+		$model = One::make($this->_scheme->getName());
 
 		// Set all data
 		foreach($data as $key => $value) {

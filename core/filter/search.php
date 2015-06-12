@@ -3,11 +3,11 @@
  * Filter that alters the One_Query to fetch the correct results
  * filtered with the sent search queries
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @filesource one/lib/filter/search.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+
+  * @TODO review this file and clean up historical code/comments
+ONEDISCLAIMER
+
  **/
 class One_Filter_Search implements One_Filter_Interface
 {

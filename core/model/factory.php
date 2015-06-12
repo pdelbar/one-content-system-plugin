@@ -1,4 +1,6 @@
 <?php
+die('shoudl not be calling ' . __FILE__ );
+
 /**
  * The introduction of a One_ModelFactory as a means to create instances of a particular scheme
  * makes it possible to extend the selection of models beyond select using query and select a single
@@ -7,11 +9,11 @@
  * for a scheme 'invoice' it may be useful to select open invoices, paid invoices, ... without having
  * to specify the details of how the selection works outside the model factory.
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @filesource one/lib/model/factory.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+
+  * @TODO review this file and clean up historical code/comments
+ONEDISCLAIMER
+
  **/
 class One_Model_Factory
 {
@@ -24,6 +26,6 @@ class One_Model_Factory
 	public function get( $path )
 	{
 		$parts = explode( '.', trim( strtolower( $path ) ) );
-		return One_Repository::getInstance( $parts[ 0 ] );
+		return One::make( $parts[ 0 ] );
 	}
 }

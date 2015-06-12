@@ -2,9 +2,9 @@
 /**
  * Class that shows the "apply" button in the backend
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
+
+
+  * @TODO review this file and clean up historical code/comments
  **/
 class One_Button_Apply extends One_Button
 {
@@ -15,7 +15,7 @@ class One_Button_Apply extends One_Button
 	 */
 	public function render()
 	{
-		$output = '<td><a href="#" onclick="document.getElementById( \'task\' ).value = \'apply\'; document.getElementById( \''.One_Button::getFormId().'\' ).submit(); "><img src="' . One::getInstance()->getUrl() . '/vendor/images/toolset/' . self::getToolset() . '/apply.png" title="Apply">';
+		$output = '<td><a href="#" onclick="document.getElementById( \'task\' ).value = \'apply\'; document.getElementById( \''.One_Button::getFormId().'\' ).submit(); "><img src="' . One_Config::getInstance()->getUrl() . '/vendor/images/toolset/' . self::getToolset() . '/apply.png" title="Apply">';
 
 		if( self::showText() )
 			$output .= '<br />Apply';

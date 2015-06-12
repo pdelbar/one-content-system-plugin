@@ -4,11 +4,11 @@
  * WARNING: this widget is to be used in Joomla! only and
  * also needs the specific template override for com_media/views/images/tmpl/default.php
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @filesource one/lib/form/widget/joomla/media.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+
+  * @TODO review this file and clean up historical code/comments
+ONEDISCLAIMER
+
  **/
 
 Class One_Form_Widget_Joomla_Media2 extends One_Form_Widget_Abstract

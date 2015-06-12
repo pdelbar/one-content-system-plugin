@@ -2,11 +2,11 @@
 /**
  * Widgets are codeblocks that lets you send values in a form
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @filesource one/lib/form/widget/abstract.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+
+  * @TODO review this file and clean up historical code/comments
+ONEDISCLAIMER
+
  * @abstract
  **/
 abstract class One_Form_Widget_Abstract
@@ -521,36 +521,32 @@ abstract class One_Form_Widget_Abstract
 		// general Dataset
 		$data['excludeError'] = (in_array($this->getCfg('excludeError'), array('true', 'yes', '1', 'exclude', 'excludeError'))) ? 1 : 0;
 
-		$dom = One_Repository::getDom();
-
-    $templater  = One_Repository::getTemplater(NULL, false);
-		$oldSearchpath = $templater->getSearchpath();
-		$templater->clearSearchpath();
-
-		// determine if we need to look for the template-file in a subfolder of widget
-		$wtype = '';
+    // determine if we need to look for the template-file in a subfolder of widget
 		$current = str_replace('One_Form_Widget_', '', get_class($this));
 		$parts   = preg_split('/_/', strtolower($current));
 		array_pop($parts);
 		$wtype = implode(DS, $parts);
 
     $pattern = "%ROOT%/views/"
-             . "{%APP%,default}/"
-             . "oneform/widget/"
-             . ( $wtype ? "{" . $wtype . ",}" : '')
-             . "{%LANG%/,}";
+            . "{%APP%,default}/"
+            . "oneform/"
+            . (ONEFORMCHROME ? "{".ONEFORMCHROME . '/,}' : '')
+            . "widget/"
+            . ( $wtype ? "{" . $wtype . "/,}" : '')
+            . "{%LANG%/,}";
+    One_Script_Factory::pushSearchPath( $pattern );
 
-    $templater->addSearchPath($pattern);
+    $script = new One_Script();
+    $script->load($this->_type . '.html');
+    if ($script->error) {
+      One_Script_Factory::popSearchPath();
+      throw new One_Exception('Error loading template for widget ' . $this->_type . ' : ' . $script->error);
+    }
 
-    $templater->setFile( $this->_type . '.html');
-		if($templater->hasError())
-      throw new One_Exception($templater->getError());
+		$dom = One_Repository::getDom();
+    $dom->add($script->execute($data));
 
-		$templater->setData($data);
-		$dom->add($templater->parse());
 
-		$templater->clearSearchpath();
-		$templater->setSearchpath($oldSearchpath);
 
 		return $dom;
 	}

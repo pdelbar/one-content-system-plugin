@@ -2,11 +2,11 @@
 /**
  * The One_Store_Connection_Joomla2 class supplies the connection to a Joomla 2.5 database
  *
- * @author delius
+
  * @copyright 2012 delius bvba
- * @package one|content
+  * @TODO review this file and clean up historical code/comments
  * @subpackage Store
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
  **/
 class One_Store_Connection_Joomla2 extends One_Store_Connection_Abstract
 {

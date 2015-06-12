@@ -4,11 +4,11 @@
  * as a factory pattern.
  *
  * @name One_Relation_Reader_Xml
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
+
+
+  * @TODO review this file and clean up historical code/comments
  * @subpackage Relation
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
  **/
 class One_Relation_Reader_Xml
 {
@@ -33,7 +33,7 @@ class One_Relation_Reader_Xml
 		}
 		else // create relations using the relationfiles
 		{
-      $relationpath = One::getInstance()->locate('meta'.DS.'relation'.DS.$relationName.'.xml');
+      $relationpath = One_Config::getInstance()->locate('meta'.DS.'relation'.DS.$relationName.'.xml');
       if ($relationpath === null) {
 					throw new One_Exception('Could not load the relation "'.$relationName.'"');
       }

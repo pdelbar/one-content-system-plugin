@@ -4,7 +4,7 @@
  *
  * @author traes
  * @copyright 2011 delius bvba
- * @package one|content
+  * @TODO review this file and clean up historical code/comments
  * @subpackage Store
  **/
 class One_Store_Connection_Mock extends One_Store_Connection_Abstract

@@ -4,11 +4,11 @@
  * Warning! To use this widget, the scheme must always(!) have the following attributes (but preferably not visible in the forms:
  * secret, filepath, filename, mimetype
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @filesource one/lib/form/widget/scalar/upload.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+
+  * @TODO review this file and clean up historical code/comments
+ONEDISCLAIMER
+
  **/
 Class One_Form_Widget_Scalar_Upload extends One_Form_Widget_Scalar
 {
@@ -71,9 +71,9 @@ Class One_Form_Widget_Scalar_Upload extends One_Form_Widget_Scalar
 						'required' => (($this->isRequired()) ? ' *' : ''),
 						'label' => $this->getLabel(),
 						'lblLast' => $this->getCfg('lblLast'),
-						'oneUrl' => One::getInstance()->getUrl(),
+						'oneUrl' => One_Config::getInstance()->getUrl(),
 						'vendorUrl' => One_Vendor::getInstance()->getSitePath(),
-						'path' => (!is_null($this->getCfg('path')) ? $this->getCfg('path') : One::getInstance()->getSiterootUrl()),
+						'path' => (!is_null($this->getCfg('path')) ? $this->getCfg('path') : One_Config::getInstance()->getSiterootUrl()),
 						'isSimple' => (!is_null($this->getCfg('simple')) ? 'yes' : 'no')
 					);
 

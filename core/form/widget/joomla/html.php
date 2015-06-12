@@ -2,11 +2,11 @@
 /**
  * Handles the HTML widget for Joomla! ( WYSIWYG )
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @filesource one/lib/form/widget/joomla/html.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+
+  * @TODO review this file and clean up historical code/comments
+ONEDISCLAIMER
+
  **/
 class One_Form_Widget_Joomla_HTML extends One_Form_Widget_Abstract
 {

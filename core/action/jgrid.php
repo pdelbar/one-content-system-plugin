@@ -2,9 +2,9 @@
 /**
  * This class handles the list view of the chosen item
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
+
+
+  * @TODO review this file and clean up historical code/comments
  **/
 class One_Action_Jgrid extends One_Action
 {
@@ -224,7 +224,7 @@ class One_Action_Jgrid extends One_Action
 		$session    = One_Repository::getSession();
 
 		$exists = true;
-		$filename = One_Loader::locateUsing('list.xml',One_Loader::ROOTPATTERN .'views/'.One::getInstance()->getApplication().'/'.$this->scheme->getName(). '/');
+		$filename = One_Loader::locateUsing('list.xml',One_Loader::ROOTPATTERN .'views/'.One_Config::getInstance()->getApplication().'/'.$this->scheme->getName(). '/');
 		if ($filename === null)
 		{
 				$exists = false;

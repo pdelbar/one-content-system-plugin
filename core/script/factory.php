@@ -8,6 +8,8 @@
 
 class One_Script_Factory
 {
+  private static $searchPatterns = array();
+
 	public static $nsLoadRoot = "";					// file path where all searches start
 	private static $nsLoadPath = array();			// sequence of search patterns to add to loadRoot
 	private static $nsSavedLoadPath = array();
@@ -69,12 +71,13 @@ class One_Script_Factory
 		$path = $path . $filename;
 //		print "<br>(trying specified $path)";
 		if ($hash = One_Script_Cache::get( $path )) return array( true, $hash, $path );
-//		if (file_exists( $path ))
-//		{
-//			return self::loadFileContents( $path, $mode );
-//		}
+		if (file_exists( $path ))
+		{
+			return self::loadFileContents( $path, $mode );
+		}
 
-		// not found, walk the search sequence
+		// not found, walk the search sequence -- DEPRECATED
+    /*
 		$sequence = self::$nsLoadPath;
 
 		if ($sequence) foreach ($sequence as $pathTemplate)  {
@@ -82,7 +85,13 @@ class One_Script_Factory
       if ($hash = One_Script_Cache::inCache( $place )) return array( true, $hash, $place );
       return self::loadFileContents( $place, $mode );
     }
+    */
 
+    $place = One_Loader::locateUsing( $path,self::currentSearchPattern());
+    if ($place !== null) {
+      if ($hash = One_Script_Cache::inCache( $place )) return array( true, $hash, $place );
+      return self::loadFileContents( $place, $mode );
+    }
     self::$error = "One_Script_Factory error : could not locate '$filename' in '$path'";
     return false;
 //
@@ -264,4 +273,15 @@ class One_Script_Factory
 		self::$nsLoadPath = $pathArray;
 	}
 
+
+  public static function currentSearchPattern() {
+//    echo '<br>Using search pattern <b>' . self::$searchPatterns[0] . '</b>';
+    return self::$searchPatterns[0];
+  }
+  public static function pushSearchPath( $pattern ) {
+    array_unshift(self::$searchPatterns,$pattern);
+  }
+  public static function popSearchPath() {
+    array_shift(self::$searchPatterns);
+  }
 }

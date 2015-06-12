@@ -3,24 +3,63 @@
 /**
  * Factory class to fetch different kinds of object one|content
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
+ * @TODO review this file and clean up historical code/comments
  * @subpackage Repository
- * @filesource one/lib/core/repository.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+ * ONEDISCLAIMER
  **/
-class One_Repository {
+class One_Repository  {
   // @TODO implement better caching
-  /**
-   * @staticvar array cache that contains used stores
-   */
-  protected static $storeCache = array();
+
 
   /**
    * @staticvar array cache that contains used schemes
    */
   protected static $schemeCache = array();
+
+
+  /**
+   * Return the named scheme, loading it if necessary
+   * @meta
+   * @param String $schemeName
+   * @return One_Scheme
+   */
+  public static function getScheme($schemeName) {
+    if ( !array_key_exists($schemeName, self::$schemeCache) ) {
+      $scheme    = One_Scheme_Reader_Xml::load($schemeName);
+      $behaviors = $scheme->getBehaviors();
+      if ( $behaviors ) {
+        foreach ($behaviors as $behavior) {
+          $behavior->onLoadScheme($scheme);
+        }
+      }
+      self::$schemeCache[$schemeName] = $scheme;
+    }
+    $scheme = self::$schemeCache[$schemeName];
+    return $scheme;
+  }
+
+  /**
+   * Return an array with available scheme names
+   * @meta
+   * @return array
+   */
+  public static function getSchemeNames() {
+    $pattern = One_Loader::ROOTPATTERN . 'meta/scheme/';
+    $places  = One_Loader::locateAllUsing('*.xml', $pattern);
+    $schemes = array();
+    foreach ($places as $place) {
+      preg_match("|([a-zA-Z0-9_\-]*)\.xml$|", $place, $matches);
+      $schemes[] = $matches[1];
+    }
+    return $schemes;
+  }
+
+
+
+  /**
+   * @staticvar array cache that contains used stores
+   */
+  protected static $storeCache = array();
 
   /**
    * @staticvar array cache that contains used types
@@ -57,29 +96,6 @@ class One_Repository {
    */
   protected static $modelCache = array();
 
-  /**
-   * Return a One_Model of a certain scheme
-   *
-   * @param string $schemeName
-   * @return One_Model
-   */
-  public static function getInstance($schemeName) {
-    $scheme = self::getScheme($schemeName);
-    $object = null;
-
-    $behaviors = $scheme->getBehaviors();
-    if ($behaviors) foreach ($behaviors as $behavior) {
-      $object = $behavior->onCreateModel($scheme);
-
-      if ($object)
-        return $object;
-    }
-
-    $object = new One_Model($scheme);
-
-    return $object;
-    //TODO: make it overloadable using model metainfo modelClass
-  }
 
   /**
    * Return an instance of the appropriate One_Factory subclass
@@ -88,13 +104,13 @@ class One_Repository {
    * @return One_Factory
    */
   public static function getFactory($schemeName) {
-    $scheme = self::getScheme($schemeName);
+    $scheme = is_a($schemeName,'One_Scheme') ? $schemeName : self::getScheme($schemeName);
     $resources = $scheme->getResources();
 
     if (isset($resources['factory']) && !is_null($resources['factory']))
       $factoryName = 'One_Factory_' . ucFirst(strtolower($resources['factory']));
     else
-      $factoryName = 'One_Factory_' . ucFirst($schemeName);
+      $factoryName = 'One_Factory_' . ucFirst($scheme->getName());
 
     if (class_exists($factoryName))
       $factory = new $factoryName($scheme);
@@ -108,15 +124,9 @@ class One_Repository {
    * Get the specified Store
    *
    * @param string $storeName
-   * @return One_Store_Interface
+   * @return One_Store
    */
   public static function getStore($storeName) {
-//		if(!array_key_exists($storeName, self::$storeCache))
-//		{
-//			self::$storeCache[$storeName] = One_Store::getInstance($storeName);
-//		}
-//
-//		return self::$storeCache[$storeName];
     return One_Store::getInstance($storeName); // May never be cached to avoid writing in the wrong store
   }
 
@@ -135,47 +145,9 @@ class One_Repository {
     return self::$connectionCache[$connectionName];
   }
 
-  /**
-   * Return the named scheme, loading it if necessary
-   * @meta
-   * @param String $schemeName
-   * @return One_Scheme
-   */
-  public static function getScheme($schemeName) {
-    if (!array_key_exists($schemeName, self::$schemeCache)) {
-      $scheme = One_Scheme_Reader_Xml::load($schemeName);
-
-      //PD22SEP08: allow behaviors (such as publish) to modify the scheme
-      // TR20110808 Moved onLoadScheme behavior in here, so it will only be performed once, not every time the scheme is fetched
-      $behaviors = $scheme->getBehaviors();
-      if ($behaviors) {
-        foreach ($behaviors as $behavior) {
-          $behavior->onLoadScheme($scheme);
-        }
-      }
-      self::$schemeCache[$schemeName] = $scheme;
-    }
-    $scheme = self::$schemeCache[$schemeName];
 
 
-    return $scheme;
-  }
 
-  /**
-   * Return an array with available scheme names
-   * @meta
-   * @return array
-   */
-  public static function getSchemeNames() {
-    $pattern = One_Loader::ROOTPATTERN . 'meta/scheme/';
-    $places = One_Loader::locateAllUsing('*.xml',$pattern);
-    $schemes = array();
-    foreach ($places as $place) {
-      preg_match("|([a-zA-Z0-9_\-]*)\.xml$|",$place,$matches);
-      $schemes[] = $matches[1];
-    }
-    return $schemes;
-  }
 
   /**
    * Return an array with available filter names
@@ -184,10 +156,10 @@ class One_Repository {
    */
   public static function getFilterNames($schemeName = NULL) {
     $pattern = One_Loader::ROOTPATTERN . 'filter/' . ($schemeName !== null ? '{scheme/,}' : '');
-    $places = One_Loader::locateAllUsing('*.xml',$pattern);
+    $places = One_Loader::locateAllUsing('*.xml', $pattern);
     $filters = array();
     foreach ($places as $place) {
-      preg_match("|([a-zA-Z0-9_\-]*)\.xml$|",$place,$matches);
+      preg_match("|([a-zA-Z0-9_\-]*)\.xml$|", $place, $matches);
       $filters[] = $matches[1];
     }
     sort($filters);
@@ -276,24 +248,6 @@ class One_Repository {
     return self::$linkTypeCache[$linkTypeName];
   }
 
-  /**
-   * Get a One_Query Scheme for the given scheme
-   *
-   * @static
-   * @param String $schemeName
-   * @return One_Query
-   */
-  public static function selectQuery($schemeName) {
-    $scheme = self::getScheme($schemeName);
-    $query = new One_Query($scheme);
-
-    $behaviors = $scheme->getBehaviors();
-    if ($behaviors) foreach ($behaviors as $behavior) {
-      $behavior->onSelect($query);
-    }
-
-    return $query;
-  }
 
   /**
    * Returns a DOM - object
@@ -305,8 +259,8 @@ class One_Repository {
     if (!is_null($type) && class_exists('One_Dom_' . ucfirst(strtolower($type)))) {
       $dom = 'One_Dom_' . ucfirst('One_Dom_' . ucfirst(strtolower($type)));
       return new $dom();
-    } else if (one::getInstance()->getDomType()) {
-      $dom = 'One_Dom_' . one::getInstance()->getDomType();
+    } else if (One_Config::getInstance()->getDomType()) {
+      $dom = 'One_Dom_' . One_Config::getInstance()->getDomType();
       return new $dom();
     } else
       return new One_Dom();
@@ -315,21 +269,9 @@ class One_Repository {
   //-------------------------------------------------------------------------------
   // SELECTION OF MODELS
   //-------------------------------------------------------------------------------
-  /**
-   * Select One_Models according to the specified selectors
-   *
-   * @param string $schemeName
-   * @param array $selectors
-   * @return array
-   * @deprecated
-   */
-  public static function select($schemeName, $selectors = array()) {
-    $factory = self::getFactory($schemeName);
-    return $factory->select($selectors);
-  }
 
   /**
-   * Select a single instance.
+   * Select a single instance of this scheme.
    *
    * @static
    * @param string $schemeName
@@ -342,6 +284,18 @@ class One_Repository {
   }
 
   /**
+   * Return a One_Query for the given scheme to allow for the selection of multiple models
+   *
+   * @static
+   * @param String $schemeName
+   * @return One_Query
+   */
+  public static function selectQuery($schemeName) {
+    $factory = self::getFactory($schemeName);
+    return $factory->selectQuery();
+  }
+
+  /**
    * Return the number of One_Models of the specified kind
    *
    * @param string $schemeName
@@ -351,22 +305,6 @@ class One_Repository {
     $factory = self::getFactory($schemeName);
     return $factory->selectCount();
   }
-
-  /**
-   * Get the current user using the "getUser" method from the main store
-   *
-   * @return object
-   */
-  public static function getUser() {
-    throw new One_Exception_NotImplemented("Getting a current user does not belong here, or at least it shouldn't be fetched from a store");
-    /*//TODO: this has no place in the One_Repository, does it ?
-    $store = self::getStore(ONEMAINSTORE);
-    $strategy = $store->strategy();
-    $currentUser = $strategy->getCurrentUser();
-
-    return $currentUser;*/
-  }
-
 
   /**
    * Gets the controller for the specified scheme
@@ -469,33 +407,10 @@ class One_Repository {
    */
   public static function getTemplater($templaterClass = NULL, $setSearchpaths = true) {
     if (is_null($templaterClass)) {
-      $templaterClass = One::getInstance()->getTemplater();
+      $templaterClass = One_Config::getInstance()->getTemplater();
     }
 
     return new $templaterClass(array(), $setSearchpaths);
   }
 
-  /**
-   * Get the specified One_Model from the cache if it exists, return false if not
-   *
-   * @param string $schemeName
-   * @param mixed $id
-   * @return One_Model
-   * @deprecated use IdentityMap
-   */
-  public static function getModelFromCache($schemeName, $id) {
-    throw new One_Exception_Deprecated("Use One_Model_IdentityMap instead");
-  }
-
-  /**
-   * Cache the specified One_Model
-   *
-   * @param string $schemeName
-   * @param mixed $id
-   * @param One_Model $model
-   * @deprecated use IdentityMap
-   */
-  public static function cacheModel($schemeName, $id, One_Model $model) {
-    throw new One_Exception_Deprecated("Use One_Model_IdentityMap instead");
-  }
 }

@@ -13,11 +13,11 @@ class One_Controller_Flow
 	 */
 	protected $_redirects = array();
 
-	protected function __construct(One_Scheme_Interface $scheme, $redirects = array())
+	protected function __construct(One_Scheme $scheme, $redirects = array())
 	{
-		if(!array_key_exists(One::getInstance()->getApplication(), self::$_flowCache))
+		if(!array_key_exists(One_Config::getInstance()->getApplication(), self::$_flowCache))
 		{
-			self::$_flowCache[One::getInstance()->getApplication()] = array();
+			self::$_flowCache[One_Config::getInstance()->getApplication()] = array();
 		}
 		$this->_redirects = array_merge(self::getFlow($scheme), $redirects);
 	}
@@ -25,18 +25,18 @@ class One_Controller_Flow
 	/**
 	 * Get an instance of One_Controller_Flow for the proper scheme
 	 *
-	 * @param One_Scheme_Interface $scheme
+	 * @param One_Scheme $scheme
 	 * @param array $redirects
 	 * @return One_Controller_Flow
 	 */
-	public static function getInstance(One_Scheme_Interface $scheme, array $redirects = array()) {
-		if(!array_key_exists(One::getInstance()->getApplication(), self::$_flowCache)
-			|| !array_key_exists($scheme->getName(), self::$_flowCache[One::getInstance()->getApplication()]))
+	public static function getInstance(One_Scheme $scheme, array $redirects = array()) {
+		if(!array_key_exists(One_Config::getInstance()->getApplication(), self::$_flowCache)
+			|| !array_key_exists($scheme->getName(), self::$_flowCache[One_Config::getInstance()->getApplication()]))
 		{
-			self::$_flowCache[One::getInstance()->getApplication()][$scheme->getName()] = new One_Controller_Flow($scheme, $redirects);
+			self::$_flowCache[One_Config::getInstance()->getApplication()][$scheme->getName()] = new One_Controller_Flow($scheme, $redirects);
 		}
 
-		return self::$_flowCache[One::getInstance()->getApplication()][$scheme->getName()];
+		return self::$_flowCache[One_Config::getInstance()->getApplication()][$scheme->getName()];
 	}
 
 	public function setRedirects(array $redirects = array())
@@ -66,7 +66,7 @@ class One_Controller_Flow
 		}
 	}
 
-	public static function getFlow(One_Scheme_Interface $scheme)
+	public static function getFlow(One_Scheme $scheme)
 	{
 		return One_Controller_Flow_Reader_XML::load($scheme);
 	}

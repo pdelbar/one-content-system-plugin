@@ -2,11 +2,11 @@
 /**
  * Handles a tabber container
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @filesource one/lib/form/container/tabber.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+
+  * @TODO review this file and clean up historical code/comments
+ONEDISCLAIMER
+
  **/
 Class One_Form_Container_Tabber extends One_Form_Container_Abstract
 {
@@ -55,9 +55,9 @@ Class One_Form_Container_Tabber extends One_Form_Container_Abstract
 		$id  = $this->getID();
 		$dom = One_Repository::getDom();
 
-		$css = ( ( trim( $this->getCfg( 'css' ) ) != '' ) ? trim( $this->getCfg( 'css' ) ) : One::getInstance()->getUrl() . 'lib/libraries/tabber/tabber.css' );
+		$css = ( ( trim( $this->getCfg( 'css' ) ) != '' ) ? trim( $this->getCfg( 'css' ) ) : One_Config::getInstance()->getUrl() . 'lib/libraries/tabber/tabber.css' );
 
-		$dom->add( '<script type="text/javascript" src="' . One::getInstance()->getUrl() . 'lib/libraries/tabber/tabber.js"></script>', '_head' );
+		$dom->add( '<script type="text/javascript" src="' . One_Config::getInstance()->getUrl() . 'lib/libraries/tabber/tabber.js"></script>', '_head' );
 		$dom->add( '<link href="' . $css . '" rel="stylesheet" type="text/css" />', '_head' );
 
 		$dom->add( '<div class="tabber" id="' . $id . '">' );

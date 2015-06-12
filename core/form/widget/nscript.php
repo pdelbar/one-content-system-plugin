@@ -2,11 +2,11 @@
 /**
  * Handles the nscript widget
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @filesource one/lib/form/widget/nscript.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+
+  * @TODO review this file and clean up historical code/comments
+ONEDISCLAIMER
+
  **/
 Class One_Form_Widget_Nscript extends One_Form_Widget_Abstract
 {
@@ -57,14 +57,14 @@ Class One_Form_Widget_Nscript extends One_Form_Widget_Abstract
 
 		$useLang = $this->getCfg('language');
 		if('' == trim($useLang)) {
-			$useLang = strtolower(One::getInstance()->getLanguage());
+			$useLang = strtolower(One_Config::getInstance()->getLanguage());
 		}
 
-    $cps = One::getInstance()->getCustomPaths();
+    $cps = One_Config::getInstance()->getCustomPaths();
     foreach ($cps as $cp)
-		  One_Script_Factory::addSearchPath( $cp.'/views/'.One::getInstance()->getApplication().'/'.$model->getScheme()->getName().'/language/'.$useLang.'/');
+		  One_Script_Factory::addSearchPath( $cp.'/views/'.One_Config::getInstance()->getApplication().'/'.$model->getScheme()->getName().'/language/'.$useLang.'/');
     foreach ($cps as $cp)
-		  One_Script_Factory::addSearchPath($cp.'/views/'.One::getInstance()->getApplication().'/'.$model->getScheme()->getName().'/');
+		  One_Script_Factory::addSearchPath($cp.'/views/'.One_Config::getInstance()->getApplication().'/'.$model->getScheme()->getName().'/');
 
 		$ns = new One_Script();
 		$ns->load( $src );

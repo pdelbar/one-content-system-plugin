@@ -75,12 +75,12 @@ class One_Routing
 
 	/**
 	 * Add a specified alias with options to the hashtables
-	 * @param One_Scheme_Interface $alias
+	 * @param One_Scheme $alias
 	 * @param string $alias
 	 * @param array $options
 	 * @param boolean $useId whether or not the alias uses an id
 	 */
-	public static function addAlias(One_Scheme_Interface $scheme, $alias, array $options, $useId = false)
+	public static function addAlias(One_Scheme $scheme, $alias, array $options, $useId = false)
 	{
 		if(!isset(self::$_aliasHash[$scheme->getName()]))
 		{
@@ -141,11 +141,11 @@ class One_Routing
 
 	/**
 	 * Check whether an alias for a given scheme exists
-	 * @param One_Scheme_Interface $scheme
+	 * @param One_Scheme $scheme
 	 * @param string $alias
 	 * @return boolean
 	 */
-	public static function aliasExists(One_Scheme_Interface $scheme, $alias)
+	public static function aliasExists(One_Scheme $scheme, $alias)
 	{
 		if(!array_key_exists($scheme->getName(), self::$_aliasHash)) {
 			return false;
@@ -186,11 +186,11 @@ class One_Routing
 
 	/**
 	 * Return alias for specified options for a specified scheme
-	 * @param One_Scheme_Interface $scheme
+	 * @param One_Scheme $scheme
 	 * @param array $options
 	 * @return array Return array if found, NULL if no match found
 	 */
-	public static function getAliasForOptions(One_Scheme_Interface $scheme, $options)
+	public static function getAliasForOptions(One_Scheme $scheme, $options)
 	{
 		if(!array_key_exists($scheme->getName(), self::$_optionsHash)) {
 			return NULL;
@@ -219,7 +219,7 @@ class One_Routing
 	public static function fetchAllRoutings()
 	{
 		if(!self::$_schemesFetched) {
-			$schemeNames = One_Repository::getSchemeNames();
+			$schemeNames = One::meta('schemes');
 			foreach($schemeNames as $schemeName) {
 				One_Repository::getScheme($schemeName);
 			}

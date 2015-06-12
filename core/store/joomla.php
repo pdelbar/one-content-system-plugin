@@ -1,16 +1,17 @@
 <?php
 
+die('deprecated stuff man');
 /**
  * Defines how Joomla should be addressed to perform certain storage and retrieval actions
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
+
+
+  * @TODO review this file and clean up historical code/comments
  * @subpackage Strategy
- * @filesource one/lib/Store/Joomla.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+ONEDISCLAIMER
+
  **/
-class One_Store_Joomla implements One_Store_Interface
+class One_Store_Joomla extends One_Store
 {
 	/**
 	 * Return the proper Database-Object according to the scheme
@@ -19,7 +20,7 @@ class One_Store_Joomla implements One_Store_Interface
 	 * @return JDatabase
 	 * @access protected
 	 */
-	protected function db(One_Scheme_Interface $scheme)
+	protected function db(One_Scheme $scheme)
 	{
 		return $this->dbFromConnection($scheme->getConnection());
 	}
@@ -36,7 +37,7 @@ class One_Store_Joomla implements One_Store_Interface
 	}
 
 	/**
-	 * Return the One_Renderer for this One_Store_Interface
+	 * Return the One_Renderer for this One_Store
 	 *
 	 * @return One_Renderer
 	 */
@@ -53,7 +54,7 @@ class One_Store_Joomla implements One_Store_Interface
 	 * @param One_Query $query
 	 * @return array
 	 */
-	public function doQuery( One_Query_Interface $query )
+	public function doQuery( One_Query $query )
 	{
 		$scheme = $query->getScheme();
 		$db = $this->db( $scheme );
@@ -82,9 +83,9 @@ class One_Store_Joomla implements One_Store_Interface
 	 * @param array $selectors
 	 * @return array
 	 */
-	public function select(One_Scheme_Interface $scheme, array $selectors = array())
+	public function select(One_Scheme $scheme, array $selectors = array())
 	{
-		$query = new One_Query( $scheme );
+		$query = One_Repository::selectQuery( $scheme );
 
 		if (count($selectors))
 		{
@@ -107,7 +108,7 @@ class One_Store_Joomla implements One_Store_Interface
 	 * @param array $row
 	 * @return One_Model
 	 */
-	protected function arrayToInstance(One_Scheme_Interface $scheme, $row)
+	protected function arrayToInstance(One_Scheme $scheme, $row)
 	{
 		// check the scheme cache
 		$idAttribute = $scheme->getIdentityAttribute();
@@ -118,7 +119,7 @@ class One_Store_Joomla implements One_Store_Interface
 
 		// not found : create a new instance
 		//TODO: use a specific class specified in the scheme
-		$model = One_Repository::getInstance( $scheme->getName() );
+		$model = One::make( $scheme->getName() );
 
 		// PD17OCT08: for optimal performance, raw-store the data row entirely
 		$model->fromArray( $row );
@@ -137,14 +138,14 @@ class One_Store_Joomla implements One_Store_Interface
 	 * @param mixed $identityValue
 	 * @return One_Model
 	 */
-	public function selectOne( One_Scheme_Interface $scheme, $identityValue )
+	public function selectOne( One_Scheme $scheme, $identityValue )
 	{
 		$cached = One_Model_IdentityMap::find( $scheme->getName(), $identityValue );
 		if ($cached) return $cached;
 
 		$db = $this->db( $scheme );
 		$renderer = $this->getRenderer();
-		$query = new One_Query( $scheme );
+		$query = One_Repository::selectQuery( $scheme );
 
 		$idAttr = $scheme->getIdentityAttribute();
 		$column = $idAttr->getName();
@@ -165,7 +166,7 @@ class One_Store_Joomla implements One_Store_Interface
 	 * @param boolean $overrideFilters
 	 * @return array
 	 */
-	public function executeSchemeQuery( One_Query_Interface $query, $asInstance = true, $overrideFilters = false )
+	public function executeSchemeQuery( One_Query $query, $asInstance = true, $overrideFilters = false )
 	{
 		$scheme   =  $query->getScheme();
 		$db       = $this->db( $scheme );
@@ -205,7 +206,7 @@ class One_Store_Joomla implements One_Store_Interface
 	 * @param boolean $overrideFilters
 	 * @return int
 	 */
-	public function executeSchemeCount( One_Query_Interface $query, $overrideFilters = false )
+	public function executeSchemeCount( One_Query $query, $overrideFilters = false )
 	{
 		$scheme = $query->getScheme();
 		$db = $this->db( $scheme );
@@ -287,7 +288,7 @@ class One_Store_Joomla implements One_Store_Interface
 	 * @param One_Model $model
 	 * @param One_Link $link
 	 */
-	public function addRelations(One_Model_Interface $model, One_Link_Interface $link)
+	public function addRelations(One_Model $model, One_Link_Interface $link)
 	{
 		$added = $model->getAddedRelations();
 		//print_r($added);
@@ -337,7 +338,7 @@ class One_Store_Joomla implements One_Store_Interface
 	 * @param One_Model $model
 	 * @param One_Link $link
 	 */
-	public function saveRelations(One_Model_Interface $model, One_Link_Interface $link)
+	public function saveRelations(One_Model $model, One_Link_Interface $link)
 	{
 		$modified = $model->getDeltaRelations();
 
@@ -387,7 +388,7 @@ class One_Store_Joomla implements One_Store_Interface
 	 * @param One_Model $model
 	 * @param One_Link $link
 	 */
-	public function deleteRelations(One_Model_Interface $model, One_Link_Interface $link)
+	public function deleteRelations(One_Model $model, One_Link_Interface $link)
 	{
 		$deleted = $model->getDeletedRelations();
 
@@ -437,7 +438,7 @@ class One_Store_Joomla implements One_Store_Interface
 	 *
 	 * @param One_Model $model
 	 */
-	public function insert( One_Model_Interface $model )
+	public function insert( One_Model $model )
 	{
 		$scheme = One_Repository::getScheme( $model->getSchemeName() );
 		$db = $this->db( $scheme );
@@ -541,7 +542,7 @@ class One_Store_Joomla implements One_Store_Interface
 	 *
 	 * @param One_Model $model
 	 */
-	public function update( One_Model_Interface $model )
+	public function update( One_Model $model )
 	{
 		$scheme = One_Repository::getScheme( $model->getSchemeName() );
 		$db = $this->db( $scheme );
@@ -558,7 +559,9 @@ class One_Store_Joomla implements One_Store_Interface
 		foreach ($scheme->getAttributes() as $attName => $at ) {
 			if (isset( $modified[ $attName ]))
 			{
-				$data->$attName = $modified[ $attName ];
+        $colName = $at->getColumn();
+				$data->$colName = $modified[ $attName ];
+//				$data->$attName = $modified[ $attName ];
 			}
 		}
 
@@ -644,7 +647,7 @@ class One_Store_Joomla implements One_Store_Interface
 	 * @param One_Model $model
 	 * @return void
 	 */
-	public function delete( One_Model_Interface $model )
+	public function delete( One_Model $model )
 	{
 		$scheme = One_Repository::getScheme( $model->getSchemeName() );
 		$db = $this->db( $scheme );
@@ -724,10 +727,10 @@ class One_Store_Joomla implements One_Store_Interface
 
 	/**
 	 * Get the table used for the scheme
-	 * @param One_Scheme_Interface $scheme
+	 * @param One_Scheme $scheme
 	 * @return string Table name used for the scheme
 	 */
-	protected function getTable(One_Scheme_Interface $scheme)
+	protected function getTable(One_Scheme $scheme)
 	{
 		$resources = $scheme->getResources();
 		if(isset($resources['table'])) {
@@ -757,10 +760,10 @@ class One_Store_Joomla implements One_Store_Interface
 
 	/**
 	 * Function to set the proper encoding
-	 * @param One_Scheme_Interface $scheme
+	 * @param One_Scheme $scheme
 	 * @param string $encoding (utf8, iso-8859-1, ...)
 	 */
-	public function setEncoding(One_Scheme_Interface $scheme, $encoding)
+	public function setEncoding(One_Scheme $scheme, $encoding)
 	{
 		$db  = $this->db( $scheme );
 		$sql = 'set names "'.mysql_real_escape_string($encoding).'"';

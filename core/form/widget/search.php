@@ -2,11 +2,11 @@
 /**
  * Abstract parent of the search widgets
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @filesource one/lib/form/widget/search.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+
+  * @TODO review this file and clean up historical code/comments
+ONEDISCLAIMER
+
  * @abstract
  **/
 abstract Class One_Form_Widget_Search extends One_Form_Widget_Abstract

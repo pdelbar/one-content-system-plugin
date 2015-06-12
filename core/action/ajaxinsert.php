@@ -1,9 +1,9 @@
 <?php
 /**
  * Handles Ajax inserts
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
+
+
+  * @TODO review this file and clean up historical code/comments
  **/
 class One_Action_Ajaxinsert extends One_Action
 {

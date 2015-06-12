@@ -4,10 +4,10 @@
  *
  * @author traes
  * @copyright 2011 delius bvba
- * @package one|content
+  * @TODO review this file and clean up historical code/comments
  * @subpackage Store
  **/
-class One_Store_Mock implements One_Store_Interface
+class One_Store_Mock extends One_Store
 {
 	/**
 	 * Use the selectors to retrieve a number of objects.
@@ -16,7 +16,7 @@ class One_Store_Mock implements One_Store_Interface
 	 * @param array $selectors
 	 * @return array
 	 */
-	public function select(One_Scheme_Interface $scheme, array $selectors = array())
+	public function select(One_Scheme $scheme, array $selectors = array())
 	{
 		return array();
 	}
@@ -28,7 +28,7 @@ class One_Store_Mock implements One_Store_Interface
 	 * @param mixed $identityValue
 	 * @return One_Model
 	 */
-	public function selectOne( One_Scheme_Interface $scheme, $identityValue )
+	public function selectOne( One_Scheme $scheme, $identityValue )
 	{
 		return null;
 	}
@@ -41,7 +41,7 @@ class One_Store_Mock implements One_Store_Interface
 	 * @param boolean $overrideFilters
 	 * @return array
 	 */
-	public function executeSchemeQuery( One_Query_Interface $query, $asInstance = true, $overrideFilters = false )
+	public function executeSchemeQuery( One_Query $query, $asInstance = true, $overrideFilters = false )
 	{
 		return array();
 	}
@@ -53,7 +53,7 @@ class One_Store_Mock implements One_Store_Interface
 	 * @param boolean $overrideFilters
 	 * @return int
 	 */
-	public function executeSchemeCount( One_Query_Interface $query, $overrideFilters = false )
+	public function executeSchemeCount( One_Query $query, $overrideFilters = false )
 	{
 		return 0;
 	}
@@ -64,7 +64,7 @@ class One_Store_Mock implements One_Store_Interface
 	 * @param One_Model $model
 	 * @param One_Link $link
 	 */
-	public function addRelations(One_Model_Interface $model, One_Link_Interface $link)
+	public function addRelations(One_Model $model, One_Link_Interface $link)
 	{
 		return null;
 	}
@@ -75,7 +75,7 @@ class One_Store_Mock implements One_Store_Interface
 	 * @param One_Model $model
 	 * @param One_Link $link
 	 */
-	public function saveRelations(One_Model_Interface $model, One_Link_Interface $link)
+	public function saveRelations(One_Model $model, One_Link_Interface $link)
 	{
 		return null;
 	}
@@ -86,7 +86,7 @@ class One_Store_Mock implements One_Store_Interface
 	 * @param One_Model $model
 	 * @param One_Link $link
 	 */
-	public function deleteRelations(One_Model_Interface $model, One_Link_Interface $link)
+	public function deleteRelations(One_Model $model, One_Link_Interface $link)
 	{
 		return null;
 	}
@@ -96,7 +96,7 @@ class One_Store_Mock implements One_Store_Interface
 	 *
 	 * @param One_Model $model
 	 */
-	public function insert( One_Model_Interface $model )
+	public function insert( One_Model $model )
 	{
 		return null;
 	}
@@ -106,7 +106,7 @@ class One_Store_Mock implements One_Store_Interface
 	 *
 	 * @param One_Model $model
 	 */
-	public function update( One_Model_Interface $model )
+	public function update( One_Model $model )
 	{
 		return null;
 	}
@@ -117,17 +117,17 @@ class One_Store_Mock implements One_Store_Interface
 	 * @param One_Model $model
 	 * @return void
 	 */
-	public function delete( One_Model_Interface $model )
+	public function delete( One_Model $model )
 	{
 		return null;
 	}
 
 	/**
 	 * Function to set the proper encoding
-	 * @param One_Scheme_Interface $scheme
+	 * @param One_Scheme $scheme
 	 * @param string $encoding (utf8, iso-8859-1, ...)
 	 */
-	public function setEncoding(One_Scheme_Interface $scheme, $encoding)
+	public function setEncoding(One_Scheme $scheme, $encoding)
 	{
 		return null;
 	}

@@ -6,11 +6,11 @@
  *
  * 	The foreign key included consists of all identity fields of the target.
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @filesource one/lib/link/type/onetomany.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+
+  * @TODO review this file and clean up historical code/comments
+ONEDISCLAIMER
+
  **/
 class One_Link_Type_Onetosubscheme extends One_Link_Type_Onetomany
 {
@@ -29,7 +29,7 @@ class One_Link_Type_Onetosubscheme extends One_Link_Type_Onetomany
 	 *
 	 * @return array
 	 */
-	public function getRelated(One_Link_Interface $link, One_Model_Interface $model, array $options = array())
+	public function getRelated(One_Link_Interface $link, One_Model $model, array $options = array())
 	{
 		$tScheme  = One_Repository::getScheme( $link->getTarget() );
 		$tAttr    = $link->getName();
@@ -106,7 +106,7 @@ class One_Link_Type_Onetosubscheme extends One_Link_Type_Onetomany
 		$cached = One_Model_IdentityMap::find($scheme->getName(), $id);
 		if ($cached) return $cached;
 
-		$model = One_Repository::getInstance($scheme->getName());
+		$model = One::make($scheme->getName());
 
 		$model->fromArray($row);
 

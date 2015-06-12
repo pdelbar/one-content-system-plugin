@@ -2,11 +2,11 @@
 /**
  * Makes a scheme searchable
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @filesource one/lib/behavior/scheme/searchable.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+
+  * @TODO review this file and clean up historical code/comments
+ONEDISCLAIMER
+
  **/
 class One_Behavior_Scheme_Searchable extends One_Behavior_Scheme
 {

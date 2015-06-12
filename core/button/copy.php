@@ -2,9 +2,9 @@
 /**
  * Class that shows the "copy" button in the backend
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
+
+
+  * @TODO review this file and clean up historical code/comments
  **/
 class One_Button_Copy extends One_Button
 {
@@ -15,7 +15,7 @@ class One_Button_Copy extends One_Button
 	 */
 	public function render()
 	{
-		$output = '<td><a href="#" onclick="document.getElementById( \'task\' ).value = \'copy\'; document.getElementById( \''.One_Button::getFormId().'\' ).submit(); "><img src="' . One::getInstance()->getUrl() . '/vendor/images/toolset/' . self::getToolset() . '/copy.png" title="Copy">';
+		$output = '<td><a href="#" onclick="document.getElementById( \'task\' ).value = \'copy\'; document.getElementById( \''.One_Button::getFormId().'\' ).submit(); "><img src="' . One_Config::getInstance()->getUrl() . '/vendor/images/toolset/' . self::getToolset() . '/copy.png" title="Copy">';
 
 		if( self::showText() )
 			$output .= '<br />Copy';

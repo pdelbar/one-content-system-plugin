@@ -4,19 +4,19 @@
  * Keeps track of One_Model instances and their id, to prevent loading the same
  * object twice
  *
- * @author Mathias Verraes <mathias@delius.be>
- * @copyright 2010 delius bvba
- * @package one|content
- * @filesource one/lib/core/model.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+
+  * @TODO review this file and clean up historical code/comments
+ONEDISCLAIMER
+
  */
 class One_Model_IdentityMap
 {
 	/**
 	 * Add a model to the map
-	 * @param One_Model_Interface $model
+	 * @param One_Model $model
 	 */
-	public static function add(One_Model_Interface $model)
+	public static function add(One_Model $model)
 	{
 		$scheme = $model->getSchemeName();
 		$identity_name = $model->getIdentityName();
@@ -33,7 +33,7 @@ class One_Model_IdentityMap
 	 * Find a model for a scheme and id combo, false on fail
 	 * @param string $schemeName Scheme name
 	 * @param mixed $identity Identity
-	 * @return One_Model_Interface
+	 * @return One_Model
 	 */
 	public static function find($schemeName, $identity)
 	{

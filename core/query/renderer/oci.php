@@ -2,10 +2,8 @@
 /**
  * One_Query_Renderer_Oci handles a One_Query instance for Oracle
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+ONEDISCLAIMER
  **/
 class One_Query_Renderer_Oci extends One_Query_Renderer_Abstract
 {

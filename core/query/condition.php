@@ -4,10 +4,8 @@
  * the operator to use and the value to match against.
  * In MySQL terms, this would be a part of the WHERE or HAVING clause
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+ONEDISCLAIMER
  **/
 class One_Query_Condition
 {

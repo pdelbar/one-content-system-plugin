@@ -4,11 +4,11 @@
  * WARNING: this widget is to be used in Joomla! only and
  * also needs the specific template override for com_media/views/images/tmpl/default.php
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @filesource one/lib/form/widget/joomla/media.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+
+  * @TODO review this file and clean up historical code/comments
+ONEDISCLAIMER
+
  **/
 
 Class One_Form_Widget_Joomla_Media extends One_Form_Widget_Abstract
@@ -157,8 +157,8 @@ Class One_Form_Widget_Joomla_Media extends One_Form_Widget_Abstract
 		}';
 
 		// slimbox must be loaded AFTER mootools (current slimbox is meant for mootools 1.11)
-		$jDoc->addScript( One::getInstance()->getUrl() . '/vendor/slimbox/js/slimbox.js', 'text/javascript' );
-		$jDoc->addStyleSheet( One::getInstance()->getUrl() . '/vendor/slimbox/css/slimbox.css', 'text/css', 'screen' );
+		$jDoc->addScript( One_Config::getInstance()->getUrl() . '/vendor/slimbox/js/slimbox.js', 'text/javascript' );
+		$jDoc->addStyleSheet( One_Config::getInstance()->getUrl() . '/vendor/slimbox/css/slimbox.css', 'text/css', 'screen' );
 
 		$jDoc->addScriptDeclaration( $setMedia );
 

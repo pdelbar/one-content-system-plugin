@@ -2,14 +2,14 @@
 /**
  * The One_Scheme class contains all meta-information about the One_Model.
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
+
+
+  * @TODO review this file and clean up historical code/comments
  * @subpackage Scheme
- * @filesource one/lib/scheme/scheme.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+ONEDISCLAIMER
+
  **/
-class One_Scheme implements One_Scheme_Interface
+class One_Scheme
 {
 	/**
 	 * @var string Added descriptive info
@@ -174,7 +174,7 @@ class One_Scheme implements One_Scheme_Interface
 
 	/**
 	 * Gets the store for the scheme
-	 * @return One_Store_Interface
+	 * @return One_Store
 	 */
 	public function getStore()
 	{
@@ -350,6 +350,12 @@ class One_Scheme implements One_Scheme_Interface
 		$this->_behaviors[] = $behavior;
 		$this->_behaviorOptions[strtolower($behavior->getName())] = $options;
 	}
+
+
+  public function getBehavior($behaviorName)
+  {
+    return (isset($this->_behaviors[strtolower($behaviorName)])) ? $this->_behaviors[strtolower($behaviorName)] : NULL;
+  }
 
 	/**
 	 * Get the behavior options of a specified behavior

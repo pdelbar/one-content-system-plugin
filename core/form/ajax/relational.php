@@ -1,7 +1,7 @@
 <?php
 /**
  * Handles theAjax call for the multi-relational widget
- * @package one|content
+  * @TODO review this file and clean up historical code/comments
  */
 define( '_JEXEC', 1 );
 define( 'DS', DIRECTORY_SEPARATOR );
@@ -36,10 +36,10 @@ if( $withDB )
 $mainframe = JFactory::getApplication('site');
 
 require_once(JPATH_BASE.'/plugins/system/one/lib/one.php');;
-One::getInstance()->setCustomPath(JPATH_BASE.'/media/one');
+One_Config::getInstance()->setCustomPath(JPATH_BASE.'/media/one');
 
 // require_once( ONE_SCRIPT_PATH . 'tools' . DS . 'autoload.php' );
-require_once( One::getInstance()->getPath() . '/tools.php' );
+require_once( One_Config::getInstance()->getPath() . '/tools.php' );
 
 
 $scheme = $_POST[ 'searchscheme' ];

@@ -2,16 +2,14 @@
 /**
  * One_Query_Renderer handles a One_Query instance for a specified datasource
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+ONEDISCLAIMER
  * @abstract
  **/
 abstract class One_Query_Renderer_Abstract implements One_Query_Renderer_Interface
 {
 	/**
-	 * @var One_Query_Interface
+	 * @var One_Query
 	 * @access protected
 	 */
 	protected $query;

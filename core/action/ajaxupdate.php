@@ -1,9 +1,9 @@
 <?php
 /**
  * Handles Ajax updates
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
+
+
+  * @TODO review this file and clean up historical code/comments
  **/
 class One_Action_Ajaxupdate extends One_Action
 {

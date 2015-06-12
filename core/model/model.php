@@ -5,13 +5,13 @@
  *  - sets of related objects
  * and supporting a number of standard operations.
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @filesource one/lib/core/model.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+
+  * @TODO review this file and clean up historical code/comments
+ONEDISCLAIMER
+
  **/
-class One_Model implements One_Model_Interface, ArrayAccess
+class One_Model implements ArrayAccess
 {
 	/**
 	 * @var One_Scheme Contains the scheme this model is an instance of
@@ -60,6 +60,19 @@ class One_Model implements One_Model_Interface, ArrayAccess
 		}
 	}
 
+  public function __call($method, $args)
+  {
+    $behaviors = $this->getScheme()->getBehaviors();
+    if ($behaviors) foreach ($behaviors as $behavior) {
+      $methodname = 'onModel'.ucfirst($method);
+      if(method_exists($behavior, $methodname)) {
+        return $behavior->$methodname($this,$args);
+      }
+    }
+
+    throw new One_Exception('One_Model does not know how to execute method "'.$method.'"');
+  }
+
 	/**
 	 * Get the scheme name of this model
 	 *
@@ -86,7 +99,7 @@ class One_Model implements One_Model_Interface, ArrayAccess
 	/**
 	 * Get the Model's One_Scheme
 	 *
-	 * @return One_Scheme_Interface
+	 * @return One_Scheme
 	 */
 	public function getScheme()
 	{
@@ -95,10 +108,10 @@ class One_Model implements One_Model_Interface, ArrayAccess
 
 	/**
 	 * Set the scheme for the model
-	 * @param One_Scheme_Interface $scheme
-	 * @return One_Model_Interface
+	 * @param One_Scheme $scheme
+	 * @return One_Model
 	 */
-	public function setScheme(One_Scheme_Interface $scheme)
+	public function setScheme(One_Scheme $scheme)
 	{
 		$this->_scheme = $scheme;
 		return $this;

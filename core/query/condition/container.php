@@ -2,11 +2,11 @@
 /**
  * This class contains several conditions and joins them with an AND or OR operator
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @filesource one/lib/query/condition/container.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+
+  * @TODO review this file and clean up historical code/comments
+ONEDISCLAIMER
+
  **/
 class One_Query_Condition_Container
 {
@@ -21,7 +21,7 @@ class One_Query_Condition_Container
 	protected $conditions;
 
 	/**
-	 * @var One_Query_Interface $query The One_Query object this container belongs to
+	 * @var One_Query $query The One_Query object this container belongs to
 	 */
 	protected $query;
 
@@ -30,7 +30,7 @@ class One_Query_Condition_Container
 	 *
 	 * @param string $type
 	 */
-	public function __construct(One_Query_Interface $query, $type = 'AND')
+	public function __construct(One_Query $query, $type = 'AND')
 	{
 		switch(strtoupper($type))
 		{
@@ -92,7 +92,7 @@ class One_Query_Condition_Container
      *
      * @return One_Query_Condition_Container
      */
-    public function addAnd(One_Query_Interface $query)
+    public function addAnd(One_Query $query)
     {
     	$tmp = new One_Query_Condition_Container($query, 'AND');
     	$this->conditions[] = $tmp;
@@ -105,7 +105,7 @@ class One_Query_Condition_Container
      *
      * @return One_Query_Condition_Container
      */
-    public function addOr(One_Query_Interface $query)
+    public function addOr(One_Query $query)
     {
     	$tmp = new One_Query_Condition_Container($query, 'OR');
     	$this->conditions[] = $tmp;

@@ -3,11 +3,11 @@
  * This is the parent class which takes care the calendar view in general.
  * Only subclasses should be instantiated.
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @filesource one/lib/action/calendar.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+
+  * @TODO review this file and clean up historical code/comments
+ *
+
  **/
 class One_Action_Calendar extends One_Action
 {

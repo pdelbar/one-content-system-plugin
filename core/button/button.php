@@ -1,9 +1,9 @@
 <?php
 /**
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
+
+
+  * @TODO review this file and clean up historical code/comments
  **/
 abstract class One_Button implements One_Button_Interface
 {

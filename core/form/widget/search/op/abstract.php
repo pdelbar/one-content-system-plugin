@@ -2,11 +2,11 @@
 /**
  * One_Form_Widget_SearchOps are ways to search for a value, EG: equal to a string, greater than some int, ...
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @filesource one/lib/form/widget/search/op/abstract.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+
+  * @TODO review this file and clean up historical code/comments
+ONEDISCLAIMER
+
  * @abstract
  **/
 abstract class One_Form_Widget_Search_Op_Abstract
@@ -68,23 +68,25 @@ abstract class One_Form_Widget_Search_Op_Abstract
 	{
 		$dom = One_Repository::getDom();
 
+    die('this is really deprecated stuff : ' . __FILE __ );
+
 		$templater = One_Repository::getTemplater(NULL, false);
 		$oldSearchpath = $templater->getSearchpath();
 		$templater->clearSearchpath();
 
-		$language = strtolower(One::getInstance()->getLanguage());
+		$language = strtolower(One_Config::getInstance()->getLanguage());
 
-		$templater->addSearchpath(One::getInstance()->getCustomPath().'/views/'.One::getInstance()->getApplication().'/oneform/widget/search/op/'.strtolower(One::getInstance()->getLanguage()).'/');
-		$templater->addSearchpath(One::getInstance()->getPath().'/views/'.One::getInstance()->getApplication().'/oneform/widget/search/op/'.strtolower(One::getInstance()->getLanguage()).'/');
+		$templater->addSearchpath(One_Config::getInstance()->getCustomPath().'/views/'.One_Config::getInstance()->getApplication().'/oneform/widget/search/op/'.strtolower(One_Config::getInstance()->getLanguage()).'/');
+		$templater->addSearchpath(One_Config::getInstance()->getPath().'/views/'.One_Config::getInstance()->getApplication().'/oneform/widget/search/op/'.strtolower(One_Config::getInstance()->getLanguage()).'/');
 
-		$templater->addSearchpath(One::getInstance()->getCustomPath().'/views/'.One::getInstance()->getApplication().'/oneform/widget/search/op/');
-		$templater->addSearchpath(One::getInstance()->getPath().'/views/'.One::getInstance()->getApplication().'/oneform/widget/');
+		$templater->addSearchpath(One_Config::getInstance()->getCustomPath().'/views/'.One_Config::getInstance()->getApplication().'/oneform/widget/search/op/');
+		$templater->addSearchpath(One_Config::getInstance()->getPath().'/views/'.One_Config::getInstance()->getApplication().'/oneform/widget/');
 
-		$templater->addSearchpath(One::getInstance()->getCustomPath().'/views/default/oneform/widget/search/op/'.strtolower(One::getInstance()->getLanguage()).'/');
-		$templater->addSearchpath(One::getInstance()->getPath().'/views/default/oneform/widget/search/op/'.strtolower(One::getInstance()->getLanguage()).'/');
+		$templater->addSearchpath(One_Config::getInstance()->getCustomPath().'/views/default/oneform/widget/search/op/'.strtolower(One_Config::getInstance()->getLanguage()).'/');
+		$templater->addSearchpath(One_Config::getInstance()->getPath().'/views/default/oneform/widget/search/op/'.strtolower(One_Config::getInstance()->getLanguage()).'/');
 
-		$templater->addSearchpath(One::getInstance()->getCustomPath().'/views/default/oneform/widget/search/op/');
-		$templater->addSearchpath(One::getInstance()->getPath().'/views/default/oneform/widget/search/op/');
+		$templater->addSearchpath(One_Config::getInstance()->getCustomPath().'/views/default/oneform/widget/search/op/');
+		$templater->addSearchpath(One_Config::getInstance()->getPath().'/views/default/oneform/widget/search/op/');
 
 		$templater->setFile($this->type.'.html');
 		$templater->setData($data);

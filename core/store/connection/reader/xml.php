@@ -3,12 +3,12 @@
  * The One_Store_Connection_Reader_Xml class loads One_Store_Connection definitions from an XML and instantiates them
  * as a factory pattern.
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
+
+
+  * @TODO review this file and clean up historical code/comments
  * @subpackage Store
  * @filesource one/src/one/Store/Reader/Xml.php
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
  **/
 class One_Store_Connection_Reader_Xml implements One_Store_Connection_Reader_Interface
 {
@@ -21,7 +21,7 @@ class One_Store_Connection_Reader_Xml implements One_Store_Connection_Reader_Int
 	public static function load($connectionName)
 	{
 		// read the scheme's metafile
-    $connectionpath = One::getInstance()->locate('meta'.DS.'connection'.DS.$connectionName.'.xml');
+    $connectionpath = One_Config::getInstance()->locate('meta'.DS.'connection'.DS.$connectionName.'.xml');
     if ($connectionpath === null) {
       throw new One_Exception('Could not find the one|content store-connection called <strong>'.$connectionName.'</strong>.');
     }
@@ -105,7 +105,7 @@ class One_Store_Connection_Reader_Xml implements One_Store_Connection_Reader_Int
 	/**
 	 * Get the proper store for this connection
 	 * @param DOMXPath $xpath
-	 * @return One_Store_Interface
+	 * @return One_Store
 	 */
 	protected static function getStore(DOMXPath $xpath)
 	{

@@ -2,10 +2,8 @@
 /**
  * One_Query_Renderer_Mysql handles a One_Query instance for MySQL
  *
- * @author delius
- * @copyright 2010 delius bvba
- * @package one|content
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+
+ONEDISCLAIMER
  **/
 class One_Query_Renderer_Mysql extends One_Query_Renderer_Abstract
 {
@@ -271,7 +269,8 @@ class One_Query_Renderer_Mysql extends One_Query_Renderer_Abstract
 		}
 
 		$fk = $link['link']->getLinkType()->remoteFK($link['link'], $target, $backlink);
-		$idAtt = $this->scheme->getIdentityAttribute()->getName();
+//		$idAtt = $this->scheme->getIdentityAttribute()->getName();
+		$idAtt = $this->scheme->getIdentityAttribute()->getColumn();
 
 		$table = $this->joins[$link['link']->getName()]['table'];
 		$alias = $this->aliases[$link['link']->getName()];
@@ -292,7 +291,8 @@ class One_Query_Renderer_Mysql extends One_Query_Renderer_Abstract
 	{
 		$target = One_Repository::getScheme($link['link']->getTarget());
 		$fk = $link['link']->getLinkType()->localFK($link['link'], $target);
-		$idAtt = $link['scheme']->getIdentityAttribute()->getName();
+//		$idAtt = $link['scheme']->getIdentityAttribute()->getName();
+		$idAtt = $link['scheme']->getIdentityAttribute()->getColumn();
 
 		$table = $this->joins[$link['link']->getName()]['table'];
 		$alias = $this->aliases[$link['link']->getName()];
@@ -324,8 +324,10 @@ class One_Query_Renderer_Mysql extends One_Query_Renderer_Abstract
 		$fkLocal  = $link['link']->getLinkType()->localFK($link['link'], $target);
 		$fkRemote = $link['link']->getLinkType()->remoteFK($link['link'], $source, $backlink );
 
-		$sourceId = $source->getIdentityAttribute()->getName();
-		$targetId = $target->getIdentityAttribute()->getName();
+//		$sourceId = $source->getIdentityAttribute()->getName();
+		$sourceId = $source->getIdentityAttribute()->getColumn();
+//		$targetId = $target->getIdentityAttribute()->getName();
+		$targetId = $target->getIdentityAttribute()->getColumn();
 
 		$lName = $link['alias'];
 		if(!isset($this->joins[$lName])) {
@@ -527,7 +529,8 @@ class One_Query_Renderer_Mysql extends One_Query_Renderer_Abstract
 					if(strlen($tmp) > 2 && preg_match('/^["]{2,}[^"]*["]{2,}$/', $tmp) != false) {
 						$tmp = preg_replace( array( '/^""/', '/""$/' ), '"', $tmp );
 					}
-					$s = $alias . $at->getName() . ' ' . $op . ' ' . $tmp;
+//					$s = $alias . $at->getName() . ' ' . $op . ' ' . $tmp;
+					$s = $alias . $at->getColumn() . ' ' . $op . ' ' . $tmp;
 				}
 				else if($at->getType() instanceof One_Type_Calculated_Interface)
 				{
@@ -563,8 +566,10 @@ class One_Query_Renderer_Mysql extends One_Query_Renderer_Abstract
 
 						}
 
-						if( count( $ar ) > 0 )
-							$s = $alias . $at->getName() . ' ' . $op . ' (' . implode( ', ', $ar) . ')';
+						if( count( $ar ) > 0 ) {
+//							$s = $alias . $at->getName() . ' ' . $op . ' (' . implode( ', ', $ar) . ')';
+							$s = $alias . $at->getColumn() . ' ' . $op . ' (' . implode( ', ', $ar) . ')';
+            }
 					}
 					else
 					{
@@ -584,7 +589,8 @@ class One_Query_Renderer_Mysql extends One_Query_Renderer_Abstract
 								$tmp = $at->toString($left.$condition->value.$right);
 							}
 						}
-						$s = $alias . $at->getName() . ' ' . $op . ' ' . $tmp;
+//						$s = $alias . $at->getName() . ' ' . $op . ' ' . $tmp;
+						$s = $alias . $at->getColumn() . ' ' . $op . ' ' . $tmp;
 					}
 				}
 			}
@@ -816,7 +822,8 @@ class One_Query_Renderer_Mysql extends One_Query_Renderer_Abstract
 
 	public function formatAttribute(One_Scheme_Attribute $attribute, $value)
 	{
-		return '`'.$attribute->getName().'` = '.$attribute->toString(mysql_real_escape_string($value));
+//		return '`'.$attribute->getName().'` = '.$attribute->toString(mysql_real_escape_string($value));
+		return '`'.$attribute->getColumn().'` = '.$attribute->toString(mysql_real_escape_string($value));
 	}
 
 	public function getCalcAttribute(One_Type_Calculated_Interface $type)
