@@ -33,6 +33,7 @@ class plgSystemOne extends JPlugin
 
 		$app = JFactory::getApplication();
 		$application = 'site';
+
 		if(strpos($app->getName(), 'admin') !== false) {
 			$application = 'admin';
 		}
