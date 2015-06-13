@@ -44,7 +44,7 @@ class One_Templater_Nano extends One_Templater_Abstract
 	{
 		$oldSearchpath = One_Script_Factory::getSearchPath();
 		One_Script_Factory::clearSearchpath();
-		One_Script_Factory::setSearchPath( $this->getSearchpath() );
+		One_Script_Factory::setSearchPath( $this->getSearchPath() );
 
 		if( $this->useFile() )
 		{

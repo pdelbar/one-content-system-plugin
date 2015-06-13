@@ -553,7 +553,7 @@ class One_Model implements ArrayAccess
 	 * @param One_Link $link
 	 * @return void
 	 */
-	public function saveRelated(One_Link_Interface $link )
+	public function saveRelated(One_Link $link )
 	{
 		if( array_key_exists( $link->getName(), $this->_modifiedRelations ) && ( $link->getLinkType() <> "manytoone" ) )
 			$link->save( $this );

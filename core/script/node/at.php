@@ -9,7 +9,7 @@ class One_Script_Node_At extends One_Script_Node_Abstract
   public $sectionName;
   public $argumentExpression;
 
-  private $searchPath;				// stored when loaded, used when executing
+//  private $searchPath;				// stored when loaded, used when executing
 
 
   public function __construct( &$script, $data = "", $args = "", $location = "", $lineNumber = "" )
@@ -21,7 +21,7 @@ class One_Script_Node_At extends One_Script_Node_Abstract
     $this->argumentExpression = $parts[1] or null;
 //		echo "Expr = /$parts[1]/";
 
-    $this->searchPath = One_Script_Factory::getSearchPath();
+//    $this->searchPath = One_Script_Factory::getSearchPath();
   }
 
   function execute( &$data, &$parent )
@@ -75,10 +75,10 @@ class One_Script_Node_At extends One_Script_Node_Abstract
 
     // locate the section node using nanoContent
     if ($ns) {
-      One_Script_Factory::saveSearchPath();
-      One_Script_Factory::setSearchPath( $this->searchPath );
+//      One_Script_Factory::saveSearchPath();
+//      One_Script_Factory::setSearchPath( $this->searchPath );
       $node = One_Script_Content_Factory::getNode( $ns, $sec  );
-      One_Script_Factory::restoreSearchPath( );
+//      One_Script_Factory::restoreSearchPath( );
       //			print_r($node);
 //			$node->dump();
       return $node;
@@ -90,10 +90,10 @@ class One_Script_Node_At extends One_Script_Node_Abstract
     //PD11OCT09: if not found, try prefixing with default namespace
     if (One_Script_Config::$defaultNamespace) {
 	    if ($node == null) {
-	      One_Script_Factory::saveSearchPath();
-	      One_Script_Factory::setSearchPath( $this->searchPath );
+//	      One_Script_Factory::saveSearchPath();
+//	      One_Script_Factory::setSearchPath( $this->searchPath );
 	      $node = One_Script_Content_Factory::getNode( One_Script_Config::$defaultNamespace , $sec  );
-	      One_Script_Factory::restoreSearchPath( );
+//	      One_Script_Factory::restoreSearchPath( );
 	    }
     }
 

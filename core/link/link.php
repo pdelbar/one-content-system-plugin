@@ -5,7 +5,7 @@
 
 ONEDISCLAIMER
  **/
-class One_Link implements One_Link_Interface
+class One_Link
 {
 	/**
 	 * @var string Name of the link

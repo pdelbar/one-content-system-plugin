@@ -3,6 +3,9 @@
 // One_Script_Node_Ini
 //-------------------------------------------------------------------------------------------------
 
+//@deprecated
+die('deprecatd node dude');
+
 class One_Script_Node_Ini extends One_Script_Node_Abstract
 {
 

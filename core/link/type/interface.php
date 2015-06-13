@@ -18,12 +18,12 @@ interface One_Link_Type_Interface
 	/**
 	 * Instantiate the related objects
 	 *
-	 * @param One_Link_Interface $link
+	 * @param One_Link $link
 	 * @param One_Model $model
 	 * @param array $options @see One_Query::setOptions()
 	 * @return One_Model|array Can be One_Model or array of One_Models
 	 */
-	public function getRelated(One_Link_Interface $link, One_Model $model, array $options = array());
+	public function getRelated(One_Link $link, One_Model $model, array $options = array());
 
-	public function countRelated(One_Link_Interface $link, One_Model $model, array $options = array());
+	public function countRelated(One_Link $link, One_Model $model, array $options = array());
 }

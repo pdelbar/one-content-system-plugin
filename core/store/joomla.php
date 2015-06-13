@@ -288,7 +288,7 @@ class One_Store_Joomla extends One_Store
 	 * @param One_Model $model
 	 * @param One_Link $link
 	 */
-	public function addRelations(One_Model $model, One_Link_Interface $link)
+	public function addRelations(One_Model $model, One_Link $link)
 	{
 		$added = $model->getAddedRelations();
 		//print_r($added);
@@ -338,7 +338,7 @@ class One_Store_Joomla extends One_Store
 	 * @param One_Model $model
 	 * @param One_Link $link
 	 */
-	public function saveRelations(One_Model $model, One_Link_Interface $link)
+	public function saveRelations(One_Model $model, One_Link $link)
 	{
 		$modified = $model->getDeltaRelations();
 
@@ -388,7 +388,7 @@ class One_Store_Joomla extends One_Store
 	 * @param One_Model $model
 	 * @param One_Link $link
 	 */
-	public function deleteRelations(One_Model $model, One_Link_Interface $link)
+	public function deleteRelations(One_Model $model, One_Link $link)
 	{
 		$deleted = $model->getDeletedRelations();
 

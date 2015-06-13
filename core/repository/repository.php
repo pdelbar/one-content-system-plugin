@@ -402,15 +402,14 @@ class One_Repository  {
   }
 
   /**
-   * Return a template adapter
+   * Return a template __wft__adapter
    * @return One_Template_Adapter_Interface
    */
   public static function getTemplater($templaterClass = NULL, $setSearchpaths = true) {
     if (is_null($templaterClass)) {
       $templaterClass = One_Config::getInstance()->getTemplater();
     }
-
-    return new $templaterClass(array(), $setSearchpaths);
+    return new $templaterClass('', $setSearchpaths);
   }
 
 }

@@ -427,10 +427,10 @@ window.tinymce = tinymce;
 // Initialize the API
 tinymce._init();
 
-/* file:jscripts/tiny_mce/classes/adapter/jquery/adapter.js */
+/* file:jscripts/tiny_mce/classes/__wft__adapter/jquery/__wft__adapter.js */
 
 
-/* file:jscripts/tiny_mce/classes/adapter/prototype/adapter.js */
+/* file:jscripts/tiny_mce/classes/__wft__adapter/prototype/__wft__adapter.js */
 
 
 /* file:jscripts/tiny_mce/classes/util/Dispatcher.js */

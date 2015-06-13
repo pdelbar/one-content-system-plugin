@@ -17,8 +17,8 @@ class One_Templater_Nano extends One_Templater_Abstract {
    * Class constructor
    * @param array $searchpaths
    */
-  public function __construct(array $searchpaths = array(), $setSearchpaths = true) {
-    parent::__construct($searchpaths, $setSearchpaths);
+  public function __construct( $searchPath, $setSearchpaths = true) {
+    parent::__construct($searchPath, $setSearchpaths);
     $this->script = new One_Script();
   }
 
@@ -36,8 +36,8 @@ class One_Templater_Nano extends One_Templater_Abstract {
    */
   public function parse($section = NULL) {
     $oldSearchpath = One_Script_Factory::getSearchPath();
-    One_Script_Factory::clearSearchpath();
-    One_Script_Factory::setSearchPath($this->getSearchpath());
+//    One_Script_Factory::clearSearchpath();
+    One_Script_Factory::setSearchPath($this->getSearchPath());
     if ($this->useFile()) {
       $this->script->load($this->getFile());
       $this->script->select($section);
@@ -49,7 +49,7 @@ class One_Templater_Nano extends One_Templater_Abstract {
       $output = $this->script->executeString($this->getContent(), $this->getData());
     }
 
-    One_Script_Factory::clearSearchpath();
+//    One_Script_Factory::clearSearchpath();
     One_Script_Factory::setSearchPath($oldSearchpath);
     One_Script_Content_Factory::$nsContentCache = array();
 

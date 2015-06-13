@@ -29,7 +29,7 @@ class One_Link_Type_Onetosubscheme extends One_Link_Type_Onetomany
 	 *
 	 * @return array
 	 */
-	public function getRelated(One_Link_Interface $link, One_Model $model, array $options = array())
+	public function getRelated(One_Link $link, One_Model $model, array $options = array())
 	{
 		$tScheme  = One_Repository::getScheme( $link->getTarget() );
 		$tAttr    = $link->getName();

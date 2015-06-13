@@ -1,6 +1,6 @@
 <?php
 /**
- * The NanoPretend adapter is exactly the same as the Nano adapter, but it pretends
+ * The NanoPretend __wft__adapter is exactly the same as the Nano __wft__adapter, but it pretends
  * there are no issues with nano by hiding all errors. Experimental
  *
 

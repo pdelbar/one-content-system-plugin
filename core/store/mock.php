@@ -64,7 +64,7 @@ class One_Store_Mock extends One_Store
 	 * @param One_Model $model
 	 * @param One_Link $link
 	 */
-	public function addRelations(One_Model $model, One_Link_Interface $link)
+	public function addRelations(One_Model $model, One_Link $link)
 	{
 		return null;
 	}
@@ -75,7 +75,7 @@ class One_Store_Mock extends One_Store
 	 * @param One_Model $model
 	 * @param One_Link $link
 	 */
-	public function saveRelations(One_Model $model, One_Link_Interface $link)
+	public function saveRelations(One_Model $model, One_Link $link)
 	{
 		return null;
 	}
@@ -86,7 +86,7 @@ class One_Store_Mock extends One_Store
 	 * @param One_Model $model
 	 * @param One_Link $link
 	 */
-	public function deleteRelations(One_Model $model, One_Link_Interface $link)
+	public function deleteRelations(One_Model $model, One_Link $link)
 	{
 		return null;
 	}

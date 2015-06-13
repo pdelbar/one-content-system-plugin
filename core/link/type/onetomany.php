@@ -29,7 +29,7 @@ class One_Link_Type_Onetomany extends One_Link_Type_Abstract
 	 *
 	 * @return array
 	 */
-	public function getRelated(One_Link_Interface $link, One_Model $model, array $options = array())
+	public function getRelated(One_Link $link, One_Model $model, array $options = array())
 	{
 		$linkName = $link->getName();
 
@@ -60,7 +60,7 @@ class One_Link_Type_Onetomany extends One_Link_Type_Abstract
 		return $q->execute();
 	}
 
-	public function countRelated(One_Link_Interface $link, One_Model $model, array $options = array())
+	public function countRelated(One_Link $link, One_Model $model, array $options = array())
 	{
 		$linkName = $link->getName();
 

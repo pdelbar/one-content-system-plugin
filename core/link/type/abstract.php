@@ -30,7 +30,7 @@ abstract class One_Link_Type_Abstract implements One_Link_Type_Interface
 	 * @param One_Link $link
 	 * @return array
 	 */
-	public function columns(One_Link_Interface $link)
+	public function columns(One_Link $link)
 	{
 		return array();
 	}
@@ -66,7 +66,7 @@ abstract class One_Link_Type_Abstract implements One_Link_Type_Interface
 	 * @param One_Scheme $target
 	 * @return string
 	 */
-	public function localFK(One_Link_Interface $link, One_Scheme $target )
+	public function localFK(One_Link $link, One_Scheme $target )
 	{
 		if($link->meta['fk:local']) {
 			return $link->meta['fk:local'];
@@ -87,7 +87,7 @@ abstract class One_Link_Type_Abstract implements One_Link_Type_Interface
 	 * @param One_Link $backlink
 	 * @return string
 	 */
-	public function remoteFK(One_Link_Interface $link, One_Scheme $source, One_Link_Interface $backlink )
+	public function remoteFK(One_Link $link, One_Scheme $source, One_Link $backlink )
 	{
 		if($link->meta['fk:remote']) {
 			return $link->meta['fk:remote'];

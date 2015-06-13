@@ -2,12 +2,7 @@
 /**
  * Class that parses template files
  *
-
-
-  * @TODO review this file and clean up historical code/comments
- * @subpackage Template
-ONEDISCLAIMER
-
+ * ONEDISCLAIMER
  **/
 abstract class One_Templater_Abstract
 {
@@ -42,10 +37,10 @@ abstract class One_Templater_Abstract
 	protected $error = '';
 
 	/**
-	 * List of absolute paths where the files can be found
+	 * Search path for glob to find the files
 	 * @staticvar array
 	 */
-	protected static $searchpath = array();
+	protected static $searchPath;
 
 	/**
 	 * Variable that can store searchpaths, so it can be restored later on
@@ -57,10 +52,10 @@ abstract class One_Templater_Abstract
 	 * Class constructor
 	 * @param array $searchpaths
 	 */
-	public function __construct( array $searchpaths = array(), $setSearchpaths = true )
+	public function __construct( $searchPath, $setSearchpaths = true )
 	{
 		if($setSearchpaths) {
-			$this->setSearchpath( $searchpaths );
+			$this->setSearchPath( $searchPath );
 		}
 	}
 
@@ -164,38 +159,29 @@ abstract class One_Templater_Abstract
 	 * Get currently set searchpaths
 	 * @return array
 	 */
-	public function getSearchpath()
+	public function getSearchPath()
 	{
 //    echo '<hr>searchpath is now '; print_r(self::$searchpath);
-		return self::$searchpath;
+		return self::$searchPath;
 	}
 
 	/**
-	 * Set the searchpaths
-	 * @param mixed $paths Absolute path or array of paths where the file can be found
+	 * Set the searchpath
 	 */
-	public function setSearchpath( $paths )
+	public function setSearchPath( $path )
 	{
-		if( !is_array( $paths ) )
-		{
-			$paths = array( $paths );
-		}
-
-		$this->clearSearchpath();
-		foreach( $paths as $path )
-		{
-			$this->addSearchpath( $path );
-		}
+        self::$searchPath = $path;
 	}
 
 	/**
 	 * Add an absolute path to the searchpaths
 	 * @param string $path
 	 */
-	public function addSearchpath( $path )
+	public function addSearchPath( $path )
 	{
+        die('deprecated ' . __FILE . ':' . __LINE__);
 //		if( is_dir( $path ) )
-			self::$searchpath[] = $path;
+			self::$searchPath[] = $path;
 		// don't set an error if the path doesn't exist, because sometimes a path will be tried to be added that doesn't exist
 		// else
 		// 	$this->setError( '"' . $path . '" is not a directory' );
@@ -204,25 +190,25 @@ abstract class One_Templater_Abstract
 	/**
 	 * Clear all searchpaths
 	 */
-	public function clearSearchpath()
+	public function clearSearchPath()
 	{
-		self::$searchpath = array();
+		self::$searchPath = '';
 	}
 
 	/**
 	 * Temporarily store the current searchpaths
 	 */
-	public function saveSearchpath()
+	public function saveSearchPath()
 	{
-		self::$storedpath = self::$searchpath;
+		self::$storedpath = self::$searchPath;
 	}
 
 	/**
 	 * Restore saved searchpaths to the current searchpaths
 	 */
-	public function restoreSearchpath()
+	public function restoreSearchPath()
 	{
-		self::$searchpath = self::$storedpath;
+		self::$searchPath = self::$storedpath;
 	}
 
 	/**

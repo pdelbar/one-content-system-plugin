@@ -60,6 +60,7 @@ Class One_Form_Widget_Nscript extends One_Form_Widget_Abstract
 			$useLang = strtolower(One_Config::getInstance()->getLanguage());
 		}
 
+        die ('deprecated stuff found in ' . __FILE__ .':'.__LINE);
     $cps = One_Config::getInstance()->getCustomPaths();
     foreach ($cps as $cp)
 		  One_Script_Factory::addSearchPath( $cp.'/views/'.One_Config::getInstance()->getApplication().'/'.$model->getScheme()->getName().'/language/'.$useLang.'/');

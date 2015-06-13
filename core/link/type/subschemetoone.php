@@ -29,7 +29,7 @@ class One_Link_Type_Subschemetoone extends One_Link_Type_Onetomany
 	 *
 	 * @return array
 	 */
-	public function getRelated(One_Link_Interface $link, One_Model $model, array $options = array())
+	public function getRelated(One_Link $link, One_Model $model, array $options = array())
 	{
 		return null;
 	}

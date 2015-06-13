@@ -257,7 +257,7 @@ class One_Store_Mysql extends One_Store
 	 * @param One_Model $model
 	 * @param One_Link $link
 	 */
-	public function addRelations(One_Model $model, One_Link_Interface $link)
+	public function addRelations(One_Model $model, One_Link $link)
 	{
 		$added = $model->getAddedRelations();
 
@@ -307,7 +307,7 @@ class One_Store_Mysql extends One_Store
 	 * @param One_Model $model
 	 * @param One_Link $link
 	 */
-	public function saveRelations(One_Model $model, One_Link_Interface $link)
+	public function saveRelations(One_Model $model, One_Link $link)
 	{
 		$modified = $model->getModifiedRelations();
 
@@ -357,7 +357,7 @@ class One_Store_Mysql extends One_Store
 	 * @param One_Model $model
 	 * @param One_Link $link
 	 */
-	public function deleteRelations(One_Model $model, One_Link_Interface $link)
+	public function deleteRelations(One_Model $model, One_Link $link)
 	{
 		$deleted = $model->getDeletedRelations();
 

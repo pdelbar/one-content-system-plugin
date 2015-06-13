@@ -201,7 +201,7 @@ class One_Store_Rest extends One_Store {
    * @param One_Model $model
    * @param One_Link $link
    */
-  public function addRelations(One_Model $model, One_Link_Interface $link) {
+  public function addRelations(One_Model $model, One_Link $link) {
     $added = $model->getAddedRelations();
 
     if (isset($added[$link->getName()])) {
@@ -244,7 +244,7 @@ class One_Store_Rest extends One_Store {
    * @param One_Model $model
    * @param One_Link $link
    */
-  public function saveRelations(One_Model $model, One_Link_Interface $link) {
+  public function saveRelations(One_Model $model, One_Link $link) {
     $modified = $model->getModifiedRelations();
 
     if (isset($modified[$link->getName()])) {
@@ -290,7 +290,7 @@ class One_Store_Rest extends One_Store {
    * @param One_Model $model
    * @param One_Link $link
    */
-  public function deleteRelations(One_Model $model, One_Link_Interface $link) {
+  public function deleteRelations(One_Model $model, One_Link $link) {
     $deleted = $model->getDeletedRelations();
 
     if (isset($deleted[$link->getName()])) {

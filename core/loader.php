@@ -79,6 +79,7 @@ class One_Loader {
     $pattern = self::localize($patternStub, $app, $language);
     $pattern = JPATH_SITE . DS . $pattern . $file;
 //    echo '<br/>Looking for <span style="color: green;"><b>' . $pattern . '</b></span>';
+//    var_dump( glob($pattern, GLOB_BRACE));
     return glob($pattern, GLOB_BRACE);
   }
 
