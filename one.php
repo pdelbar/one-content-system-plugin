@@ -22,25 +22,34 @@ jimport( 'joomla.plugin.plugin' );
 class plgSystemOne extends JPlugin
 {
 	public function onAfterInitialise() {
-    $this->initializeOne();
-    $this->initializeScript();
-  }
+        $this->initializeOne();
+        $this->initializeScript();
+    }
 
-	protected function initializeOne()
-	{
-		require_once(dirname(__FILE__).'/core/config.php');
-        require_once(dirname(__FILE__).'/core/one.php');
+    protected function initializeOne()
+    {
+        require_once(dirname(__FILE__) . '/core/config.php');
 
         $app = JFactory::getApplication();
-		$application = 'site';
+        $application = 'site';
 
-		if(strpos($app->getName(), 'admin') !== false) {
-			$application = 'admin';
-		}
+        if (strpos($app->getName(), 'admin') !== false) {
+            $application = 'admin';
+        }
+
+        One_Config::getInstance($application)
+            ->setUrl(JURI::root().'/plugins/system/one')
+            ->setSiterootUrl(JURI::root())
+            ->setSiterootPath( JPATH_SITE)
+            ;
+
+        require_once dirname(__FILE__) . '/core/loader.php';
+        One_Loader::register();
+
+        require_once(dirname(__FILE__) . '/core/one.php');
+
 
 		One_Config::getInstance($application)
-			->setUrl(JURI::root().'/plugins/system/one')
-			->setSiterootUrl(JURI::root())
 			->setAddressOne('/index.php?option=com_one')
 //			->setCustomPath(JPATH_SITE.'/media/one')
 			->setUserStore('mysql')

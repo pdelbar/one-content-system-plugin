@@ -1,29 +1,39 @@
 <?php
-/**
- * @deprecated
- */
+
 class One_Bootstrap
 {
-	public static function initiate( $siteRoot, $path, $customPath )
-	{
-		throw new One_Exception_Deprecated('do your own bootstrapping, dude');
-		// Register the autoloader
-		One_Loader::register();
+    public static function bootstrap($siteRoot,$siteURI)
+    {
+        require_once(dirname(__FILE__) . '/config.php');
 
-		One::getInstance()
-			->setUrl($siteRoot)
-			->setCustomPath($customPath )
-			->setUserStore('mysql')
-			->setTemplater(new One_Template_Adapter_NanoPretend);
-//		define( 'ONETEMPLATER', 'nano');
+        $application = 'site';
 
-//		$tmp = $path . DS . 'nano' . DS;
-//		define( 'ONE_SCRIPT_PATH', $tmp );
-//		define( 'ONE_SCRIPT_CUSTOM_PATH', $customPath . DS . 'nano' );
-//
-//		require_once( $tmp . 'tools' . DS . 'autoload.php' );
-		require_once( One::getInstance()->getPath() . '/tools.php' );
+        One_Config::getInstance($application)
+            ->setUrl($siteRoot.'/plugins/system/one')
+            ->setSiterootUrl($siteURI)
+            ->setSiterootPath( $siteRoot)
+        ;
+
+        require_once dirname(__FILE__) . '/loader.php';
+        One_Loader::register();
+
+        require_once(dirname(__FILE__) . '/one.php');
 
 
-	}
+        One_Config::getInstance($application)
+            ->setUserStore('mysql')
+            ->setTemplater('One_Templater_Nano')
+//        ->setLanguage(JFactory::getLanguage()->getTag())
+//        ->setDomType('joomla')
+//        ->setExitOnError($this->params->get('exitOnError'))
+        ;
+        require_once(One_Config::getInstance()->getPath() . '/tools.php');
+
+        One_Query::setDebug(true);
+
+//        $tmp = dirname(__FILE__) . DS . 'core/script' . DS;
+//        define('ONE_SCRIPT_PATH', $tmp);
+//        define('ONE_SCRIPT_CUSTOM_PATH', JPATH_SITE . DS . 'media' . DS . 'one' . DS . 'script');
+
+    }
 }

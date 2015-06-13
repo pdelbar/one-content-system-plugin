@@ -1,6 +1,6 @@
 <?php
-require_once dirname(__FILE__) . '/loader.php';
-One_Loader::register();
+//require_once dirname(__FILE__) . '/loader.php';
+//One_Loader::register();
 
 /**
  * @deprecated
@@ -89,9 +89,10 @@ class One_Config {
      * Get a One instance
      * @return One_Config
      */
-    public static function getInstance($application = 'site') {
+    public static function &getInstance($application = 'site') {
         if ( empty(self::$_instance) ) {
             self::$_instance = new One_Config($application);
+            echo "(creating new instance of One_Config)";
         }
 
         return self::$_instance;
@@ -155,6 +156,7 @@ class One_Config {
      */
     public function setSiterootPath($path) {
         $this->_siterootpath = $path;
+        echo "(setting _siterootpath to $path)";
         return $this;
     }
 
@@ -173,6 +175,7 @@ class One_Config {
      */
     public function setSiterootUrl($url) {
         $this->_siterooturl = $url;
+        echo "(setting siterooturl to $url)";
         return $this;
     }
 
