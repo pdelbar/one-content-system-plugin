@@ -86,7 +86,7 @@ class One_Loader
         $pattern = self::localize($patternStub, $app, $language);
 //        $pattern2 = JPATH_SITE . DS . $pattern . $file;
 //        echo '<hr>', $pattern2;
-        $pattern2 = One_Config::getInstance()->getSiterootpath() . DS . $pattern . $file;
+        $pattern2 = ONE_APPLICATION_PATH . DS . $pattern . $file;
 //        echo '<hr>', $pattern2;
 //        echo '<br/>Looking for <span style="color: green;"><b>' . $pattern2 . '</b></span>';
 //    var_dump( glob($pattern, GLOB_BRACE));
@@ -118,7 +118,6 @@ class One_Loader
      */
     public static function localize($pattern, $app = null, $language = null)
     {
-
         $app = One_Config::getInstance()->getApplication();
 
         if (!is_null($language)) {
