@@ -16,6 +16,11 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 jimport( 'joomla.plugin.plugin' );
 
+require_once "settings.php";
+
+require_once 'core/config.php';
+require_once 'core/loader.php';
+
 /**
  * One Plugin
  */
@@ -23,12 +28,13 @@ class plgSystemOne extends JPlugin
 {
 	public function onAfterInitialise() {
         $this->initializeOne();
-        $this->initializeScript();
+//        $this->initializeScript();
     }
 
     protected function initializeOne()
     {
-        require_once(dirname(__FILE__) . '/core/config.php');
+        One_Loader::register();
+
 
         $app = JFactory::getApplication();
         $application = 'site';
@@ -40,11 +46,10 @@ class plgSystemOne extends JPlugin
         One_Config::getInstance($application)
             ->setUrl(JURI::root().'/plugins/system/one')
             ->setSiterootUrl(JURI::root())
-            ->setSiterootPath( JPATH_SITE)
+//            ->setSiterootPath( JPATH_SITE)
             ;
 
-        require_once dirname(__FILE__) . '/core/loader.php';
-        One_Loader::register();
+
 
         require_once(dirname(__FILE__) . '/core/one.php');
 
@@ -78,14 +83,14 @@ class plgSystemOne extends JPlugin
 		define('ONECALENDARVIEW', $this->params->get('calendarView', 'month'));
 	}
 
-  protected function initializeScript() {
-    $tmp = dirname( __FILE__ ) . DS . 'core/script' . DS;
-    define( 'ONE_SCRIPT_PATH', $tmp );
-    define( 'ONE_SCRIPT_CUSTOM_PATH', JPATH_SITE . DS . 'media' . DS . 'one' . DS . 'script' );
+//  protected function initializeScript() {
+//    $tmp = dirname( __FILE__ ) . DS . 'core/script' . DS;
+//    define( 'ONE_SCRIPT_PATH', $tmp );
+//    define( 'ONE_SCRIPT_CUSTOM_PATH', JPATH_SITE . DS . 'media' . DS . 'one' . DS . 'script' );
 
 //    require_once( $tmp . 'loader.php' );
 //    One_Script_Loader::register();
-  }
+//  }
 
 
 	public function onAfterRender()

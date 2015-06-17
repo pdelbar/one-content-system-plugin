@@ -1,21 +1,28 @@
 <?php
 
+/**
+ * Class One_Bootstrap
+ *
+ * This class initializes one|content according to the required settings for basic paths etc.
+ */
+
+require_once 'config.php';
+require_once 'loader.php';
+
 class One_Bootstrap
 {
     public static function bootstrap($siteRoot,$siteURI)
     {
-        require_once(dirname(__FILE__) . '/config.php');
+        One_Loader::register();
 
         $application = 'site';
 
         One_Config::getInstance($application)
             ->setUrl($siteRoot.'/plugins/system/one')
             ->setSiterootUrl($siteURI)
-            ->setSiterootPath( $siteRoot)
+//            ->setSiterootPath( $siteRoot)
         ;
 
-        require_once dirname(__FILE__) . '/loader.php';
-        One_Loader::register();
 
         require_once(dirname(__FILE__) . '/one.php');
 

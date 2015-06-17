@@ -9,12 +9,12 @@
         /**
          * This is the path to the nano directory (external reference to the nano subdirectory in the nscript SVN)
          */
-        define( 'ONE_SCRIPT_PATH', dirname(__FILE__) . DS . 'nano' );
+//        define( 'ONE_SCRIPT_PATH', dirname(__FILE__) . DS . 'nano' );
 
         /**
          * This is the path to your custom nano folder, typically places under a custom directory
          */
-        define( 'ONE_SCRIPT_CUSTOM_PATH', dirname(__FILE__) . '/../' . 'custom' . DS . 'nano' );
+//        define( 'ONE_SCRIPT_CUSTOM_PATH', dirname(__FILE__) . '/../' . 'custom' . DS . 'nano' );
         //define( 'ONE_SCRIPT_CUSTOM_PATH', dirname(__FILE__) . '/' . 'custom' . DS . 'nano' );
 
         /**

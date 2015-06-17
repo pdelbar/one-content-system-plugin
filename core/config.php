@@ -144,21 +144,23 @@ class One_Config {
     /**
      * Get the siteroot-path
      * @return string
+     * @deprecated and replaced by One_Settings::ONE_APPLICATION_PATH
      */
-    public function getSiterootPath() {
-        return $this->_siterootpath;
-    }
+//    public function getSiterootPath() {
+//        return $this->_siterootpath;
+//    }
 
     /**
      * Set the siteroot-path
      * @param string $path
      * @return One_Config
+     * @deprecated and replaced by One_Settings::ONE_APPLICATION_PATH
      */
-    public function setSiterootPath($path) {
-        $this->_siterootpath = $path;
-        echo "(setting _siterootpath to $path)";
-        return $this;
-    }
+//    public function setSiterootPath($path) {
+//        $this->_siterootpath = $path;
+//        echo "(setting _siterootpath to $path)";
+//        return $this;
+//    }
 
     /**
      * Get the siteroot-url
