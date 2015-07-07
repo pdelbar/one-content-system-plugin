@@ -55,6 +55,7 @@
 
       // SETTINGS TO CHANGE / REFACTOR
       One_Config::set('view.templater', 'One_View_Templater_Script');
+//      One_Config::set('view.templater', 'One_View_Templater_Php');
 
       // BELOW IS GARBAGE TO CLEAN UP
 

@@ -12,6 +12,12 @@ class One_Script_Content_Factory
          */
         public static $nsContentCache = array();
 
+
+        public static function clearContentCache()
+        {
+          self::$nsContentCache = array();
+        }
+
         /**
          * Retrieve the specified node, loading it if needed
          *

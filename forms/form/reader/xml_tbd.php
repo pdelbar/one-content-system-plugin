@@ -191,7 +191,7 @@ class One_Form_Reader_Xml implements One_Form_Reader_Interface {
         {
           $sessionCacheName = md5($relScheme->getName() . '#' . $element->getAttribute('optionsFrom'));
           if (false === $element->hasAttribute('cacheOptions') || ($element->hasAttribute('cacheOptions') && false === $session->varExists($sessionCacheName, 'One_Form_Cache'))) {
-            $relView = new One_View($relScheme->getName(), $element->getAttribute('optionsFrom'), strtolower(substr(One_Config::get('app.language'), 0, 5)));
+            $relView = new One_View($relScheme->getName(), $element->getAttribute('optionsFrom'));
             $rawOptions = trim($relView->show());
             $options = json_decode($rawOptions, 1);
             if (false === is_array($options)) {
@@ -305,7 +305,7 @@ class One_Form_Reader_Xml implements One_Form_Reader_Interface {
         $session = One_Repository::getSession();
         $sessionCacheName = md5($id . '#' . $name . '#' . $element->getAttribute('optionsFrom'));
         if (false === $element->hasAttribute('cacheOptions') || ($element->hasAttribute('cacheOptions') && false === $session->varExists($sessionCacheName, 'One_Form_Cache'))) {
-          $optView = new One_View($parts[0], $parts[1], strtolower(substr(One_Config::get('app.language'), 0, 5)));
+          $optView = new One_View($parts[0], $parts[1]);
           try {
             $rawOptions = trim($optView->show());
             $options = json_decode($rawOptions, 1);

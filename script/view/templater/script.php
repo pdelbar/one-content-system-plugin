@@ -4,7 +4,6 @@
    * The templater concept is designed to make it possible to use different template languages and tools inside One.
    * This is the renderer supporting One_Script.
    *
-   * @TODO review this file and clean up historical code/comments
    * ONEDISCLAIMER
    **/
   class One_View_Templater_Script extends One_View_Templater_Abstract
@@ -21,18 +20,18 @@
      *
      * @param array $searchpaths
      */
-    public function __construct($searchPath, $setSearchpaths = true)
+    public function __construct()
     {
-      parent::__construct($searchPath, $setSearchpaths);
+      parent::__construct();
       $this->script = new One_Script();
     }
 
     public function setFile($filename)
     {
-      parent::setFile($filename);
+      parent::setFile($filename . '.html');
 
       if ($this->script->isError()) {
-        throw new One_Exception($this->script->error);
+        throw new One_Exception_Script($this->script->error);
       }
     }
 
@@ -41,14 +40,14 @@
      *
      * @param string $section
      */
-    public function parse($section = NULL)
+    public function render($section = null)
     {
       $oldSearchpath = One_Script_Factory::getSearchPath();
-//    One_Script_Factory::clearSearchpath();
+
       One_Script_Factory::setSearchPath($this->getSearchPath());
       if ($this->useFile()) {
         $this->script->load($this->getFile());
-        $this->script->select($section);
+        if ($section!== null) $this->script->select($section);
         if (!$this->script->isError()) {
           $output = $this->script->execute($this->getData());
         }
@@ -58,19 +57,18 @@
         $output = $this->script->executeString($this->getContent(), $this->getData());
       }
 
-//    One_Script_Factory::clearSearchpath();
       One_Script_Factory::setSearchPath($oldSearchpath);
-      One_Script_Content_Factory::$nsContentCache = array();
+      One_Script_Content_Factory::clearContentCache();  // *** why is this here ? WTF !
 
       if ($this->script->isError()) {
-        throw new One_Exception($this->script->error);
+        throw new One_Exception_Script($this->script->error);
       }
 
       return trim($output);
     }
 
     /**
-     * (non-PHPdoc)
+     * I have no clue what this does.
      *
      * @see One_Template_Adapter_Abstract::formatDataKeys()
      */
@@ -91,7 +89,7 @@
 
 
     /**
-     * (non-PHPdoc)
+     * I have no clue what this does.
      *
      * @see One_Template_Adapter_Abstract::formatDataKey()
      */
@@ -103,7 +101,6 @@
           $key = '_' . $key;
         } while (array_key_exists($key, $this->getData()));
 
-//      One_Log::getInstance('message')->log(array('message' => 'The key "' . $oriKey . '" has been changed to "' . $key . '"'));
       }
 
       return $key;

@@ -1,7 +1,7 @@
 <?php
 class One_Script_Package_One extends One_Script_Package
 {
-	public function view( $model, $viewName = 'default', $section = NULL, $options = array(), $useLang = NULL )
+	public function view( $model, $viewName = 'default', $section = NULL, $options = array() )
 	{
 		// TR 20100414 Removed check for an array, what about list views? and removed with check on first element
 //		if (is_array($model)) {
@@ -13,7 +13,7 @@ class One_Script_Package_One extends One_Script_Package
 		else
 			$instanced = $model;
 
-		$view = new One_View( $instanced, $viewName, $useLang );
+		$view = new One_View( $instanced, $viewName );
     	$view->setModel( $model );
 
     	if( count( $options ) > 0 )

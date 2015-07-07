@@ -43,20 +43,11 @@ abstract class One_View_Templater_Abstract
 	protected static $searchPath;
 
 	/**
-	 * Variable that can store searchpaths, so it can be restored later on
-	 * @staticvar array
-	 */
-	protected static $storedpath = array();
-
-	/**
 	 * Class constructor
 	 * @param array $searchpaths
 	 */
-	public function __construct( $searchPath, $setSearchpaths = true )
+	public function __construct()
 	{
-		if($setSearchpaths) {
-			$this->setSearchPath( $searchPath );
-		}
 	}
 
 	/**
@@ -161,7 +152,6 @@ abstract class One_View_Templater_Abstract
 	 */
 	public function getSearchPath()
 	{
-//    echo '<hr>searchpath is now '; print_r(self::$searchpath);
 		return self::$searchPath;
 	}
 
@@ -173,43 +163,6 @@ abstract class One_View_Templater_Abstract
         self::$searchPath = $path;
 	}
 
-	/**
-	 * Add an absolute path to the searchpaths
-	 * @param string $path
-	 */
-	public function addSearchPath( $path )
-	{
-        die('deprecated ' . __FILE . ':' . __LINE__);
-//		if( is_dir( $path ) )
-			self::$searchPath[] = $path;
-		// don't set an error if the path doesn't exist, because sometimes a path will be tried to be added that doesn't exist
-		// else
-		// 	$this->setError( '"' . $path . '" is not a directory' );
-	}
-
-	/**
-	 * Clear all searchpaths
-	 */
-	public function clearSearchPath()
-	{
-		self::$searchPath = '';
-	}
-
-	/**
-	 * Temporarily store the current searchpaths
-	 */
-	public function saveSearchPath()
-	{
-		self::$storedpath = self::$searchPath;
-	}
-
-	/**
-	 * Restore saved searchpaths to the current searchpaths
-	 */
-	public function restoreSearchPath()
-	{
-		self::$searchPath = self::$storedpath;
-	}
 
 	/**
 	 * Set whether to use the file or not
@@ -252,5 +205,5 @@ abstract class One_View_Templater_Abstract
 	 * Parse the template or if $section is set and the section exists, parse the specified section
 	 * @param string $section
 	 */
-	public abstract function parse( $section = NULL );
+	public abstract function render( $section = NULL );
 }
