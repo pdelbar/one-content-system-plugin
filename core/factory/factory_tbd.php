@@ -55,7 +55,7 @@ class One_Factory {
     $store = $connection->getStore();
     $query = $store->getQuery($this->scheme);
 
-    $behaviors = $this->scheme->getBehaviors();
+    $behaviors = $this->scheme->get('behaviors');
     if ($behaviors) foreach ($behaviors as $behavior) {
       $behavior->onSelect($query);
     }
@@ -76,7 +76,7 @@ class One_Factory {
     $scheme = $this->scheme;
     $query = One_Repository::selectQuery($scheme);
 
-    $behaviors = $scheme->getBehaviors();
+    $behaviors = $scheme->get('behaviors');
     if ($behaviors) {
       foreach ($behaviors as $behavior) {
         $behavior->onSelect($query);

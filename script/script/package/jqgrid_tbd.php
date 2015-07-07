@@ -43,7 +43,7 @@ class oneScriptPackageJqgrid extends One_Script_Package
 			$scheme = One_Repository::getScheme($schemeName);
 			$formula = array();
 			$idAtt = $scheme->getIdentityAttribute();
-			$atts = $scheme->getAttributes();
+			$atts = $scheme->get('attributes');
 			foreach($atts as $att)
 			{
 				$formula[$att->getName()] = array('header' => $att->getName());

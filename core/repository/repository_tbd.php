@@ -26,7 +26,7 @@ class One_Repository  {
   public static function getScheme($schemeName) {
     if ( !array_key_exists($schemeName, self::$schemeCache) ) {
       $scheme    = One_Scheme_Reader_Xml::load($schemeName);
-      $behaviors = $scheme->getBehaviors();
+      $behaviors = $scheme->get('behaviors');
       if ( $behaviors ) {
         foreach ($behaviors as $behavior) {
           $behavior->onLoadScheme($scheme);

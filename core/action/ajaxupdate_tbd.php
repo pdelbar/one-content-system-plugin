@@ -34,7 +34,7 @@ class One_Action_Ajaxupdate extends One_Action
 			throw new One_Exception('Item could not be found');
 		}
 
-		foreach ($scheme->getAttributes() as $attr)
+		foreach ($scheme->get('attributes') as $attr)
 		{
 
 			if($idat != $attr->getName() && !in_array($attr->getName(), array('id', 'oper')))

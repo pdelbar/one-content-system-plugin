@@ -114,7 +114,7 @@ class One_Query_Renderer_Xml extends One_Query_Renderer_Abstract
 			$attribute = $condition->attribute;
 			$custVal   = false;
 
-			$ats = $scheme->getAttributes();
+			$ats = $scheme->get('attributes');
 			$at = $ats[ $attribute ];
 
 			$isFunction = false;

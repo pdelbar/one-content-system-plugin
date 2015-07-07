@@ -243,7 +243,7 @@ class One_Query_Renderer_Mongo extends One_Query_Renderer_Abstract
 
 			$clause = NULL;
 
-			$ats = $scheme->getAttributes();
+			$ats = $scheme->get('attributes');
 			$at  = false;
 			if(isset($ats[$attribute])) {
 				$at = $ats[$attribute];

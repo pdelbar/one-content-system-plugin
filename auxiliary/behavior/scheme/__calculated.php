@@ -25,7 +25,7 @@ class One_Behavior_Scheme_Calculated extends One_Behavior_Scheme
 	 */
 	public function afterLoadModel(One_Scheme $scheme, One_Model $model)
 	{
-		$bOptions     = $scheme->getBehaviorOptions($this->getName());
+		$bOptions     = $scheme->get('behaviorOptions.' . strtolower($this->getName()));
 		$forAttribute = $bOptions['attribute'];
 
 		$typeClass = 'One_Type_Calculated_'.ucfirst($scheme->getName()).'_'.ucfirst($forAttribute);
@@ -61,7 +61,7 @@ class One_Behavior_Scheme_Calculated extends One_Behavior_Scheme
 	 */
 	protected function unsetAttribute(One_Scheme $scheme, One_Model $model)
 	{
-		$bOptions     = $scheme->getBehaviorOptions($this->getName());
+    $bOptions     = $scheme->get('behaviorOptions.' . strtolower($this->getName()));
 		$forAttribute = $bOptions['attribute'];
 
 		unset($model->$forAttribute);

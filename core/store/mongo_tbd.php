@@ -329,7 +329,7 @@ class One_Store_Mongo extends One_Store
 //
 //		$idAttr = $scheme->getIdentityAttribute();
 //
-//		foreach($scheme->getAttributes() as $attribute)
+//		foreach($scheme->get('attributes') as $attribute)
 //		{
 //			// if the model's identity attribute is set (probably to zero for new items),
 //			// we need to skip it when inserting .
@@ -430,7 +430,7 @@ class One_Store_Mongo extends One_Store
 //
 //		$data = new stdClass();
 //
-//		foreach($scheme->getAttributes() as $attName => $at)
+//		foreach($scheme->get('attributes') as $attName => $at)
 //		{
 //			if(isset($modified[$attName])) {
 //				$data->$attName = $modified[$attName];
@@ -463,7 +463,7 @@ class One_Store_Mongo extends One_Store
 //		}
 //
 //		$clauses = array();
-//		foreach($scheme->getAttributes() as $attName => $at)
+//		foreach($scheme->get('attributes') as $attName => $at)
 //		{
 //			if(isset($modified[$attName]))
 //			{

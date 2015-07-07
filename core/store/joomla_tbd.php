@@ -451,7 +451,7 @@ class One_Store_Joomla extends One_Store
 		$idAttr = $scheme->getIdentityAttribute();
 		$data = new stdClass();
 
-		foreach($scheme->getAttributes() as $attribute)
+		foreach($scheme->get('attributes') as $attribute)
 		{
 			$attName = $attribute->getName();
 			// if the model's identity attribute is set (probably to zero for new items),
@@ -556,7 +556,7 @@ class One_Store_Joomla extends One_Store
 
 		$data = new stdClass();
 
-		foreach ($scheme->getAttributes() as $attName => $at ) {
+		foreach ($scheme->get('attributes') as $attName => $at ) {
 			if (isset( $modified[ $attName ]))
 			{
         $colName = $at->getColumn();

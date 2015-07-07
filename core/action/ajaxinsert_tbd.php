@@ -33,7 +33,7 @@ class One_Action_Ajaxinsert extends One_Action
 			throw new One_Exception('Item could not be found');
 		}
 
-		foreach ($scheme->getAttributes() as $attr) {
+		foreach ($scheme->get('attributes') as $attr) {
 			$v = $this->getVariable($attr->getName(), null);
 			if ($v !== null) {
 				$an = $attr->getName();

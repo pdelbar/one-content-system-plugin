@@ -31,7 +31,7 @@ class One_Behavior_Scheme_Flex extends One_Behavior_Scheme
 	public function afterLoadModel(One_Scheme $scheme, One_Model $model)
 	{
 		$ignoreAttributes = array_merge(self::$_ignoreAttributes, $scheme->getForeignKeys()); // ignore all local foreign key attributes as well
-		$bOptions  = $scheme->getBehaviorOptions($this->getName());
+    $bOptions     = $scheme->get('behaviorOptions.' . strtolower($this->getName()));
 		$flexfield = $bOptions['flexfield'];
 		$json = json_decode($model->$flexfield, true);
 		if(is_array($json))
@@ -75,7 +75,7 @@ class One_Behavior_Scheme_Flex extends One_Behavior_Scheme
 	private function flexToJson(One_Scheme $scheme, One_Model $model)
 	{
 		$ignoreAttributes = array_merge(self::$_ignoreAttributes, $scheme->getForeignKeys()); // ignore all local foreign key attributes as well
-		$bOptions   = $scheme->getBehaviorOptions($this->getName());
+    $bOptions     = $scheme->get('behaviorOptions.' . strtolower($this->getName()));
 		$flexfield  = $bOptions['flexfield'];
 
 		unset($model->$flexfield);
@@ -86,7 +86,7 @@ class One_Behavior_Scheme_Flex extends One_Behavior_Scheme
 //		if(!array_key_exists($flexfield, $model->getModified()))
 //		{
 			$data       = $model->toArray();
-			$attributes = $scheme->getAttributes();
+			$attributes = $scheme->get('attributes');
 
 			foreach($attributes as $attr) {
 				unset($data[$attr->getName()]);

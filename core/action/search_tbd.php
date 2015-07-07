@@ -123,7 +123,7 @@ class One_Action_Search extends One_Action
 		$form          = One_Form_Factory::createForm($this->scheme, $this->searchform);
 		$widgets       = $this->getWidgets($form, $this->scheme);
 		$idAttr        = $this->scheme->getIdentityAttribute()->getName();
-		$searchOptions = $this->scheme->getBehaviorOptions('searchable');
+		$searchOptions = $this->scheme->get('behaviorOptions.searchable');
 
 		$conditions       = 0;
 		$weights          = array();
@@ -155,7 +155,7 @@ class One_Action_Search extends One_Action
 					$link         = $this->scheme->getLink($parts[1]);
 					$targetScheme = One_Repository::getScheme($link->getTarget()); // get the scheme of the related field
 					$tidAttr      = $targetScheme->getIdentityAttribute()->getName();
-					$tSearchOptions = $targetScheme->getBehaviorOptions('searchable');
+          $tSearchOptions = $this->scheme->get('behaviorOptions.searchable');
 
 					$wOptions = null;
 					if(method_exists($widget, 'getOptions')) {

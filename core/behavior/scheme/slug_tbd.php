@@ -25,7 +25,7 @@ class One_Behavior_Scheme_Slug extends One_Behavior_Scheme {
       return;
     }
 
-    $options    = $scheme->getBehaviorOptions($this->getName());
+    $options    = $scheme->get('behaviorOptions.slug');
     $createFrom = $options['createFrom'];
 
 		$parts = preg_split( '/\+/', $createFrom );

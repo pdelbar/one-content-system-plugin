@@ -462,7 +462,7 @@ class One_Store_Joomla2 extends One_Store
 		$idAttr = $scheme->getIdentityAttribute();
 		$data = new stdClass();
 
-		foreach($scheme->getAttributes() as $attribute)
+		foreach($scheme->get('attributes') as $attribute)
 		{
 //			$attName = $attribute->getName();
 			$attName = $attribute->getColumn();
@@ -561,7 +561,7 @@ class One_Store_Joomla2 extends One_Store
 
 		$data = new stdClass();
 
-		foreach ($scheme->getAttributes() as $attName => $at ) {
+		foreach ($scheme->get('attributes') as $attName => $at ) {
 			if (isset( $modified[ $attName ]))
 			{
         $colName = $at->getColumn();

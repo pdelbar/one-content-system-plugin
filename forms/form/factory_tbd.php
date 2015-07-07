@@ -59,7 +59,7 @@ class One_Form_Factory {
     $form = new One_Form_Container_Form($formName, $action, 'post');
     $form->setCfg('widgetsInContainer', 'One_Form_Container_Div');
 
-    foreach ($scheme->getAttributes() as $attribute) {
+    foreach ($scheme->get('attributes') as $attribute) {
       $type = $attribute->getType();
       $widgetClass = $type->defaultWidgetClass();
       $widget = new $widgetClass($attribute->getName(), $attribute->getName(), $attribute->getName());

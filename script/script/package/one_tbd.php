@@ -238,7 +238,7 @@ class One_Script_Package_One extends One_Script_Package
 	public function getAlias(One_Model $model)
 	{
 		$scheme = $model->getScheme();
-		$aliasOpts = $scheme->getBehaviorOptions('linkalias');
+    $aliasOpts = $scheme->get('behaviorOptions.linkalias' );
 		if(null !== $behaviorOpts && isset($behaviorOpts['attribute']))
 		{
 			$aliasField = $behaviorOpts['attribute'];

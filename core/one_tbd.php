@@ -13,7 +13,7 @@ class One extends One_Repository
     {
         $scheme = parent::getScheme($schemeName);
         $object = null;
-        $behaviors = $scheme->getBehaviors();
+        $behaviors = $scheme->get('behaviors');
         if ($behaviors) foreach ($behaviors as $behavior) {
             $object = $behavior->onCreateModel($scheme);
             if ($object)

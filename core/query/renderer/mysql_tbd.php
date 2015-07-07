@@ -441,7 +441,7 @@ class One_Query_Renderer_Mysql extends One_Query_Renderer_Abstract
 				$attribute = preg_replace( '/^([a-z0-9_-]+)\(\s*([a-z0-9_-]+(:[a-z0-9_-]+)?)\s*\)$/i', '${1}( ' . $alias . '.' . $attribute . ' )', trim( $condition->attribute ) );
 			}
 
-			$ats = $scheme->getAttributes();
+			$ats = $scheme->get('attributes');
 			$at  = false;
 			if(isset($ats[$attribute])) {
 				$at = $ats[$attribute];

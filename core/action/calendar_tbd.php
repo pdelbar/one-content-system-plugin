@@ -63,7 +63,7 @@ class One_Action_Calendar extends One_Action
 
 		$this->scheme         = $options[ 'scheme' ];
 		$scheme               = One_Repository::getScheme( $this->scheme );
-		$calendarOptions      = $scheme->getBehaviorOptions( 'calendar');
+		$calendarOptions      = $scheme->get('behaviorOptions.calendar');
 		$date                 = $calendarOptions[ 'date' ];
 		$enddate                 = $calendarOptions[ 'enddate' ];
 		$time                 = $calendarOptions[ 'time' ];

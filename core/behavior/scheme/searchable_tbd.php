@@ -27,7 +27,7 @@ class One_Behavior_Scheme_Searchable extends One_Behavior_Scheme
 	 */
 	public function onLoadScheme( $scheme )
 	{
-		$options = $scheme->getBehaviorOptions( 'searchable' );
+		$options = $scheme->get('behaviorOptions.searchable' );
 
 		if( is_null( $options['search'] ) || trim( $options['search'] ) == '' )
 			throw new One_Exception( 'When defining a searchable behavior, you must define an attribute.' );

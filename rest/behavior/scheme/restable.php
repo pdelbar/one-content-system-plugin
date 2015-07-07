@@ -17,8 +17,7 @@ class One_Behavior_Scheme_Restable extends One_Behavior_Scheme {
 
   public static function slimSetup(\Slim\Slim &$slim,One_Scheme $scheme) {
     //TODO: read specs from behaviour options or from a file
-    $opt = $scheme->getBehaviorOptions('restable');
-
+    $opt = $scheme->get('behaviorOptions.restable' );
     $route = $opt['route'];
 
     // retrieve

@@ -369,7 +369,7 @@ class One_Action_Jgrid extends One_Action
 
 		if( is_null( $this->_columns ) )
 		{
-			$columns = $this->scheme->getAttributes();
+			$columns = $this->scheme->get('attributes');
 			$this->_columns = array();
 			foreach( $columns as $name => $column )
 			{

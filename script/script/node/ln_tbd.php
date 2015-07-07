@@ -18,7 +18,7 @@ class One_Script_Node_Ln extends One_Script_Node_Abstract
 		$factory   = One_Repository::getFactory( $parts[ 0 ] );
 		$requested = $parts[1];
 
-		$behaviorOptions = $scheme->getBehaviorOptions( 'linkalias' );
+		$behaviorOptions = $scheme->get('behaviorOptions.linkalias' );
 
 		if( is_null( $behaviorOptions ) )
 		{

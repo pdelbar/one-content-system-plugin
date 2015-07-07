@@ -29,7 +29,7 @@ class One_Behavior_Scheme_Deletechildren extends One_Behavior_Scheme
 	 */
 	public function beforeDeleteModel(One_Scheme $scheme, One_Model $model)
 	{
-		$options = $scheme->getBehaviorOptions( 'deletechildren' );
+    $options     = $scheme->get('behaviorOptions.deletechildren' );
 
 		$dependent = explode( ';', $options[ 'dependent' ] );
 		$cascade   = explode( ';', $options[ 'cascade' ] );

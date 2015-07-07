@@ -487,7 +487,7 @@ class One_Query_Renderer_Oci extends One_Query_Renderer_Abstract
 			}
 
 
-			$ats = $scheme->getAttributes();
+			$ats = $scheme->get('attributes');
 			$at  = false;
 //echo '<br>Looking for attribute |' . $attribute . '|';
 			if(isset($ats[$attribute])) {

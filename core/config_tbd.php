@@ -1,9 +1,9 @@
 <?php
 
-  require_once "tools/hash.php";
+  require_once "registry/registry.php";
 
   /**
-   * One_Config is a singleton class containing a One_Tools_Hash for all values we want to store for this
+   * One_Config is a singleton class containing a One_Registry for all values we want to store for this
    * configuration
    *
    * ONEDISCLAIMER
@@ -11,7 +11,7 @@
   class One_Config
   {
     /**
-     * @var One_Tools_Hash instance keeping the config information
+     * @var One_Registry instance keeping the config information
      */
     private static $_hash;
 
@@ -21,7 +21,7 @@
     public static function get($key)
     {
       if (empty(self::$_hash)) {
-        self::$_hash = new One_Tools_Hash();
+        self::$_hash = new One_Registry();
       }
       return self::$_hash->get($key);
     }
@@ -29,7 +29,7 @@
     public static function set($key,$value)
     {
       if (empty(self::$_hash)) {
-        self::$_hash = new One_Tools_Hash();
+        self::$_hash = new One_Registry();
       }
       return self::$_hash->set($key,$value);
     }

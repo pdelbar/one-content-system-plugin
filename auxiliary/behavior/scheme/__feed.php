@@ -32,7 +32,7 @@ class One_Behavior_Scheme_Feed extends One_Behavior_Scheme
 		if( $_REQUEST[ 'task' ] == 'feed' )
 		{
 			$scheme      = $query->getScheme();
-			$options     = $scheme->getBehaviorOptions( $this->getName() );
+      $options     = $scheme->get('behaviorOptions.' . strtolower($this->getName()));
 			$title       = $options['title'];
 			$description = $options['description'];
 			$pubDate     = $options['pubDate'];
