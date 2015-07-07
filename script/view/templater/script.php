@@ -40,6 +40,7 @@
      *
      * @param string $section
      */
+
     public function render($section = null)
     {
       $oldSearchpath = One_Script_Factory::getSearchPath();
