@@ -4,7 +4,7 @@
  *
  * ONEDISCLAIMER
  **/
-abstract class One_Templater_Abstract
+abstract class One_View_Templater_Abstract
 {
 	/**
 	 * Data used in the template

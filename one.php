@@ -54,7 +54,7 @@
       One_Config::set('form.chrome', $this->params->get('formChrome', ''));
 
       // SETTINGS TO CHANGE / REFACTOR
-      One_Config::set('view.templater', 'One_Templater_Nano');    // Nano ? Seriously?
+      One_Config::set('view.templater', 'One_View_Templater_Script');
 
       // BELOW IS GARBAGE TO CLEAN UP
 

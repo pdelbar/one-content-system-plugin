@@ -1,12 +1,12 @@
 <?php
 
-/**
- * Class that handles the output of the model views
- *
- * ONEDISCLAIMER
- **/
-class One_View
-{
+  /**
+   * A One_View handles all presentation aspects for a scheme. It's the V in MVC.
+   *
+   * ONEDISCLAIMER
+   **/
+  class One_View
+  {
     /**
      * @var string Name of the view
      */
@@ -16,52 +16,62 @@ class One_View
      * @var mixed Can be either One_Model or a list of One_Models
      */
     public $model;
-    //@TODO woulr be better to have a unified object serving for model or model set
 
     /**
-     * @var One_Template Templater instance that renders the views
+     * @var the One_View_Templater instance that renders this view
      */
     protected $templater;
 
     /**
      * Configuration options for the view
+     *
      * @var array
      */
     protected $options;
 
     /**
-     * Class constructor
+     * Class constructor, with different prototypes:
+     *   new One_View( One_Scheme, ...)
+     *   new One_View( 'schemename', ...)
+     *   new One_View( One_Model, ...)
+     *   new One_View( [One_Model ...], ...)
      *
      * @param mixed $modelThing
      * @param string $viewName
      */
-    public function   __construct($modelThing, $viewName = 'default', $language = NULL, array $options = array())
+    public function __construct($modelThing, $viewName = 'default', $language = NULL, array $options = array())
     {
-        $this->options = $options;
-        $this->name = $viewName;
+      $this->options = $options;
+      $this->name    = $viewName;
 
-        $type = isset($this->options['type']) ? trim($this->options['type']) : 'html';
+      // *** is this used ? for what? search for this parameter in the constructor (also in nanoscript views?)
+      $type = isset($this->options['type']) ? trim($this->options['type']) : 'html';
 
-        // which scheme are we rendering for ?
-        if ($modelThing instanceof One_Scheme) {
-            $schemeName = $modelThing->getName();
-        } elseif ($modelThing instanceof One_Model) {
-            $schemeName = $modelThing->getSchemeName();
-        } elseif (is_array($modelThing) && count($modelThing) > 0) {
-            $schemeName = $modelThing[0]->getSchemeName();
-        } else {
-            $schemeName = $modelThing;
-        }
+      // which scheme are we rendering for ?
+      if ($modelThing instanceof One_Scheme) {
+        $schemeName = $modelThing->getName();
+      }
+      elseif ($modelThing instanceof One_Model) {
+        $schemeName = $modelThing->getSchemeName();
+      }
+      elseif (is_array($modelThing) && count($modelThing) > 0) {
+        $schemeName = $modelThing[0]->getSchemeName();
+      }
+      else {
+        $schemeName = $modelThing;
+      }
 
-        // setup templater
-        $this->templater = One_Repository::getTemplater();
-        $this->setDefaultViewSearchPath($schemeName, $language);
-        $this->templater->setFile($viewName . '.' . $type);
-        if ($this->templater->hasError()) {
-            throw new One_Exception("Could not load view '" . $viewName . "' for scheme '" . $schemeName . "' : " . $this->templater->getError());
-        }
+      // setup templater
+      $this->templater = One_Repository::getTemplater();
 
-        $this->setModel($modelThing);
+      // *** this sectin is hard to follow. Should the search path not belong to the templater ?
+      $this->setDefaultViewSearchPath($schemeName, $language);
+      $this->templater->setFile($viewName . '.' . $type);
+      if ($this->templater->hasError()) {
+        throw new One_Exception("Could not load view '" . $viewName . "' for scheme '" . $schemeName . "' : " . $this->templater->getError());
+      }
+
+      $this->setModel($modelThing);
     }
 
     /**
@@ -79,11 +89,11 @@ class One_View
      */
     public function setDefaultViewSearchPath($schemeName = '', $language = NULL)
     {
-        $pattern = "%ROOT%/views/"
-            . "{" . ($schemeName != '' ? "%APP%/$schemeName," : "") . "%APP%,default}" . DS
-            . "{%LANG%/,}";
+      $pattern = "%ROOT%/views/"
+        . "{" . ($schemeName != '' ? "%APP%/$schemeName," : "") . "%APP%,default}" . DS
+        . "{%LANG%/,}";
 
-        $this->templater->setSearchPath($pattern);
+      $this->templater->setSearchPath($pattern);
     }
 
     /**
@@ -93,8 +103,8 @@ class One_View
      */
     public function setModel(&$model)
     {
-        $this->model = $model;
-        $this->templater->addData('model', $model);
+      $this->model = $model;
+      $this->templater->addData('model', $model);
     }
 
     /**
@@ -105,7 +115,7 @@ class One_View
      */
     public function set($parameter, $data)
     {
-        $this->templater->addData($parameter, $data);
+      $this->templater->addData($parameter, $data);
     }
 
     /**
@@ -115,9 +125,11 @@ class One_View
      */
     public function setAll($data)
     {
-        if (count($data) > 0) foreach ($data as $k => $v) {
-            $this->set($k, $v);
+      if (count($data) > 0) {
+        foreach ($data as $k => $v) {
+          $this->set($k, $v);
         }
+      }
     }
 
     /**
@@ -129,21 +141,22 @@ class One_View
      */
     public function show($section = NULL)
     {
-        $result = $this->templater->parse($section);
+      $result = $this->templater->parse($section);
 
-        if ($this->templater->hasError())
-            throw new One_Exception($this->templater->getError());
+      if ($this->templater->hasError()) {
+        throw new One_Exception($this->templater->getError());
+      }
 
-        return $result;
+      return $result;
     }
 
     public function addSearchpath($path)
     {
-        return $this->templater->addSearchpath($path);
+      return $this->templater->addSearchpath($path);
     }
 
     public function getSearchpath()
     {
-        return $this->templater->getSearchpath();
+      return $this->templater->getSearchpath();
     }
-}
+  }
