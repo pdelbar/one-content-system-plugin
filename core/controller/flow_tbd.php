@@ -15,9 +15,9 @@ class One_Controller_Flow
 
 	protected function __construct(One_Scheme $scheme, $redirects = array())
 	{
-		if(!array_key_exists(One_Config::getInstance()->getApplication(), self::$_flowCache))
+		if(!array_key_exists(One_Config::get('app.name'), self::$_flowCache))
 		{
-			self::$_flowCache[One_Config::getInstance()->getApplication()] = array();
+			self::$_flowCache[One_Config::get('app.name')] = array();
 		}
 		$this->_redirects = array_merge(self::getFlow($scheme), $redirects);
 	}
@@ -30,13 +30,13 @@ class One_Controller_Flow
 	 * @return One_Controller_Flow
 	 */
 	public static function getInstance(One_Scheme $scheme, array $redirects = array()) {
-		if(!array_key_exists(One_Config::getInstance()->getApplication(), self::$_flowCache)
-			|| !array_key_exists($scheme->getName(), self::$_flowCache[One_Config::getInstance()->getApplication()]))
+		if(!array_key_exists(One_Config::get('app.name'), self::$_flowCache)
+			|| !array_key_exists($scheme->getName(), self::$_flowCache[One_Config::get('app.name')]))
 		{
-			self::$_flowCache[One_Config::getInstance()->getApplication()][$scheme->getName()] = new One_Controller_Flow($scheme, $redirects);
+			self::$_flowCache[One_Config::get('app.name')][$scheme->getName()] = new One_Controller_Flow($scheme, $redirects);
 		}
 
-		return self::$_flowCache[One_Config::getInstance()->getApplication()][$scheme->getName()];
+		return self::$_flowCache[One_Config::get('app.name')][$scheme->getName()];
 	}
 
 	public function setRedirects(array $redirects = array())

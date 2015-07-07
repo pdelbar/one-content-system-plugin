@@ -90,7 +90,7 @@ class One_Templater_Nano extends One_Templater_Abstract {
         $key = '_' . $key;
       } while (array_key_exists($key, $this->getData()));
 
-      One_Log::getInstance('message')->log(array('message' => 'The key "' . $oriKey . '" has been changed to "' . $key . '"'));
+//      One_Log::getInstance('message')->log(array('message' => 'The key "' . $oriKey . '" has been changed to "' . $key . '"'));
     }
 
     return $key;

@@ -27,10 +27,10 @@ class oneScriptPackageJqgrid extends One_Script_Package
 		One_Vendor::getInstance()->loadStyle('http://code.jquery.com/ui/1.8.16/themes/ui-lightness/jquery-ui.css', 'head', 1);
 		One_Vendor::getInstance()->loadScript('jquery/js/jquery.jqGrid.min.js', 'head', 2);
 		One_Vendor::getInstance()->loadStyle('jquery/css/ui.jqgrid.css', 'head', 2);
-		One_Vendor::getInstance()->loadScript('jquery/js/i18n/grid.locale-'.strtolower(substr(One_Config::getInstance()->getLanguage(), 0, 2)).'.js', 'head', 1);
+		One_Vendor::getInstance()->loadScript('jquery/js/i18n/grid.locale-'.strtolower(substr(One_Config::get('app.language'), 0, 2)).'.js', 'head', 1);
 
-		$ini = One_Config::getInstance()->getCustomPath().'/views/'.One_Config::getInstance()->getApplication().'/'.$schemeName.'/'.$iniFile.'.ini';
-		$iniLang = One_Config::getInstance()->getCustomPath().'/views/'.One_Config::getInstance()->getApplication().'/'.$schemeName.'/language/'.strtolower(One_Config::getInstance()->getLanguage()).'/'.$iniFile.'.ini';
+		$ini = One_Config::getInstance()->getCustomPath().'/views/'.One_Config::get('app.name').'/'.$schemeName.'/'.$iniFile.'.ini';
+		$iniLang = One_Config::getInstance()->getCustomPath().'/views/'.One_Config::get('app.name').'/'.$schemeName.'/language/'.strtolower(One_Config::get('app.language')).'/'.$iniFile.'.ini';
 		if(file_exists($iniLang)) {
 			$ini = $iniLang;
 		}

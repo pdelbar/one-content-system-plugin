@@ -96,7 +96,7 @@ One_Script_Config::addHandler( new One_Script_Tag_Handler_Ignore() );
 One_Script_Config::$ncEnabled = 0;
 
 // load custom config if there is any
-$additionalConfigPaths = One_Loader::locate('script/config_add.php');
+$additionalConfigPaths = One_Locator::locate('script/config_add.php');
 if (is_array($additionalConfigPaths)) foreach ($additionalConfigPaths as $additionalConfig )
 	include_once( $additionalConfig );
 

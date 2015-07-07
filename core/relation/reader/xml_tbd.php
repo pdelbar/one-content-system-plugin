@@ -33,7 +33,7 @@ class One_Relation_Reader_Xml
 		}
 		else // create relations using the relationfiles
 		{
-      $relationpath = One_Config::getInstance()->locate('meta'.DS.'relation'.DS.$relationName.'.xml');
+      $relationpath = One_Locator::locate('meta'.DS.'relation'.DS.$relationName.'.xml');
       if ($relationpath === null) {
 					throw new One_Exception('Could not load the relation "'.$relationName.'"');
       }

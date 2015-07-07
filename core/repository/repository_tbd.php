@@ -44,8 +44,8 @@ class One_Repository  {
    * @return array
    */
   public static function getSchemeNames() {
-    $pattern = One_Loader::ROOTPATTERN . 'meta/scheme/';
-    $places  = One_Loader::locateAllUsing('*.xml', $pattern);
+    $pattern = ONE_LOCATOR_ROOTPATTERN . 'meta/scheme/';
+    $places  = One_Locator::locateAllUsing('*.xml', $pattern);
     $schemes = array();
     foreach ($places as $place) {
       preg_match("|([a-zA-Z0-9_\-]*)\.xml$|", $place, $matches);
@@ -155,8 +155,8 @@ class One_Repository  {
    * @return array
    */
   public static function getFilterNames($schemeName = NULL) {
-    $pattern = One_Loader::ROOTPATTERN . 'filter/' . ($schemeName !== null ? '{scheme/,}' : '');
-    $places = One_Loader::locateAllUsing('*.xml', $pattern);
+    $pattern = ONE_LOCATOR_ROOTPATTERN . 'filter/' . ($schemeName !== null ? '{scheme/,}' : '');
+    $places = One_Locator::locateAllUsing('*.xml', $pattern);
     $filters = array();
     foreach ($places as $place) {
       preg_match("|([a-zA-Z0-9_\-]*)\.xml$|", $place, $matches);
@@ -407,7 +407,7 @@ class One_Repository  {
    */
   public static function getTemplater($templaterClass = NULL, $setSearchpaths = true) {
     if (is_null($templaterClass)) {
-      $templaterClass = One_Config::getInstance()->getTemplater();
+      $templaterClass = One_Config::get('view.templater');
     }
     return new $templaterClass('', $setSearchpaths);
   }

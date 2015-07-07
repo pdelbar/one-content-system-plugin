@@ -58,7 +58,7 @@ class One_Dispatcher_Standalone extends One_Dispatcher
 		}
 		catch(Exception $e)
 		{
-			if(One_Config::getInstance()->exitOnError() === false) {
+			if(One_Config::get('debug.exitOnError') === false) {
 				echo $e->getMessage();
 			}
 			else {

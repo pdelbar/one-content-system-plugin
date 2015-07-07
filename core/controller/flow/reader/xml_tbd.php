@@ -94,7 +94,7 @@ class One_Controller_Flow_Reader_XML implements One_Controller_Flow_Reader_Inter
     // search for appropriate flow definition xml file
 
     $pattern = "%ROOT%/meta/flows/";
-    $filepath = One_Loader::locateUsing($fileName.'.xml',$pattern);
+    $filepath = One_Locator::locateUsing($fileName.'.xml',$pattern);
     return $filepath;
 
 //

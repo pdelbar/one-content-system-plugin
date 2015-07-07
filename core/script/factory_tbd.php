@@ -78,13 +78,13 @@ class One_Script_Factory
             $sequence = self::$nsLoadPath;
 
             if ($sequence) foreach ($sequence as $pathTemplate)  {
-          $place = One_Loader::locateUsing($path,$pathTemplate);
+          $place = One_Locator::locateUsing($path,$pathTemplate);
           if ($hash = One_Script_Cache::inCache( $place )) return array( true, $hash, $place );
           return self::loadFileContents( $place, $mode );
         }
         */
 
-        $place = One_Loader::locateUsing($path, self::currentSearchPattern());
+        $place = One_Locator::locateUsing($path, self::currentSearchPattern());
         if ($place !== null) {
             if ($hash = One_Script_Cache::inCache($place)) return array(true, $hash, $place);
             return self::loadFileContents($place, $mode);

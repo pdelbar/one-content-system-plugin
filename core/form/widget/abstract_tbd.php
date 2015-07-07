@@ -527,10 +527,12 @@ abstract class One_Form_Widget_Abstract
 		array_pop($parts);
 		$wtype = implode(DS, $parts);
 
+    $formChrome = One_Config::get('form.chrome','');
+
     $pattern = "%ROOT%/views/"
             . "{%APP%,default}/"
             . "oneform/"
-            . (ONEFORMCHROME ? "{".ONEFORMCHROME . '/,}' : '')
+            . ($formChrome ? "{".$formChrome . '/,}' : '')
             . "widget/"
             . ( $wtype ? "{" . $wtype . "/,}" : '')
             . "{%LANG%/,}";

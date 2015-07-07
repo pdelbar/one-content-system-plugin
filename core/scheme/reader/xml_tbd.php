@@ -36,7 +36,7 @@ class One_Scheme_Reader_Xml implements One_Scheme_Reader_Interface
 			$subscheme = $schemeMatch[2];
 		}
 
-		$schemepath = One_Config::getInstance()->locate('meta'.DS.'scheme'.DS.$fileName.'.xml');
+		$schemepath = One_Locator::locate('meta'.DS.'scheme'.DS.$fileName.'.xml');
     if ($schemepath === null) {
 				throw new One_Exception('INVALID_SCHEME^^schemename='.$fileName);
     }

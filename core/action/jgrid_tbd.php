@@ -224,7 +224,7 @@ class One_Action_Jgrid extends One_Action
 		$session    = One_Repository::getSession();
 
 		$exists = true;
-		$filename = One_Loader::locateUsing('list.xml',One_Loader::ROOTPATTERN .'views/'.One_Config::getInstance()->getApplication().'/'.$this->scheme->getName(). '/');
+		$filename = One_Locator::locateUsing('list.xml',ONE_LOCATOR_ROOTPATTERN .'views/'.One_Config::get('app.name').'/'.$this->scheme->getName(). '/');
 		if ($filename === null)
 		{
 				$exists = false;

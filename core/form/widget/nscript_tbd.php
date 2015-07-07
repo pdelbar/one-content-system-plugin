@@ -57,15 +57,15 @@ Class One_Form_Widget_Nscript extends One_Form_Widget_Abstract
 
 		$useLang = $this->getCfg('language');
 		if('' == trim($useLang)) {
-			$useLang = strtolower(One_Config::getInstance()->getLanguage());
+			$useLang = strtolower(One_Config::get('app.language'));
 		}
 
         die ('deprecated stuff found in ' . __FILE__ .':'.__LINE);
     $cps = One_Config::getInstance()->getCustomPaths();
     foreach ($cps as $cp)
-		  One_Script_Factory::addSearchPath( $cp.'/views/'.One_Config::getInstance()->getApplication().'/'.$model->getScheme()->getName().'/language/'.$useLang.'/');
+		  One_Script_Factory::addSearchPath( $cp.'/views/'.One_Config::get('app.name').'/'.$model->getScheme()->getName().'/language/'.$useLang.'/');
     foreach ($cps as $cp)
-		  One_Script_Factory::addSearchPath($cp.'/views/'.One_Config::getInstance()->getApplication().'/'.$model->getScheme()->getName().'/');
+		  One_Script_Factory::addSearchPath($cp.'/views/'.One_Config::get('app.name').'/'.$model->getScheme()->getName().'/');
 
 		$ns = new One_Script();
 		$ns->load( $src );

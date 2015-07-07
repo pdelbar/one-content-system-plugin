@@ -202,7 +202,7 @@ class One_Script_Package_One extends One_Script_Package
 
 	public function getCurrentLanguage()
 	{
-		return One_Config::getInstance()->getLanguage();
+		return One_Config::get('app.language');
 	}
 
 	public function getOneInstance()

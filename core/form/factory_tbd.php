@@ -29,14 +29,14 @@ class One_Form_Factory {
   public static function createForm(One_Scheme $scheme, $formFile = NULL, $language = NULL, $formName = 'oneForm', $action = '', $method = 'post') {
 
     if (is_null($language)) {
-      $language = One_Config::getInstance()->getLanguage();
+      $language = One_Config::get('app.language');
     }
 
     // search for appropriate form.xml
     $pattern = "%ROOT%/views/"
       . "{" . ($scheme->getName() != '' ? "%APP%/{$scheme->getName()}," : "") . "%APP%,default}" . DS
       . "{%LANG%" . DS . ",}";
-    $filepath = One_Loader::locateUsing(formFile.'.xml',$pattern);
+    $filepath = One_Locator::locateUsing(formFile.'.xml',$pattern);
 
     try {
       if ($filepath !== null) {
@@ -96,13 +96,13 @@ class One_Form_Factory {
   private static function addObligatedWidgets(One_Form_Container_Form $form, One_Scheme $scheme) {
     // the form should always have a (hidden) widget with the value of the identityAttribute unless there is no identityAttribute
     if (!is_null($scheme->getIdentityAttribute()) && !$form->hasWidget($scheme->getIdentityAttribute()->getName())) {
-      $form->addWidget(new One_Form_Widget_Scalar_Hidden($scheme->getIdentityAttribute()->getName(), $scheme->getIdentityAttribute()->getName(), NULL, array('one' => 'one', 'language' => strtolower(One_Config::getInstance()->getLanguage()))));
+      $form->addWidget(new One_Form_Widget_Scalar_Hidden($scheme->getIdentityAttribute()->getName(), $scheme->getIdentityAttribute()->getName(), NULL, array('one' => 'one', 'language' => strtolower(One_Config::get('app.language')))));
     }
     if (!$form->hasWidget('task')) {
-      $form->addWidget(new One_Form_Widget_Scalar_Hidden('task', 'task', NULL, array('default' => 'edit', 'one' => 'one', 'language' => strtolower(One_Config::getInstance()->getLanguage()))));
+      $form->addWidget(new One_Form_Widget_Scalar_Hidden('task', 'task', NULL, array('default' => 'edit', 'one' => 'one', 'language' => strtolower(One_Config::get('app.language')))));
     }
     if (!$form->hasWidget('scheme')) {
-      $form->addWidget(new One_Form_Widget_Scalar_Hidden('scheme', 'scheme', NULL, array('default' => $scheme->getName(), 'one' => 'one', 'language' => strtolower(One_Config::getInstance()->getLanguage()))));
+      $form->addWidget(new One_Form_Widget_Scalar_Hidden('scheme', 'scheme', NULL, array('default' => $scheme->getName(), 'one' => 'one', 'language' => strtolower(One_Config::get('app.language')))));
     }
 
   }
@@ -114,7 +114,7 @@ class One_Form_Factory {
    */
   public static function getAvailable() {
     if (is_null(self::$availableCW)) {
-      $places = One_Loader::locateAllUsing('*.php', '%ROOT%/form/container/');
+      $places = One_Locator::locateAllUsing('*.php', '%ROOT%/form/container/');
       $ignore = array('abstract', 'index', 'factory');
       foreach ($places as $container) {
         if (preg_match('|([^/]*).php$|', $container, $match)) {
@@ -129,7 +129,7 @@ class One_Form_Factory {
       }
       sort($containers);
 
-      $places = One_Loader::locateAllUsing('*.php', '%ROOT%/form/widget/{joomla,multi,scalar,select,search}/');
+      $places = One_Locator::locateAllUsing('*.php', '%ROOT%/form/widget/{joomla,multi,scalar,select,search}/');
       foreach ($places as $widget) {
         if (preg_match('|([^/]*)/([^/]*).php$|', $widget, $match)) {
           if (!in_array($match[2], $ignore)) {

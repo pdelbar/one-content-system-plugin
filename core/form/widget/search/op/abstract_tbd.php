@@ -70,20 +70,20 @@ abstract class One_Form_Widget_Search_Op_Abstract
 
     die('this is really deprecated stuff : ' . __FILE __ );
 
-		$templater = One_Repository::getTemplater(NULL, false);
+		$templater = One_Config::get('view.templater');
 		$oldSearchpath = $templater->getSearchpath();
 		$templater->clearSearchpath();
 
-		$language = strtolower(One_Config::getInstance()->getLanguage());
+		$language = strtolower(One_Config::get('app.language'));
 
-		$templater->addSearchpath(One_Config::getInstance()->getCustomPath().'/views/'.One_Config::getInstance()->getApplication().'/oneform/widget/search/op/'.strtolower(One_Config::getInstance()->getLanguage()).'/');
-		$templater->addSearchpath(One_Config::getInstance()->getPath().'/views/'.One_Config::getInstance()->getApplication().'/oneform/widget/search/op/'.strtolower(One_Config::getInstance()->getLanguage()).'/');
+		$templater->addSearchpath(One_Config::getInstance()->getCustomPath().'/views/'.One_Config::get('app.name').'/oneform/widget/search/op/'.strtolower(One_Config::get('app.language')).'/');
+		$templater->addSearchpath(One_Config::getInstance()->getPath().'/views/'.One_Config::get('app.name').'/oneform/widget/search/op/'.strtolower(One_Config::get('app.language')).'/');
 
-		$templater->addSearchpath(One_Config::getInstance()->getCustomPath().'/views/'.One_Config::getInstance()->getApplication().'/oneform/widget/search/op/');
-		$templater->addSearchpath(One_Config::getInstance()->getPath().'/views/'.One_Config::getInstance()->getApplication().'/oneform/widget/');
+		$templater->addSearchpath(One_Config::getInstance()->getCustomPath().'/views/'.One_Config::get('app.name').'/oneform/widget/search/op/');
+		$templater->addSearchpath(One_Config::getInstance()->getPath().'/views/'.One_Config::get('app.name').'/oneform/widget/');
 
-		$templater->addSearchpath(One_Config::getInstance()->getCustomPath().'/views/default/oneform/widget/search/op/'.strtolower(One_Config::getInstance()->getLanguage()).'/');
-		$templater->addSearchpath(One_Config::getInstance()->getPath().'/views/default/oneform/widget/search/op/'.strtolower(One_Config::getInstance()->getLanguage()).'/');
+		$templater->addSearchpath(One_Config::getInstance()->getCustomPath().'/views/default/oneform/widget/search/op/'.strtolower(One_Config::get('app.language')).'/');
+		$templater->addSearchpath(One_Config::getInstance()->getPath().'/views/default/oneform/widget/search/op/'.strtolower(One_Config::get('app.language')).'/');
 
 		$templater->addSearchpath(One_Config::getInstance()->getCustomPath().'/views/default/oneform/widget/search/op/');
 		$templater->addSearchpath(One_Config::getInstance()->getPath().'/views/default/oneform/widget/search/op/');
