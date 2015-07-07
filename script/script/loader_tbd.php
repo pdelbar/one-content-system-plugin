@@ -42,6 +42,10 @@ class One_Script_Loader {
   public static function isPackage($pkName) {
     $path = One_Locator::locate('script' . DS . 'package' . DS . $pkName . '.php');
 //    echo '<br><b>', $pkName, '</b> is ', ($path === null ? 'NOT' : ' '), ' a package';
+
+    //*** temporary
+    if ($path) return true;
+    $path = One_Locator::locate('script' . DS . 'package' . DS . $pkName . '_tbd.php');
     return ($path !== null);
   }
 

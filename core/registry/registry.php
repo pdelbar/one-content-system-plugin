@@ -8,7 +8,7 @@
    *
    * ONEDISCLAIMER
    */
-  class One_Tools_Hash
+  class One_Registry
   {
 
     protected $_data;
@@ -17,7 +17,7 @@
     {
       $this->_data = array();
       if ($source) {
-        $this->initializeFrom($source);
+        $this->__initializeFrom($source);
       }
     }
 
@@ -26,27 +26,27 @@
      *
      * @param $source  string in format protocol:path
      */
-    public function initializeFrom($source = '')
+    public function __initializeFrom($source = '')
     {
       list($protocol, $path) = explode(':', $source, 2);
       switch ($protocol) {
         case 'ini' :
-          $this->loadFromIni($path);
+          $this->__loadFromIni($path);
           break;
         case 'request' :
-          $this->loadFromArray($_REQUEST);
+          $this->__loadFromArray($_REQUEST);
           break;
         case 'post' :
-          $this->loadFromArray($_POST);
+          $this->__loadFromArray($_POST);
           break;
         case 'get' :
-          $this->loadFromArray($_GET);
+          $this->__loadFromArray($_GET);
           break;
         case 'session' :
-          $this->loadFromArray($_SESSION);
+          $this->__loadFromArray($_SESSION);
           break;
         default:
-          throw new One_Exception('One_Tools_Hash error: unknown protocol ' . $protocol);
+          throw new One_Exception('One_Registry error: unknown protocol ' . $protocol);
           break;
       }
     }
@@ -56,11 +56,11 @@
      *
      * @param $path
      */
-    private function loadFromIni($path)
+    private function __loadFromIni($path)
     {
       $items = parse_ini_file($path, true);
       if ($items === false) {
-        throw new One_Exception('One_Tools_Hash error: error loading INI file ' . $path);
+        throw new One_Exception('One_Registry error: error loading INI file ' . $path);
       }
       $this->_data = $items;
     }
@@ -70,7 +70,7 @@
      *
      * @param $data
      */
-    private function loadFromArray($data)
+    private function __loadFromArray($data)
     {
       $this->data = $data;
     }
@@ -88,7 +88,7 @@
       if (count($parts) == 0) {
         return $default;
       }
-      return $this->getRecursive($this->_data, $parts, $default);
+      return $this->__getRecursive($this->_data, $parts, $default);
     }
 
     /**
@@ -99,7 +99,7 @@
      * @param null $default
      * @return null
      */
-    private function getRecursive($data, $parts, $default = null)
+    private function __getRecursive($data, $parts, $default = null)
     {
       $part = array_shift($parts);
       if (!array_key_exists($part, $data)) {
@@ -109,7 +109,7 @@
       if (count($parts) == 0) {
         return $data;
       }
-      return $this->getRecursive($data, $parts, $default);
+      return $this->__getRecursive($data, $parts, $default);
     }
 
     /**
@@ -125,7 +125,7 @@
       if (count($parts) == 0) {
         return null;
       }
-      return $this->setRecursive($this->_data, $parts, $value);
+      return $this->__setRecursive($this->_data, $parts, $value);
     }
 
     /**
@@ -136,7 +136,7 @@
      * @param null $default
      * @return null
      */
-    private function setRecursive(&$data, $parts, $value)
+    private function __setRecursive(&$data, $parts, $value)
     {
       $part = array_shift($parts);
       if (empty($parts)) {
@@ -151,6 +151,6 @@
         $data[$part] = array();
       }
 
-      return $this->setRecursive($data[$part], $parts, $value);
+      return $this->__setRecursive($data[$part], $parts, $value);
     }
   }
