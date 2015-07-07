@@ -13,6 +13,11 @@
     public $name;
 
     /**
+     * @var the scheme this view is for
+     */
+    protected $schemeName;
+
+    /**
      * @var mixed Can be either One_Model or a list of One_Models
      */
     public $model;
@@ -49,26 +54,26 @@
 
       // which scheme are we rendering for ?
       if ($modelThing instanceof One_Scheme) {
-        $schemeName = $modelThing->getName();
+        $this->schemeName = $modelThing->getName();
       }
       elseif ($modelThing instanceof One_Model) {
-        $schemeName = $modelThing->getSchemeName();
+        $this->schemeName = $modelThing->getSchemeName();
       }
       elseif (is_array($modelThing) && count($modelThing) > 0) {
-        $schemeName = $modelThing[0]->getSchemeName();
+        $this->schemeName = $modelThing[0]->getSchemeName();
       }
       else {
-        $schemeName = $modelThing;
+        $this->schemeName = $modelThing;
       }
 
       // setup templater
       $this->templater = One_Repository::getTemplater();
 
-      // *** this sectin is hard to follow. Should the search path not belong to the templater ?
-      $this->setDefaultViewSearchPath($schemeName, $language);
+      $this->setDefaultViewSearchPath();
+
       $this->templater->setFile($viewName . '.' . $type);
       if ($this->templater->hasError()) {
-        throw new One_Exception("Could not load view '" . $viewName . "' for scheme '" . $schemeName . "' : " . $this->templater->getError());
+        throw new One_Exception("Could not load view '" . $viewName . "' for scheme '" . $this->schemeName . "' : " . $this->templater->getError());
       }
 
       $this->setModel($modelThing);
@@ -87,10 +92,10 @@
      *
      * @param string $schemeName
      */
-    public function setDefaultViewSearchPath($schemeName = '', $language = NULL)
+    public function setDefaultViewSearchPath()
     {
       $pattern = "%ROOT%/views/"
-        . "{" . ($schemeName != '' ? "%APP%/$schemeName," : "") . "%APP%,default}" . DS
+        . "{" . ($this->schemeName != '' ? "%APP%/" . $this->schemeName . "," : "") . "%APP%,default}" . DS
         . "{%LANG%/,}";
 
       $this->templater->setSearchPath($pattern);
@@ -141,22 +146,9 @@
      */
     public function show($section = NULL)
     {
-      $result = $this->templater->parse($section);
-
-      if ($this->templater->hasError()) {
-        throw new One_Exception($this->templater->getError());
-      }
-
+      $result = $this->templater->render($section);
       return $result;
     }
 
-    public function addSearchpath($path)
-    {
-      return $this->templater->addSearchpath($path);
-    }
 
-    public function getSearchpath()
-    {
-      return $this->templater->getSearchpath();
-    }
   }
