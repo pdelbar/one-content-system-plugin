@@ -10,8 +10,8 @@
 
   require_once "settings.php";
 
-  require_once ONE_LIB_PATH . 'core/config_tbd.php';
   require_once ONE_LIB_PATH . 'core/loader.php';
+  require_once ONE_LIB_PATH . 'core/config.php';
 
   /**
    * One Plugin
@@ -23,7 +23,13 @@
       One_Loader::register();
 
       $this->initializeOne();
+
+      One_Config::loadExtensions();
+      One_Config::callExtensions('afterInitialise');
+
+      require_once ONE_LIB_PATH . '/core/one_tbd.php';
     }
+
 
     protected function initializeOne()
     {
@@ -58,37 +64,16 @@
 
       // debug behaviour
       One_Config::set('debug.exitOnError', $this->params->get('exitOnError'));
+      One_Config::set('debug.query', $this->params->get('enableDebug', 0));
 
-
-      // ---------------------------------------------------------------------------------------------------
-      // --- TODO: these should go inside the separate plugin folders, we need a mapper for this usind the locator
-      // ---------------------------------------------------------------------------------------------------
 
       // special form subfolder to use
-      // *** TODO: should be inside each extension folder, no ?
       One_Config::set('form.chrome', $this->params->get('formChrome', ''));
 
-      // set default toolset used in backend
-      // *** TODO: should be in the support pack for the admin component, to be added to the locator pattern
-      // by the admin component (or enabled in the plugin to support the one admin component
-      One_Button::setToolset('joomla');
-
-      // set DOM type. Not sure yet whether this is really a cool thing to do. This could override the standard
-      // dom setting, and should be oved to the plugin initialiser
-      One_Config::set('dom.type','joomla');
-
 
       // ---------------------------------------------------------------------------------------------------
-      // SETTINGS TO CHANGE / REFACTOR
-      // BELOW IS GARBAGE TO CLEAN UP
+      // @deprecated shit
       // ---------------------------------------------------------------------------------------------------
-
-
-      if (1 == intval($this->params->get('enableDebug', 0))) {
-        One_Query::setDebug(true);
-      }
-
-      require_once(dirname(__FILE__) . '/core/one_tbd.php');
 
       // *** quarantined
 //      One_Vendor::getInstance()

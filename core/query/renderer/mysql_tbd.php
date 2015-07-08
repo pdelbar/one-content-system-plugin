@@ -27,7 +27,7 @@ class One_Query_Renderer_Mysql extends One_Query_Renderer_Abstract
 		// if the person wants to perform a raw query, return the raw query
 		if( !is_null( $query->getRaw() ) )
 		{
-			if(One_Query::getDebug())
+			if(One_Config::get('debug.query'))
 			{
 				echo '<pre>';
 				var_dump( $query->getRaw() );
@@ -125,7 +125,7 @@ class One_Query_Renderer_Mysql extends One_Query_Renderer_Abstract
 		if( !is_null( $limit ) )
 			$sql .= ' LIMIT ' . $limit;
 
-		if(One_Query::getDebug())
+		if(One_Config::get('debug.query'))
 		{
 			echo '<pre>';
 			var_dump( $sql );

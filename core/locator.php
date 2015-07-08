@@ -30,10 +30,10 @@
      * @param null $language
      * @return null
      */
-    public static function locateUsing($filename, $patternStub, $app = null, $language = null)
+    public static function locateUsing($filename, $patternStub)
     {
       $pattern = self::localize($patternStub);
-      $places = self::locateAllUsing($filename, $pattern, $app, $language);
+      $places = self::locateAllUsing($filename, $pattern);
       if (count($places) > 0) {
         return $places[0];
       }
@@ -56,7 +56,8 @@
     public static function localize($pattern)
     {
       $localized = $pattern;
-      foreach (One_Config::get('locator.tokens') as $token => $value) {
+      $tokens = One_Config::get('locator.tokens');
+      if (count($tokens)) foreach ($tokens as $token => $value) {
         $localized = str_replace($token, $value, $localized);
       }
       return $localized;
@@ -69,16 +70,10 @@
      * @param $file
      */
 
-    public static function locateAllUsing($file, $patternStub, $app = null, $language = null)
+    public static function locateAllUsing($file, $patternStub)
     {
       $pattern = self::localize($patternStub);
-//        $pattern2 = JPATH_SITE . DS . $pattern . $file;
-//        echo '<hr>', $pattern2;
-      $pattern2 = $pattern . $file;
-//        echo '<hr>', $pattern2;
-//        echo '<br/>Looking for <span style="color: green;"><b>' . $pattern2 . '</b></span>';
-//    var_dump( glob($pattern, GLOB_BRACE));
-      return glob($pattern2, GLOB_BRACE);
+      return glob($pattern . $file, GLOB_BRACE|GLOB_NOSORT);
     }
 
 

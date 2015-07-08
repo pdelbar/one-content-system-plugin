@@ -34,6 +34,36 @@
       return self::$registry->set($key, $value);
     }
 
+
+    /**
+     * Load extenders. This is neat stuff. Basically, each extension folder (under ONE_LIB_PATH or ONE_CUSTOM_PATH)
+     * can contain an extension.php file. These files can define a local One_Extension subclass and inject it into the
+     * One_Config::get('extensions') list. Extensions are loaded on initialize and other events. Well, they could be
+     * and will be in the future. Now it's only for initialization.
+     */
+    public static function loadExtensions()
+    {
+      // call plugin extenders. These define a class for a plugin that is added to the extenders list
+      $extenders = One_Locator::locateAllUsing('extension.php', ONE_LOCATOR_ROOTPATTERN);
+      if (count($extenders)) {
+        foreach ($extenders as $extenderPath) {
+          require_once $extenderPath;
+        }
+      }
+    }
+
+    public static function callExtensions($event, $arguments = array())
+    {
+      $methodName = 'on' . ucfirst($event);
+      $extenders  = self::get('extensions');
+      if (count($extenders)) {
+        foreach ($extenders as $extensionName => $extensionClass) {
+          $extensionClass::$methodName($arguments);
+        }
+      }
+    }
+
+
     // ---------------------------------------------------------------------------------------------------
     // deprecated shit, kept here to trigger warnings when used
     // ---------------------------------------------------------------------------------------------------
