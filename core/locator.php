@@ -74,7 +74,7 @@
       $pattern = self::localize($patternStub);
 //        $pattern2 = JPATH_SITE . DS . $pattern . $file;
 //        echo '<hr>', $pattern2;
-      $pattern2 = ONE_APPLICATION_PATH . DS . $pattern . $file;
+      $pattern2 = $pattern . $file;
 //        echo '<hr>', $pattern2;
 //        echo '<br/>Looking for <span style="color: green;"><b>' . $pattern2 . '</b></span>';
 //    var_dump( glob($pattern, GLOB_BRACE));

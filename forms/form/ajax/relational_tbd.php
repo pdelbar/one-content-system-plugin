@@ -39,7 +39,7 @@ require_once(JPATH_BASE.'/plugins/system/one/lib/one.php');;
 One_Config::getInstance()->setCustomPath(JPATH_BASE.'/media/one');
 
 // require_once( ONE_SCRIPT_PATH . 'tools' . DS . 'autoload.php' );
-require_once( One_Config::getInstance()->getPath() . '/tools.php' );
+require_once( ONE_LIB_PATH . '/tools.php' );
 
 
 $scheme = $_POST[ 'searchscheme' ];

@@ -77,16 +77,16 @@ abstract class One_Form_Widget_Search_Op_Abstract
 		$language = strtolower(One_Config::get('app.language'));
 
 		$templater->addSearchpath(One_Config::getInstance()->getCustomPath().'/views/'.One_Config::get('app.name').'/oneform/widget/search/op/'.strtolower(One_Config::get('app.language')).'/');
-		$templater->addSearchpath(One_Config::getInstance()->getPath().'/views/'.One_Config::get('app.name').'/oneform/widget/search/op/'.strtolower(One_Config::get('app.language')).'/');
+		$templater->addSearchpath(ONE_LIB_PATH.'/views/'.One_Config::get('app.name').'/oneform/widget/search/op/'.strtolower(One_Config::get('app.language')).'/');
 
 		$templater->addSearchpath(One_Config::getInstance()->getCustomPath().'/views/'.One_Config::get('app.name').'/oneform/widget/search/op/');
-		$templater->addSearchpath(One_Config::getInstance()->getPath().'/views/'.One_Config::get('app.name').'/oneform/widget/');
+		$templater->addSearchpath(ONE_LIB_PATH.'/views/'.One_Config::get('app.name').'/oneform/widget/');
 
 		$templater->addSearchpath(One_Config::getInstance()->getCustomPath().'/views/default/oneform/widget/search/op/'.strtolower(One_Config::get('app.language')).'/');
-		$templater->addSearchpath(One_Config::getInstance()->getPath().'/views/default/oneform/widget/search/op/'.strtolower(One_Config::get('app.language')).'/');
+		$templater->addSearchpath(ONE_LIB_PATH.'/views/default/oneform/widget/search/op/'.strtolower(One_Config::get('app.language')).'/');
 
 		$templater->addSearchpath(One_Config::getInstance()->getCustomPath().'/views/default/oneform/widget/search/op/');
-		$templater->addSearchpath(One_Config::getInstance()->getPath().'/views/default/oneform/widget/search/op/');
+		$templater->addSearchpath(ONE_LIB_PATH.'/views/default/oneform/widget/search/op/');
 
 		$templater->setFile($this->type.'.html');
 		$templater->setData($data);

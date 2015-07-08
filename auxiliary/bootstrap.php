@@ -22,7 +22,7 @@ class One_Bootstrap
 //		define( 'ONE_SCRIPT_CUSTOM_PATH', $customPath . DS . 'nano' );
 //
 //		require_once( $tmp . 'tools' . DS . 'autoload.php' );
-		require_once( One_Config::getInstance()->getPath() . '/tools.php' );
+		require_once( ONE_LIB_PATH . '/tools.php' );
 
 
 	}

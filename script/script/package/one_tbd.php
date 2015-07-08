@@ -136,7 +136,7 @@ class One_Script_Package_One extends One_Script_Package
 
 	public function getOnePath()
 	{
-		return One_Config::getInstance()->getPath();
+		return ONE_LIB_PATH;
 	}
 
 	public function getOneSitePath()

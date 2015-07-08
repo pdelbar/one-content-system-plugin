@@ -13,25 +13,25 @@
     /**
      * @var One_Registry instance keeping the config information
      */
-    private static $_hash;
+    private static $registry;
 
     /**
      * Get
      */
     public static function get($key)
     {
-      if (empty(self::$_hash)) {
-        self::$_hash = new One_Registry();
+      if (empty(self::$registry)) {
+        self::$registry = new One_Registry();
       }
-      return self::$_hash->get($key);
+      return self::$registry->get($key);
     }
 
     public static function set($key,$value)
     {
-      if (empty(self::$_hash)) {
-        self::$_hash = new One_Registry();
+      if (empty(self::$registry)) {
+        self::$registry = new One_Registry();
       }
-      return self::$_hash->set($key,$value);
+      return self::$registry->set($key,$value);
     }
 
     //----------------------
@@ -42,29 +42,9 @@
     static $_instance;
 
     /**
-     * @var string
-     */
-    protected $_custompath;
-
-    /**
-     * @var string
-     */
-    protected $_siterootpath;
-
-    /**
-     * @var string
-     */
-    protected $_url;
-
-    /**
-     * @var string
-     */
-    protected $_siterooturl;
-
-    /**
      * @var string String you would put behind the root-url to address One (E.G.: for Joomla!: /index.php?option=com_one&tmpl=blank)
      */
-    protected $_addressOne;
+//    protected $_addressOne;
 
     /**
      * Default DOM-type to be used
@@ -99,33 +79,15 @@
 
 
     /**
-     * Get the path of the One library
-     * @return string
-     */
-    public function getPath()
-    {
-      return dirname(__FILE__);
-    }
-
-    /**
      * Get the siteroot-url
      * @return string
      */
     public function getSiterootUrl()
     {
-      return $this->_siterooturl;
-    }
-
-    /**
-     * Set the siteroot-url
-     * @param string $url
-     * @return One_Config
-     */
-    public function setSiterootUrl($url)
-    {
-      $this->_siterooturl = $url;
-      echo "(setting siterooturl to $url)";
-      return $this;
+      throw new One_Exception_Deprecated('Someone is calling One_Config->getSiterootUrl(), which probably means that the caller
+      is trying to load a file from inside the one library using a web URL -- not so happy about that. Please
+      consider a different approach.');
+//      return $this->_siterooturl;
     }
 
     /**
@@ -134,44 +96,22 @@
      */
     public function getUrl()
     {
-      return $this->_url;
-    }
-
-    /**
-     * Set the url
-     * @param string $url
-     * @return One_Config
-     */
-    public function setUrl($url)
-    {
-      $this->_url = $url;
-      return $this;
+      throw new One_Exception_Deprecated('Someone is calling One_Config->getUrl(), which probably means that the caller
+      is trying to load a file from inside the one library using a web URL -- not so happy about that. Please
+      consider a different approach.');
+//      return $this->_url;
     }
 
 
 
 
 
-    public function getDomType()
-    {
-      return $this->domType;
-    }
-
-    public function setDomType($type)
-    {
-      $this->domType = ucfirst(strtolower($type));
-      return $this;
-    }
 
     public function getAddressOne()
     {
-      return $this->_addressOne;
+      throw new One_Exception_Deprecated('Please do not use getAddressOne ...');
+//      return $this->_addressOne;
     }
 
-    public function setAddressOne($uri)
-    {
-      $this->_addressOne = $uri;
-      return $this;
-    }
 
   }

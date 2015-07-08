@@ -34,7 +34,7 @@ class One_Bootstrap
 //        ->setDomType('joomla')
 //        ->setExitOnError($this->params->get('exitOnError'))
         ;
-        require_once(One_Config::getInstance()->getPath() . '/tools.php');
+        require_once(ONE_LIB_PATH . '/tools.php');
 
         One_Query::setDebug(true);
 

@@ -132,6 +132,6 @@ class One_Action_Calendar extends One_Action
 	protected function getDefaultAction()
 	{
 		// @deprecated put this in a configuration somewhere instead of using constants
-		return ONECALENDARVIEW;
+		return 'month';
 	}
 }

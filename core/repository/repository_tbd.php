@@ -259,8 +259,8 @@ class One_Repository  {
     if (!is_null($type) && class_exists('One_Dom_' . ucfirst(strtolower($type)))) {
       $dom = 'One_Dom_' . ucfirst('One_Dom_' . ucfirst(strtolower($type)));
       return new $dom();
-    } else if (One_Config::getInstance()->getDomType()) {
-      $dom = 'One_Dom_' . One_Config::getInstance()->getDomType();
+    } else if (One_Config::get('dom.type')) {
+      $dom = 'One_Dom_' . One_Config::get('dom.type');
       return new $dom();
     } else
       return new One_Dom();

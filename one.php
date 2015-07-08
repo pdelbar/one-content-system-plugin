@@ -10,8 +10,8 @@
 
   require_once "settings.php";
 
-  require_once 'core/config_tbd.php';
-  require_once 'core/loader.php';
+  require_once ONE_LIB_PATH . 'core/config_tbd.php';
+  require_once ONE_LIB_PATH . 'core/loader.php';
 
   /**
    * One Plugin
@@ -20,13 +20,13 @@
   {
     public function onAfterInitialise()
     {
+      One_Loader::register();
+
       $this->initializeOne();
     }
 
     protected function initializeOne()
     {
-      One_Loader::register();
-
       // set the application, derived from Joomla status
       $application = 'site';
       $app         = JFactory::getApplication();
@@ -35,9 +35,11 @@
       }
       One_Config::set('app.name', $application);
 
+
       // pickup language setting
       $language = JFactory::getLanguage()->getTag();
       One_Config::set('app.language', $language);
+
 
       // setup locator tokens
       $locatorTokens = array(
@@ -47,52 +49,53 @@
       );
       One_Config::set('locator.tokens', $locatorTokens);
 
+
+      // set the templater. You have the choice between One_View_Templater_Script and One_View_Templater_Php,
+      // the latter being a standard PHP template hndler
+      // *** TODO: needs to load this from plugin parameters
+      One_Config::set('view.templater', 'One_View_Templater_Script');
+
+
       // debug behaviour
       One_Config::set('debug.exitOnError', $this->params->get('exitOnError'));
 
+
+      // ---------------------------------------------------------------------------------------------------
+      // --- TODO: these should go inside the separate plugin folders, we need a mapper for this usind the locator
+      // ---------------------------------------------------------------------------------------------------
+
       // special form subfolder to use
+      // *** TODO: should be inside each extension folder, no ?
       One_Config::set('form.chrome', $this->params->get('formChrome', ''));
 
-      // SETTINGS TO CHANGE / REFACTOR
-      One_Config::set('view.templater', 'One_View_Templater_Script');
-//      One_Config::set('view.templater', 'One_View_Templater_Php');
-
-      // BELOW IS GARBAGE TO CLEAN UP
-
-      One_Config::getInstance($application)
-        ->setUrl(JURI::root() . '/plugins/system/one')
-        ->setSiterootUrl(JURI::root())
-      ;
-
-
-      require_once(dirname(__FILE__) . '/core/one_tbd.php');
-
-
-      One_Config::getInstance($application)
-        ->setAddressOne('/index.php?option=com_one')
-        ->setDomType('joomla');
-
-
-
-
-      require_once(One_Config::getInstance()->getPath() . '/tools_tbd.php');
-
       // set default toolset used in backend
+      // *** TODO: should be in the support pack for the admin component, to be added to the locator pattern
+      // by the admin component (or enabled in the plugin to support the one admin component
       One_Button::setToolset('joomla');
+
+      // set DOM type. Not sure yet whether this is really a cool thing to do. This could override the standard
+      // dom setting, and should be oved to the plugin initialiser
+      One_Config::set('dom.type','joomla');
+
+
+      // ---------------------------------------------------------------------------------------------------
+      // SETTINGS TO CHANGE / REFACTOR
+      // BELOW IS GARBAGE TO CLEAN UP
+      // ---------------------------------------------------------------------------------------------------
 
 
       if (1 == intval($this->params->get('enableDebug', 0))) {
         One_Query::setDebug(true);
       }
 
-      One_Vendor::getInstance()
-        ->setFilePath(JPATH_SITE . '/plugins/system/one/vendor')
-        ->setSitePath(JURI::root() . '/plugins/system/one/vendor');
+      require_once(dirname(__FILE__) . '/core/one_tbd.php');
 
-      // @deprecated put this in a configuration somewhere instead of using constants
-      define('ONECALENDARVIEW', $this->params->get('calendarView', 'month'));
+      // *** quarantined
+//      One_Vendor::getInstance()
+//        ->setFilePath(JPATH_SITE . '/plugins/system/one/vendor')
+//        ->setSitePath(JURI::root() . '/plugins/system/one/vendor');
+
     }
-
 
 
     public function onAfterRender()

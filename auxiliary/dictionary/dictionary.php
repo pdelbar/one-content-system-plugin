@@ -16,7 +16,7 @@ class One_Dictionary {
   public static function getSchemeNames() {
     $folders = array(
       One_Config::getInstance()->getCustomPath() . DS . 'meta' . DS . 'scheme',
-      One_Config::getInstance()->getPath() . DS . 'meta' . DS . 'scheme'
+      ONE_LIB_PATH . DS . 'meta' . DS . 'scheme'
     );
 
     $schemes = array();
@@ -36,13 +36,13 @@ class One_Dictionary {
    */
   public static function getFilterNames($schemeName = null) {
     $folders = array(
-      One_Config::getInstance()->getPath() . DS . 'filter',
-      One_Config::getInstance()->getPath() . 'lib' . DS . 'filter'
+      ONE_LIB_PATH . DS . 'filter',
+      ONE_LIB_PATH . 'lib' . DS . 'filter'
     );
 
     if ( !is_null($schemeName) && trim($schemeName) != '' ) {
       $scheme           = One_Repository::getScheme($schemeName); // easy way of checking whether the scheme exists or not, will throw exception if it doesn't exist
-      $schemeFilterPath = One_Config::getInstance()->getPath() . DS . 'filter' . DS . 'scheme' . DS . $schemeName;
+      $schemeFilterPath = ONE_LIB_PATH . DS . 'filter' . DS . 'scheme' . DS . $schemeName;
 
       if ( is_dir($schemeFilterPath) )
         array_unshift($folders, $schemeFilterPath);

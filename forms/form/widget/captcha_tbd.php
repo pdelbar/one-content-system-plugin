@@ -81,13 +81,13 @@ class One_Form_Widget_Captcha extends One_Form_Widget_Abstract
 
 	private function generateCaptcha()
 	{
-		require_once(One_Config::getInstance()->getPath() . DS . 'lib' . DS . 'libraries' . DS . 'captcha.php');
+		require_once(ONE_LIB_PATH . DS . 'lib' . DS . 'libraries' . DS . 'captcha.php');
 
 		// Generate captcha
 		$captcha = Text_CAPTCHA::factory('Image');
 		$imageOptions = array(
 	            'font_size'        => (!is_null($this->getCfg('font_size'))) ? $this->getCfg('font_size') : 20,
-	            'font_path'        => (!is_null($this->getCfg('font_path'))) ? $this->getCfg('font_path') : One_Config::getInstance()->getPath() . DS . 'lib' . DS . 'libraries' . DS . 'Image',
+	            'font_path'        => (!is_null($this->getCfg('font_path'))) ? $this->getCfg('font_path') : ONE_LIB_PATH . DS . 'lib' . DS . 'libraries' . DS . 'Image',
 	            'font_file'        => (!is_null($this->getCfg('font_file'))) ? $this->getCfg('font_file') : 'arial.ttf',
 	            'text_color'       => (!is_null($this->getCfg('text_color'))) ? $this->getCfg('text_color') : '#66720F',
 	            'lines_color'      => (!is_null($this->getCfg('lines_color'))) ? $this->getCfg('lines_color') : '#66720F',

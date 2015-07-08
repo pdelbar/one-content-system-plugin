@@ -38,7 +38,7 @@ class One_Debug
 			header('x-insight: inspect');
 			$_SERVER['x-insight'] = 'inspect';
 
-			set_include_path(One_Config::getInstance()->getPath().'/../vendor/firephp/'
+			set_include_path(ONE_LIB_PATH.'/../vendor/firephp/'
                  . PATH_SEPARATOR
                  . get_include_path());
 
