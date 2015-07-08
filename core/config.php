@@ -26,60 +26,38 @@
       return self::$registry->get($key);
     }
 
-    public static function set($key,$value)
+    public static function set($key, $value)
     {
       if (empty(self::$registry)) {
         self::$registry = new One_Registry();
       }
-      return self::$registry->set($key,$value);
+      return self::$registry->set($key, $value);
     }
 
-    //----------------------
-
-    /**
-     * @var One_Config
-     */
-    static $_instance;
-
-    /**
-     * @var string String you would put behind the root-url to address One (E.G.: for Joomla!: /index.php?option=com_one&tmpl=blank)
-     */
-//    protected $_addressOne;
-
-    /**
-     * Default DOM-type to be used
-     * @var unknown_type
-     */
-    protected $domType;
-
-    /**
-     * Protected constructor which mainly defines the current application
-     * @param string $application
-     */
-    protected function __construct($application = 'site')
-    {
-    }
-
-
+    // ---------------------------------------------------------------------------------------------------
+    // deprecated shit, kept here to trigger warnings when used
+    // ---------------------------------------------------------------------------------------------------
 
     /**
      * Get a One instance
+     *
      * @return One_Config
      */
     public static function &getInstance($application = 'site')
     {
-      if (empty(self::$_instance)) {
-        self::$_instance = new One_Config($application);
-        echo "(creating new instance of One_Config)";
-      }
-
-      return self::$_instance;
+      throw new One_Exception_Deprecated('Someone is calling One_Config->getInstance(). Please
+      consider a different approach.');
+//      if (empty(self::$_instance)) {
+//        self::$_instance = new One_Config($application);
+//      }
+//
+//      return self::$_instance;
     }
-
 
 
     /**
      * Get the siteroot-url
+     *
      * @return string
      */
     public function getSiterootUrl()
@@ -92,6 +70,7 @@
 
     /**
      * Get the url
+     *
      * @return string
      */
     public function getUrl()
@@ -101,11 +80,6 @@
       consider a different approach.');
 //      return $this->_url;
     }
-
-
-
-
-
 
     public function getAddressOne()
     {
