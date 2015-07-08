@@ -170,7 +170,7 @@ class One_Form_Container_Form extends One_Form_Container_Abstract {
         if ($widget instanceof One_Form_Widget_Abstract) {
           $attr = $scheme->getAttribute($widget->getName());
           if ($attr instanceof One_Scheme_Attribute) {
-            $type = strtolower(str_replace('One_Type', '', get_class($attr->getType())));
+            $type = strtolower(str_replace('One_Scheme_Attribute_Type', '', get_class($attr->getType())));
             $widget->setCfg('type', $type);
           }
 

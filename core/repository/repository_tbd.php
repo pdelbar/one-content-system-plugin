@@ -222,11 +222,11 @@ class One_Repository  {
    * Get the specified type
    *
    * @param string $typeName
-   * @return One_Type
+   * @return One_Scheme_Attribute_Type
    */
   public static function getType($typeName) {
     if (!array_key_exists($typeName, self::$typeCache)) {
-      $className = "One_Type_" . ucfirst($typeName);
+      $className = "One_Scheme_Attribute_Type_" . ucfirst($typeName);
       self::$typeCache[$typeName] = new $className();
     }
 

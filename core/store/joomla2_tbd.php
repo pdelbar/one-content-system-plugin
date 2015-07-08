@@ -598,7 +598,7 @@ class One_Store_Joomla2 extends One_Store
 		$value = $model->$id;
 		$value = $idAttr->toString( $value );
 
-		if($idAttr->getType() instanceof One_Type_String) {
+		if($idAttr->getType() instanceof One_SchemeAttribute_Type_String) {
 			$value = preg_replace('/^\"(.*)\"$/i', '$1', $value);
 		}
 

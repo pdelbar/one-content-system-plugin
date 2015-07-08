@@ -129,25 +129,23 @@
     /**
      * Retrieve attribute based on name OR alias
      *
-     * @param string $nameOrAlias
+     * @param string $name
      * @return One_Scheme_Attribute
      */
-    public function getAttribute($nameOrAlias)
+    public function getAttribute($name)
     {
-      $at = $this->get('attributes.'.$nameOrAlias);
-      if ($at) return $at;
-      return $this->get('aliasattributes.'.$nameOrAlias);
+      return $this->get('attributes.'.$name);
     }
 
     /**
      * Retrieves whether the scheme has a certain attribute
      *
-     * @param string $nameOrAlias
+     * @param string $name
      * @return boolean
      */
-    public function hasAttribute($nameOrAlias)
+    public function hasAttribute($name)
     {
-      return null !== $this->getAttribute($nameOrAlias);
+      return null !== $this->getAttribute($name);
     }
 
     /**

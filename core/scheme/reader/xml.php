@@ -60,7 +60,6 @@
     {
       // create the attribute set for this scheme
       $attributes      = array();
-      $aliasAttributes = array();
 
       $rAttributes = $xpath->query($meta->getNodePath() . '/attributes/attribute');
       for ($i = 0; $i < $rAttributes->length; $i++) {
@@ -84,21 +83,17 @@
         $a = new One_Scheme_Attribute($att_name, $att_type, $att_options);
 
         $attributes[$a->getName()] = $a;
-        // PD17OCT08 (added) : process alias as well
-        if ($a->getAlias()) {
-          $aliasAttributes[$a->getAlias()] = $a;
-        }
 
         //*** this code breaks encapsulation: flex should be handles outside standard models
         // When dealing with a flex-type attribute, automatically add the flex behavior
-//        if ($a->getType() instanceof One_Type_Flex) {
+//        if ($a->getType() instanceof One_SchemeAttribute_Type_Flex) {
 //          $behavior = One_Repository::getBehavior('flex', $scheme->getName());
 //          $spec     = array('flexfield' => $a->getName());
 //          $scheme->addBehavior($behavior, $spec);
 //        }
 
         // When dealing with a calculated-type attribute, automatically add the flex behavior
-//        if ($a->getType() instanceof One_Type_Calculated) {
+//        if ($a->getType() instanceof One_SchemeAttribute_Type_Calculated) {
 //          $behavior = One_Repository::getBehavior('calculated', $scheme->getName());
 //          $spec     = array('attribute' => $a->getName());
 //          $scheme->addBehavior($behavior, $spec);
@@ -106,7 +101,6 @@
       }
 
       $scheme->set('attributes',$attributes);
-      $scheme->set('aliasattributes',$aliasAttributes);
     }
 
     /**

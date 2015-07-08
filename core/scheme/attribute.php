@@ -15,7 +15,7 @@
      * Class constructor
      *
      * @param string $name
-     * @param string $type name of the One_Type of the attribute
+     * @param string $type name of the One_Scheme_Attribute_Type of the attribute
      * @param array additional options that can be passed to the array
      */
     public function __construct($name, $type, array $options = array())
@@ -50,7 +50,7 @@
      * Returns the type of the attribute
      *
      * @rename to getType()
-     * @return One_Type
+     * @return One_Scheme_Attribute_Type
      */
     public function getType()
     {

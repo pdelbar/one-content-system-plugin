@@ -595,7 +595,7 @@ class One_Store_Joomla extends One_Store
 		// TR20120203 commented this section as Joomla doesn't parse a quoted string wel either
 // 		if(class_exists('JPluginHelper', false) && JPluginHelper::isEnabled('system', 'nooku'))
 // 		{
-			if($idAttr->getType() instanceof One_Type_String) {
+			if($idAttr->getType() instanceof One_SchemeAttribute_Type_String) {
 				$value = preg_replace('/^\"(.*)\"$/i', '$1', $value);
 			}
 // 		}

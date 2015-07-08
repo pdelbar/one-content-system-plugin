@@ -47,7 +47,18 @@
         <connection name="..." ... />
     </scheme>
 
-An example:
+## Attribute definitions
+
+    <attribute
+        name="..."
+        column="..."        // equivalent name used by the store
+        type"..."           // should be one of teh available types
+        key"..."            // true,1,yes if this is the identity attribute
+        readonly"..."       // keeps the update from writing this value if set to true,1,yes
+        autoinc"..."        // does the store handle incrementing this attribute itself ? true,1,yes or false,0,no
+    />
+
+## Examples
 
     <?xml version="1.0" encoding="UTF-8"?>
     <scheme name="author">

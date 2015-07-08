@@ -372,9 +372,6 @@ class One_Query_Sql extends One_Query {
       $this->setJoin($parts[0]);
     } else {
       $attr = $this->getScheme()->getAttribute($object);
-      if (null !== $attr && $attr->getType instanceof One_Type_Calculated_Interface) {
-        return $this->having($object, $op, $val);
-      }
     }
 
     if (is_null($this->clauseContainer))
