@@ -105,16 +105,6 @@
     }
 
     /**
-     * Function performed on authorisation
-     *
-     * @param One_Scheme $scheme
-     * @param One_Model $model
-     */
-    public function onAuthorize(One_Scheme $scheme, One_Model $model)
-    {
-    }
-
-    /**
      * Function performed on selection
      *
      * @param One_Query $query
