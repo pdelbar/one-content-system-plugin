@@ -4,7 +4,7 @@
  *
  * ONEDISCLAIMER
  **/
-class One_Behavior_Scheme_Slug extends One_Behavior_Scheme {
+class One_Behavior_Slug extends One_Behavior {
   /**
    * Return the name of the behaviour
    *

@@ -1,6 +1,6 @@
 <?php
 
-class One_Extension_Abstract {
+class One_Extension {
 
   public static function onAfterInitialise( $arguments = array() ) {
 

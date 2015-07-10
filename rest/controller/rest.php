@@ -61,7 +61,7 @@ class One_Controller_Rest extends One_Controller {
     foreach (One_Repository::getSchemeNames() as $schemeName) {
       $scheme = One_Repository::getScheme($schemeName);
       if ($scheme->hasBehavior('restable')) {
-        One_Behavior_Scheme_Restable::slimSetup($this->slim,$scheme);
+        One_Behavior_Restable::slimSetup($this->slim,$scheme);
       }
     }
 

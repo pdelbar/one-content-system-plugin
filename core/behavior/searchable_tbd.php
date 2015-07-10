@@ -8,7 +8,7 @@
 ONEDISCLAIMER
 
  **/
-class One_Behavior_Scheme_Searchable extends One_Behavior_Scheme
+class One_Behavior_Searchable extends One_Behavior
 {
 	/**
 	 * Return the name of the behaviour

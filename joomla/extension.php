@@ -2,7 +2,7 @@
 
   One_Config::set('extensions.joomla', 'One_Extension_Joomla');
 
-  class One_Extension_Joomla extends One_Extension_Abstract
+  class One_Extension_Joomla extends One_Extension
   {
     public static function onAfterInitialise($arguments = array())
     {

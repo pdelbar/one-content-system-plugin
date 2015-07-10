@@ -217,8 +217,8 @@
     {
       foreach ($this->get('behaviors') as $behavior) {
         $possibleNames = array(
-          'One_Behavior_Scheme_' . ucfirst($behaviorName),
-          'One_Behavior_Scheme_' . ucfirst($this->getName()) . '_' . ucfirst($behaviorName)
+          'One_Behavior_' . ucfirst($behaviorName),
+          'One_Behavior_' . ucfirst($this->getName()) . '_' . ucfirst($behaviorName)
         );
         if (in_array(get_class($behavior), $possibleNames)) {
           return true;

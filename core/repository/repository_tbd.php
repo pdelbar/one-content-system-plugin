@@ -192,7 +192,7 @@ class One_Repository  {
 
     $behavior = NULL;
     if (!is_null($schemeName)) {
-      if (class_exists('One_Behavior_Scheme_' . ucfirst($schemeName) . '_' . ucfirst($behaviorSpec))) {
+      if (class_exists('One_Behavior_' . ucfirst($schemeName) . '_' . ucfirst($behaviorSpec))) {
         $schemeBehaviorExists = true;
         $behavior = (isset(self::$behaviorCache[$schemeName . '_' . ucfirst($behaviorSpec)])) ? self::$behaviorCache[$schemeName . '_' . ucfirst($behaviorSpec)] : NULL;
       } else if (isset(self::$behaviorCache[$behaviorSpec])) {
@@ -204,10 +204,10 @@ class One_Repository  {
 
     if (is_null($behavior)) {
       if ($schemeBehaviorExists) {
-        $className = 'One_Behavior_Scheme_' . ucfirst($schemeName) . '_' . ucfirst($behaviorSpec);
+        $className = 'One_Behavior_' . ucfirst($schemeName) . '_' . ucfirst($behaviorSpec);
         $forCache = $schemeName . ucfirst($behaviorSpec);
       } else {
-        $className = 'One_Behavior_Scheme_' . ucfirst($behaviorSpec);
+        $className = 'One_Behavior_' . ucfirst($behaviorSpec);
         $forCache = $behaviorSpec;
       }
 

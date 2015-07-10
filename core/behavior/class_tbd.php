@@ -5,7 +5,7 @@
  *
  * ONEDISCLAIMER
  **/
-class One_Behavior_Scheme_Class extends One_Behavior_Scheme {
+class One_Behavior_Class extends One_Behavior {
   /**
    * Return the name of the behaviour
    *
