@@ -18,12 +18,12 @@
     /**
      * Get
      */
-    public static function get($key)
+    public static function get($key, $default = null)
     {
       if (empty(self::$registry)) {
         self::$registry = new One_Registry();
       }
-      return self::$registry->get($key);
+      return self::$registry->get($key,$default);
     }
 
     public static function set($key, $value)
@@ -44,7 +44,7 @@
     public static function loadExtensions()
     {
       // call plugin extenders. These define a class for a plugin that is added to the extenders list
-      $extenders = One_Locator::locateAllUsing('extension.php', ONE_LOCATOR_ROOTPATTERN);
+      $extenders = One_Locator::locateAllUsing('extension.php', self::get('locator.root'));
       if (count($extenders)) {
         foreach ($extenders as $extenderPath) {
           require_once $extenderPath;

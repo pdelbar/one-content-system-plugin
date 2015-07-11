@@ -86,11 +86,9 @@
      */
     public function setDefaultViewSearchPath()
     {
-      $pattern = "%ROOT%/views/"
-        . "{" . ($this->schemeName != '' ? "%APP%/" . $this->schemeName . "," : "") . "%APP%,default}" . DS
-        . "{%LANG%/,}";
-
-      $this->templater->setSearchPath($pattern);
+      $locator = One_Config::get('view.locator', 'One_View_Locator');
+      $viewPattern = $locator::getPatternForScheme($this->schemeName);
+      $this->templater->setSearchPath($viewPattern);
     }
 
     /**

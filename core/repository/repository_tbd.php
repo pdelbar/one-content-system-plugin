@@ -44,7 +44,7 @@ class One_Repository  {
    * @return array
    */
   public static function getSchemeNames() {
-    $pattern = ONE_LOCATOR_ROOTPATTERN . 'meta/scheme/';
+    $pattern = One_Config::get('locator.root') . 'meta/scheme/';
     $places  = One_Locator::locateAllUsing('*.xml', $pattern);
     $schemes = array();
     foreach ($places as $place) {
@@ -155,7 +155,7 @@ class One_Repository  {
    * @return array
    */
   public static function getFilterNames($schemeName = NULL) {
-    $pattern = ONE_LOCATOR_ROOTPATTERN . 'filter/' . ($schemeName !== null ? '{scheme/,}' : '');
+    $pattern = One_Config::get('locator.root') . 'filter/' . ($schemeName !== null ? '{scheme/,}' : '');
     $places = One_Locator::locateAllUsing('*.xml', $pattern);
     $filters = array();
     foreach ($places as $place) {

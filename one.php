@@ -8,10 +8,6 @@
 
   jimport('joomla.plugin.plugin');
 
-  require_once "settings.php";
-
-  require_once ONE_LIB_PATH . 'core/loader.php';
-  require_once ONE_LIB_PATH . 'core/config.php';
 
   /**
    * One Plugin
@@ -20,20 +16,17 @@
   {
     public function onAfterInitialise()
     {
-      One_Loader::register();
+      // read folder locations from plugin settings
+      $oneLibFolder    = JPATH_SITE . '/plugins/system/one/';
+      $oneCustomFolder = JPATH_SITE . '/media/one/';
 
-      $this->initializeOne();
+      // bootstrap one|content
+      require_once $oneLibFolder . 'core/bootstrap.php';
+      One_Bootstrap::bootstrap($oneLibFolder, $oneCustomFolder);
 
-      One_Config::loadExtensions();
-      One_Config::callExtensions('afterInitialise');
+      // one|content for Joomla uses different views for front/backend and per language
+      // which requires a particular setup of the locator pattern used for these
 
-      require_once ONE_LIB_PATH . '/core/one_tbd.php';
-    }
-
-
-    protected function initializeOne()
-    {
-      // set the application, derived from Joomla status
       $application = 'site';
       $app         = JFactory::getApplication();
       if (strpos($app->getName(), 'admin') !== false) {
@@ -41,20 +34,17 @@
       }
       One_Config::set('app.name', $application);
 
-
       // pickup language setting
       $language = JFactory::getLanguage()->getTag();
       One_Config::set('app.language', $language);
 
-
       // setup locator tokens
       $locatorTokens = array(
-        '%ROOT%' => ONE_LOCATOR_ROOTPATTERN,
         '%APP%'  => One_Config::get('app.name'),
         '%LANG%' => One_Config::get('app.language'),
       );
       One_Config::set('locator.tokens', $locatorTokens);
-
+      One_Config::set('view.locator', 'One_View_Locator_Joomla');
 
       // set the templater. You have the choice between One_View_Templater_Script and One_View_Templater_Php,
       // the latter being a standard PHP template hndler
@@ -69,17 +59,6 @@
 
       // special form subfolder to use
       One_Config::set('form.chrome', $this->params->get('formChrome', ''));
-
-
-      // ---------------------------------------------------------------------------------------------------
-      // @deprecated shit
-      // ---------------------------------------------------------------------------------------------------
-
-      // *** quarantined
-//      One_Vendor::getInstance()
-//        ->setFilePath(JPATH_SITE . '/plugins/system/one/vendor')
-//        ->setSitePath(JURI::root() . '/plugins/system/one/vendor');
-
     }
 
 

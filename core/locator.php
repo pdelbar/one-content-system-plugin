@@ -10,7 +10,6 @@
    **/
   class One_Locator
   {
-
     /**
      * Simplest format of the locate function: look in the standard sequence of folders
      * as defined by the settings for ONE_LOCATOR_ROOTPATTERN
@@ -19,11 +18,12 @@
      */
     public static function locate($filename)
     {
-      return self::locateUsing($filename, ONE_LOCATOR_ROOTPATTERN);
+      return self::locateUsing($filename, One_Config::get('locator.root'));
     }
 
     /**
      * Locate files using a specified folder pattern, typically used when searching for template files
+     *
      * @param $filename
      * @param $patternStub
      * @param null $app
@@ -33,7 +33,7 @@
     public static function locateUsing($filename, $patternStub)
     {
       $pattern = self::localize($patternStub);
-      $places = self::locateAllUsing($filename, $pattern);
+      $places  = self::locateAllUsing($filename, $pattern);
       if (count($places) > 0) {
         return $places[0];
       }
@@ -55,10 +55,12 @@
      */
     public static function localize($pattern)
     {
-      $localized = $pattern;
-      $tokens = One_Config::get('locator.tokens');
-      if (count($tokens)) foreach ($tokens as $token => $value) {
-        $localized = str_replace($token, $value, $localized);
+      $localized = str_replace('%ROOT%', One_Config::get('locator.root'), $pattern);
+      $tokens    = One_Config::get('locator.tokens');
+      if (count($tokens)) {
+        foreach ($tokens as $token => $value) {
+          $localized = str_replace($token, $value, $localized);
+        }
       }
       return $localized;
     }
@@ -73,9 +75,8 @@
     public static function locateAllUsing($file, $patternStub)
     {
       $pattern = self::localize($patternStub);
-      return glob($pattern . $file, GLOB_BRACE|GLOB_NOSORT);
+      return glob($pattern . $file, GLOB_BRACE | GLOB_NOSORT);
     }
-
 
 
   }
