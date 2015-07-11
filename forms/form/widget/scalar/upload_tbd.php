@@ -172,7 +172,7 @@ Class One_Form_Widget_Scalar_Upload extends One_Form_Widget_Scalar
 
 			if(isset($_POST['oneForm'][$attributeName . 'RemoveFile']) && $model->$attributeName != '')
 			{
-				@unlink($path . DS . $model->$attributeName);
+				@unlink($path . DIRECTORY_SEPARATOR . $model->$attributeName);
 				$model->$attributeName = '';
 			}
 
@@ -193,7 +193,7 @@ Class One_Form_Widget_Scalar_Upload extends One_Form_Widget_Scalar
 				$name = md5(microtime(true).$_FILES['oneForm']['name'][$attributeName]).'.'.$matches[1];
 			}
 
-			if(!move_uploaded_file($_FILES['oneForm']['tmp_name'][$attributeName], $path.DS.$name)) {
+			if(!move_uploaded_file($_FILES['oneForm']['tmp_name'][$attributeName], $path.DIRECTORY_SEPARATOR.$name)) {
 				throw new One_Exception('File could not be moved');
 			}
 
@@ -207,7 +207,7 @@ Class One_Form_Widget_Scalar_Upload extends One_Form_Widget_Scalar
 
 			if(isset($_POST['oneForm'][$attributeName . 'RemoveFile']) && $model->filepath != '' && $model->secret != '')
 			{
-				@unlink($model->filepath . DS . $model->secret);
+				@unlink($model->filepath . DIRECTORY_SEPARATOR . $model->secret);
 				$model->secret   = $secret;
 				$model->filepath = '';
 				$model->filename = '';
@@ -219,13 +219,13 @@ Class One_Form_Widget_Scalar_Upload extends One_Form_Widget_Scalar
 			}
 
 			if($model->filepath != '' && $model->secret != '') {
-				@unlink($model->filepath . DS . $model->secret);
+				@unlink($model->filepath . DIRECTORY_SEPARATOR . $model->secret);
 			}
 
 			$secret = md5(microtime(true).$_FILES['oneForm']['name'][$attributeName]);
 
 			if(!is_uploaded_file($_FILES['oneForm']['tmp_name'][$attributeName]) ||
-				!move_uploaded_file($_FILES['oneForm']['tmp_name'][$attributeName], $path . DS . $secret))
+				!move_uploaded_file($_FILES['oneForm']['tmp_name'][$attributeName], $path . DIRECTORY_SEPARATOR . $secret))
 			{
 				throw new One_Exception('File could not be uploaded');
 			}

@@ -31,7 +31,7 @@
       }
       else // create relations using the relationfiles
       {
-        $relationpath = One_Locator::locate('meta' . DS . 'relation' . DS . $relationName . '.xml');
+        $relationpath = One_Locator::locate('meta' . DIRECTORY_SEPARATOR . 'relation' . DIRECTORY_SEPARATOR . $relationName . '.xml');
         if ($relationpath === null) {
           throw new One_Exception('Could not load the relation "' . $relationName . '"');
         }

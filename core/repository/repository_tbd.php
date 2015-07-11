@@ -406,7 +406,7 @@ class One_Repository  {
    */
   public static function getTemplater($templaterClass = NULL) {
     if (is_null($templaterClass)) {
-      $templaterClass = One_Config::get('view.templater');
+      $templaterClass = One_Config::get('view.templater', 'One_View_Templater_Script');
     }
     return new $templaterClass('');
   }

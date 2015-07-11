@@ -21,7 +21,7 @@ class One_Store_Connection_Reader_Xml implements One_Store_Connection_Reader_Int
 	public static function load($connectionName)
 	{
 		// read the scheme's metafile
-    $connectionpath = One_Locator::locate('meta'.DS.'connection'.DS.$connectionName.'.xml');
+    $connectionpath = One_Locator::locate('meta'.DIRECTORY_SEPARATOR.'connection'.DIRECTORY_SEPARATOR.$connectionName.'.xml');
     if ($connectionpath === null) {
       throw new One_Exception('Could not find the one|content store-connection called <strong>'.$connectionName.'</strong>.');
     }

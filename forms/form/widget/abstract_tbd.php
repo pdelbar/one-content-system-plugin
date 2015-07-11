@@ -525,7 +525,7 @@ abstract class One_Form_Widget_Abstract
 		$current = str_replace('One_Form_Widget_', '', get_class($this));
 		$parts   = preg_split('/_/', strtolower($current));
 		array_pop($parts);
-		$wtype = implode(DS, $parts);
+		$wtype = implode(DIRECTORY_SEPARATOR, $parts);
 
     $formChrome = One_Config::get('form.chrome','');
 

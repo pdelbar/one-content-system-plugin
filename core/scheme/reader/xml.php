@@ -19,7 +19,7 @@
     {
       $scheme    = new One_Scheme($schemeName);
 
-      $schemePath = One_Locator::locate('meta' . DS . 'scheme' . DS . $schemeName . '.xml');
+      $schemePath = One_Locator::locate('meta' . DIRECTORY_SEPARATOR . 'scheme' . DIRECTORY_SEPARATOR . $schemeName . '.xml');
       if ($schemePath === null) {
         throw new One_Exception("The scheme $schemeName could not be located.");
       }

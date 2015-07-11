@@ -98,7 +98,7 @@ class One_Script_Factory
         if (!is_array($descriptor)) {
             if (One_Script_Config::$nsLanguagePackage) {
                 $lang = One_Script_Package::call(One_Script_Config::$nsLanguagePackage, 'getLanguage', '');
-                return array($descriptor . $lang . DS, $descriptor);
+                return array($descriptor . $lang . DIRECTORY_SEPARATOR, $descriptor);
             } else {
                 return array($descriptor);
             }
@@ -112,7 +112,7 @@ class One_Script_Factory
         $segments = array();
         $stub = '';
         foreach ($descriptor as $piece) {
-            $stub .= $piece . DS;
+            $stub .= $piece . DIRECTORY_SEPARATOR;
             $segments[] = $stub;
         }
         return array_reverse($segments);

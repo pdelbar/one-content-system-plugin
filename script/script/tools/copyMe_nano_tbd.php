@@ -4,20 +4,20 @@
  * use of the library.
  */
 
-        if( !defined( 'DS' ) ) define( 'DS', DIRECTORY_SEPARATOR );
+        if( !defined( 'DIRECTORY_SEPARATOR' ) ) define( 'DIRECTORY_SEPARATOR', DIRECTORY_SEPARATOR );
 
         /**
          * This is the path to the nano directory (external reference to the nano subdirectory in the nscript SVN)
          */
-//        define( 'ONE_SCRIPT_PATH', dirname(__FILE__) . DS . 'nano' );
+//        define( 'ONE_SCRIPT_PATH', dirname(__FILE__) . DIRECTORY_SEPARATOR . 'nano' );
 
         /**
          * This is the path to your custom nano folder, typically places under a custom directory
          */
-//        define( 'ONE_SCRIPT_CUSTOM_PATH', dirname(__FILE__) . '/../' . 'custom' . DS . 'nano' );
-        //define( 'ONE_SCRIPT_CUSTOM_PATH', dirname(__FILE__) . '/' . 'custom' . DS . 'nano' );
+//        define( 'ONE_SCRIPT_CUSTOM_PATH', dirname(__FILE__) . '/../' . 'custom' . DIRECTORY_SEPARATOR . 'nano' );
+        //define( 'ONE_SCRIPT_CUSTOM_PATH', dirname(__FILE__) . '/' . 'custom' . DIRECTORY_SEPARATOR . 'nano' );
 
         /**
          * This initiates the autoloader so all classes can be found
          */
-        require_once(dirname(__FILE__) . DS . 'tools' . DS . 'autoload.php');
+        require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'tools' . DIRECTORY_SEPARATOR . 'autoload.php');

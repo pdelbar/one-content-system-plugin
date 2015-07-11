@@ -58,9 +58,9 @@ Class One_Form_Widget_Joomla_Document2 extends One_Form_Widget_Abstract
 
 		$this->setCfg('class', 'OneFieldTextfield ' . $this->getCfg('class'));
 		$path = JPATH_ROOT . '/' . JComponentHelper::getParams('com_media')->get('file_path', 'images');
-		//$path = preg_replace( '{/|\\\}', DS, trim( $this->getCfg('path') ) );
-		if( substr( $path, -1, 1 ) != DS )
-			$path .= DS;
+		//$path = preg_replace( '{/|\\\}', DIRECTORY_SEPARATOR, trim( $this->getCfg('path') ) );
+		if( substr( $path, -1, 1 ) != DIRECTORY_SEPARATOR )
+			$path .= DIRECTORY_SEPARATOR;
 
 
 		$data = array(

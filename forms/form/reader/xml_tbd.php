@@ -32,14 +32,14 @@ class One_Form_Reader_Xml implements One_Form_Reader_Interface {
 //    $templater = One_Repository::getTemplater(NULL, false);
 
 
-//    $filepath = One::getInstance()->locate('meta'.DS.'scheme'.DS.$fileName.'.xml');
+//    $filepath = One::getInstance()->locate('meta'.DIRECTORY_SEPARATOR.'scheme'.DIRECTORY_SEPARATOR.$fileName.'.xml');
 
 //    $oldSearchpaths = $templater->getSearchpath();
 //    $templater->clearSearchpath();
 
 //    $pattern = "%ROOT%/views/"
-//      . "{" . ($scheme->getName() != '' ? "%APP%/{$scheme->getName()}," : "") . "%APP%,default}" . DS
-//      . "{%LANG%" . DS . ",}";
+//      . "{" . ($scheme->getName() != '' ? "%APP%/{$scheme->getName()}," : "") . "%APP%,default}" . DIRECTORY_SEPARATOR
+//      . "{%LANG%" . DIRECTORY_SEPARATOR . ",}";
 //
 //    $templater->addSearchPath($pattern);
 

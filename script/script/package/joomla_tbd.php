@@ -63,7 +63,7 @@
 		function loadPosition( $position )
 		{
 			if( !function_exists( 'plgContentLoadPosition' ) )
-				require_once( JPATH_SITE . DS . 'plugins' . DS . 'content' . DS . 'loadmodule.php' );
+				require_once( JPATH_SITE . DIRECTORY_SEPARATOR . 'plugins' . DIRECTORY_SEPARATOR . 'content' . DIRECTORY_SEPARATOR . 'loadmodule.php' );
 
 			echo plgContentLoadPosition( $position );
 		}

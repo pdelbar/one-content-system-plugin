@@ -34,8 +34,8 @@ class One_Form_Factory {
 
     // search for appropriate form.xml
     $pattern = "%ROOT%/views/"
-      . "{" . ($scheme->getName() != '' ? "%APP%/{$scheme->getName()}," : "") . "%APP%,default}" . DS
-      . "{%LANG%" . DS . ",}";
+      . "{" . ($scheme->getName() != '' ? "%APP%/{$scheme->getName()}," : "") . "%APP%,default}" . DIRECTORY_SEPARATOR
+      . "{%LANG%" . DIRECTORY_SEPARATOR . ",}";
     $filepath = One_Locator::locateUsing(formFile.'.xml',$pattern);
 
     try {

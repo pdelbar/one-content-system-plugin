@@ -34,8 +34,8 @@ class One_Document2_Widget
 	 */
 	public function __construct( $root, $path, $widget )
 	{
-		$this->root   = preg_replace( array('{/|\\\}', '{(/|\\\)$}'), array(DS, ''), $root );
-		$this->path   = preg_replace( array('{/|\\\}', '{(/|\\\)$}'), array(DS, ''), $path );
+		$this->root   = preg_replace( array('{/|\\\}', '{(/|\\\)$}'), array(DIRECTORY_SEPARATOR, ''), $root );
+		$this->path   = preg_replace( array('{/|\\\}', '{(/|\\\)$}'), array(DIRECTORY_SEPARATOR, ''), $path );
 		$this->widget = $widget;
 	}
 
@@ -66,7 +66,7 @@ class One_Document2_Widget
 	 */
 	public function getCurrent()
 	{
-		$current = str_replace( array( JPATH_BASE, DS ), array( '', '/' ), $this->path );
+		$current = str_replace( array( JPATH_BASE, DIRECTORY_SEPARATOR ), array( '', '/' ), $this->path );
 
 		if( trim( $current ) == '' || trim( $current ) == preg_replace('!/$!', '', JPATH_BASE) || !file_exists( $this->path ) )
 			$current = '/';
@@ -91,7 +91,7 @@ class One_Document2_Widget
 		{
 			$parts  = preg_split( '{/|\\\}', $this->path );
 			array_pop( $parts );
-			$parent = implode( DS, $parts );
+			$parent = implode( DIRECTORY_SEPARATOR, $parts );
 		}
 
 		if( preg_match( '{^' . addslashes( $this->getRoot() ) . '}i', $parent ) == 0 )
@@ -128,14 +128,14 @@ class One_Document2_Widget
 				{
 					$tmp = new StdClass();
 					$tmp->name = $file;
-					$tmp->link = $this->path . DS . $file;
+					$tmp->link = $this->path . DIRECTORY_SEPARATOR . $file;
 					$fnf[ 'folders' ][] = $tmp;
 				}
 				else
 				{
 					$tmp = new StdClass();
 					$tmp->name = $file;
-					$tmp->link = $this->path . DS . $file;
+					$tmp->link = $this->path . DIRECTORY_SEPARATOR . $file;
 					$fnf[ 'files' ][] = $tmp;
 				}
 			}

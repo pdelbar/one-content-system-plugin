@@ -59,5 +59,5 @@ class One_Script_Package
 //foreach( $nanoFiles as $nanoFile )
 //{
 //	if( preg_match( '/package\.([^\.]+)\.php/i', $nanoFile ) )
-//		require_once( dirname( __FILE__ ) . DS . $nanoFile );
+//		require_once( dirname( __FILE__ ) . DIRECTORY_SEPARATOR . $nanoFile );
 //}

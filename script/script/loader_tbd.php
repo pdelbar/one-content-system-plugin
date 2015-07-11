@@ -40,12 +40,12 @@ class One_Script_Loader {
 	}
 
   public static function isPackage($pkName) {
-    $path = One_Locator::locate('script' . DS . 'package' . DS . $pkName . '.php');
+    $path = One_Locator::locate('script' . DIRECTORY_SEPARATOR . 'package' . DIRECTORY_SEPARATOR . $pkName . '.php');
 //    echo '<br><b>', $pkName, '</b> is ', ($path === null ? 'NOT' : ' '), ' a package';
 
     //*** temporary
     if ($path) return true;
-    $path = One_Locator::locate('script' . DS . 'package' . DS . $pkName . '_tbd.php');
+    $path = One_Locator::locate('script' . DIRECTORY_SEPARATOR . 'package' . DIRECTORY_SEPARATOR . $pkName . '_tbd.php');
     return ($path !== null);
   }
 

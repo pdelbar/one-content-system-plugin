@@ -8,7 +8,7 @@
     public static function getPatternForScheme($schemeName)
     {
       return "%ROOT%/views/"
-      . "{" . ($schemeName != '' ? "%APP%/" . $schemeName . "," : "") . "%APP%,default}" . DS
+      . "{" . ($schemeName != '' ? "%APP%/" . $schemeName . "," : "") . "%APP%,default}" . DIRECTORY_SEPARATOR
       . "{%LANG%/,}";
     }
 

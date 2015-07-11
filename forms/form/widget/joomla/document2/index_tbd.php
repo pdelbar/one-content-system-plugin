@@ -1,7 +1,7 @@
 <?php
-define('DS', DIRECTORY_SEPARATOR);
-$jpath = str_replace('plugins'.DS.'system'.DS.'one'.DS.'lib'.DS.'form'.DS.'widget'.DS.'joomla'.DS.'document2', '', dirname(__FILE__));
-require_once($jpath.'plugins'.DS.'system'.DS.'one'.DS.'vendor'. DS.'joomla-standalone.php');
+define('DIRECTORY_SEPARATOR', DIRECTORY_SEPARATOR);
+$jpath = str_replace('plugins'.DIRECTORY_SEPARATOR.'system'.DIRECTORY_SEPARATOR.'one'.DIRECTORY_SEPARATOR.'lib'.DIRECTORY_SEPARATOR.'form'.DIRECTORY_SEPARATOR.'widget'.DIRECTORY_SEPARATOR.'joomla'.DIRECTORY_SEPARATOR.'document2', '', dirname(__FILE__));
+require_once($jpath.'plugins'.DIRECTORY_SEPARATOR.'system'.DIRECTORY_SEPARATOR.'one'.DIRECTORY_SEPARATOR.'vendor'. DIRECTORY_SEPARATOR.'joomla-standalone.php');
 JoomlaInitiator::initiate($jpath, false);
 $mainframe = JoomlaInitiator::getMainframe();
 
@@ -143,7 +143,7 @@ $parent = $docWidget->getParent();
 	{
 		?>
 	<div class="item">
-		<a class="file" href="#" onclick="document.getElementById( 'fillIn' ).value='/<?php echo str_replace( array( JPATH_BASE, DS ), array( '', '/' ), $file->link ); ?>'; return false;">
+		<a class="file" href="#" onclick="document.getElementById( 'fillIn' ).value='/<?php echo str_replace( array( JPATH_BASE, DIRECTORY_SEPARATOR ), array( '', '/' ), $file->link ); ?>'; return false;">
 			<img alt="<?php echo $file->name; ?>" src="<?php echo $uribase; ?>media/media/images/con_info.png" style="margin-top: 30px;">
 			<span><?php echo $file->name; ?></span>
 		</a>

@@ -17,11 +17,11 @@ class One_Bootstrap
 			->setTemplater(new One_Template_Adapter_NanoPretend);
 //		define( 'ONETEMPLATER', 'nano');
 
-//		$tmp = $path . DS . 'nano' . DS;
+//		$tmp = $path . DIRECTORY_SEPARATOR . 'nano' . DIRECTORY_SEPARATOR;
 //		define( 'ONE_SCRIPT_PATH', $tmp );
-//		define( 'ONE_SCRIPT_CUSTOM_PATH', $customPath . DS . 'nano' );
+//		define( 'ONE_SCRIPT_CUSTOM_PATH', $customPath . DIRECTORY_SEPARATOR . 'nano' );
 //
-//		require_once( $tmp . 'tools' . DS . 'autoload.php' );
+//		require_once( $tmp . 'tools' . DIRECTORY_SEPARATOR . 'autoload.php' );
 		require_once( ONE_LIB_PATH . '/tools.php' );
 
 
