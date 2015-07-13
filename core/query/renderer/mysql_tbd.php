@@ -76,6 +76,7 @@ class One_Query_Renderer_Mysql extends One_Query_Renderer_Abstract
 			}
 		}
 
+    // *** TODO: change the '*' to only the relavant fields defined in the scheme
 		$selects = $this->aliases[ '$self$' ] . '.*';
 		if( count( $query->getSelect() ) > 0 )
 			$selects = $this->createSelects( $query->getSelect() );
