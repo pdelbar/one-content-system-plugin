@@ -4,9 +4,7 @@
    * The One_Relation_Reader_Xml class loads One_Relation definitions from an Xml and instantiates them
    * as a factory pattern.
    *
-   * @name One_Relation_Reader_Xml
-   * @TODO review this file and clean up historical code/comments
-   * @subpackage Relation
+   * ONEDISCLAIMER
    **/
   class One_Relation_Reader_Xml
   {
