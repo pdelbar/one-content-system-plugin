@@ -122,7 +122,7 @@ Class One_Form_Widget_Multi_Tags extends One_Form_Widget_Abstract
 		$targetAttr = $this->getCfg('targetAttribute');
 		$link       = $model->getScheme()->getLink($parts[1]);
 
-		if(is_null($link) || !$link->getLinkType() instanceof One_Link_Type_Manytomany) {
+		if(is_null($link) || !$link->getAdapterType() instanceof One_Relation_Adapter_Manytomany) {
 			throw new One_Exception('The Multi-tag widget is only allowed for Many-to-many relations');
 		}
 

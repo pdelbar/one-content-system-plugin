@@ -237,11 +237,11 @@ class One_Repository  {
    * Get the specified LinkType
    *
    * @param string $linkTypeName
-   * @return One_Link_Type
+   * @return One_Relation_Adapter
    */
   public static function getLinkType($linkTypeName) {
     if (!array_key_exists($linkTypeName, self::$linkTypeCache)) {
-      $className = "One_Link_Type_" . ucfirst(strtolower($linkTypeName));
+      $className = "One_Relation_Adapter_" . ucfirst(strtolower($linkTypeName));
       self::$linkTypeCache[$linkTypeName] = new $className();
     }
 

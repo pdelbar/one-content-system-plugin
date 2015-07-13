@@ -40,7 +40,7 @@ class One_Behavior_Slug extends One_Behavior {
 
 				if( !is_null( $link ) )
 				{
-					if( $link->getLinkType() == 'manytoone' )
+					if( $link->getAdapterType() == 'manytoone' )
 					{
 						$related = $model->getRelated( $matches[ 1 ] );
 						if( !is_null( $related ) )

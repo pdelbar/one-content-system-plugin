@@ -31,12 +31,12 @@
     protected $_resource = array();
 
     /**
-     * @var array $_links An array of One_Link instances
+     * @var array $_links An array of One_Relation_Adapter instances
      */
     protected $_links = array();
 
     /**
-     * @var array $_linksById An array of One_Link instances
+     * @var array $_linksById An array of One_Relation_Adapter instances
      */
     protected $_linksById = array();
 
@@ -162,7 +162,7 @@
      * Get a specific link
      *
      * @param string $roleName
-     * @return One_Link
+     * @return One_Relation_Adapter
      */
     public function getLink($roleName)
     {
@@ -172,14 +172,14 @@
     /**
      * Add a link to the scheme
      *
-     * @param One_Link $link
+     * @param One_Relation_Adapter $link
      */
-    public function addLink(One_Link $link)
+    public function addLink(One_Relation_Adapter $link)
     {
       $this->_links[$link->getName()]       = $link;
       $this->_linksById[$link->getLinkId()] = $link;
 
-      if ($link->getLinkType() instanceof One_Link_Type_Manytoone) {
+      if ($link->getAdapterType() instanceof One_Relation_Adapter_Manytoone) {
         if (null !== $link->getForeignKey()) {
           $this->_foreignKeys[] = $link->getForeignKey();
         }

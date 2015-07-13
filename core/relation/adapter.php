@@ -5,7 +5,7 @@
    *
    * ONEDISCLAIMER
    **/
-  class One_Link
+  class One_Relation_Adapter
   {
     /**
      * @var string Name of the link
@@ -23,9 +23,9 @@
     protected $target;
 
     /**
-     * @var One_Link_Type_Interface Instance of the proper linktype
+     * @var One_Relation_Adapter_Interface Instance of the proper linktype
      */
-    protected $linkType;
+    protected $adapterType;
 
     /**
      * @var array All data in the link
@@ -51,7 +51,7 @@
       }
 
       // retrieve link type
-      $this->linkType = One_Repository::getLinkType($this->meta['style']);
+      $this->adapterType = One_Repository::getLinkType($this->meta['style']);
 
       // remember link name
       $this->name   = $this->meta['name'];
@@ -95,11 +95,11 @@
     /**
      * Returns the linkType of the link
      *
-     * @return One_Link_Type
+     * @return One_Relation_Adapter
      */
-    public function getLinkType()
+    public function getAdapterType()
     {
-      return $this->linkType;
+      return $this->adapterType;
     }
 
     /**
@@ -150,7 +150,7 @@
      */
     public function getRelated(One_Model $model, array $options = array())
     {
-      return $this->linkType->getRelated($this, $model, $options);
+      return $this->adapterType->getRelated($this, $model, $options);
     }
 
     /**
@@ -160,7 +160,7 @@
      */
     public function __toString()
     {
-      return " link" . "(" . $this->linkType . "):" . $this->meta['target'];
+      return " link" . "(" . $this->adapterType . "):" . $this->meta['target'];
     }
 
     /**
@@ -183,7 +183,7 @@
      *
      * @param string $side Should be either local or remote
      * @return string Name of the foreign key
-     * @deprecated Use One_Link::getForeignKey() instead
+     * @deprecated Use One_Relation_Adapter::getForeignKey() instead
      */
     public function fk($side = 'local')
     {

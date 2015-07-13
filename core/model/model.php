@@ -487,7 +487,7 @@
     public function setRelated($roleName, $value)
     {
       $link     = $this->getScheme()->getLink($roleName);
-      $linktype = $link->getLinkType();
+      $linktype = $link->getAdapterType();
 
       switch ($linktype) {
         case 'manytoone':
@@ -510,7 +510,7 @@
     public function addRelated($roleName, $value = NULL)
     {
       $link     = $this->getScheme()->getLink($roleName);
-      $linktype = $link->getLinkType();
+      $linktype = $link->getAdapterType();
 
       switch ($linktype) {
         case 'manytoone':
@@ -533,7 +533,7 @@
     public function deleteRelated($roleName, $value = NULL)
     {
       $link     = $this->getScheme()->getLink($roleName);
-      $linktype = $link->getLinkType();
+      $linktype = $link->getAdapterType();
 
       switch ($linktype) {
         case 'manytoone':
@@ -550,20 +550,20 @@
     /**
      * Saves all "many-to-many" and "one-to-many"-relations
      *
-     * @param One_Link $link
+     * @param One_Relation_Adapter $link
      * @return void
      */
-    public function saveRelated(One_Link $link)
+    public function saveRelated(One_Relation_Adapter $link)
     {
-      if (array_key_exists($link->getName(), $this->_modifiedRelations) && ($link->getLinkType() <> "manytoone")) {
+      if (array_key_exists($link->getName(), $this->_modifiedRelations) && ($link->getAdapterType() <> "manytoone")) {
         $link->save($this);
       }
 
-      if (array_key_exists($link->getName(), $this->_addedRelations) && ($link->getLinkType() <> "manytoone")) {
+      if (array_key_exists($link->getName(), $this->_addedRelations) && ($link->getAdapterType() <> "manytoone")) {
         $link->add($this);
       }
 
-      if (array_key_exists($link->getName(), $this->_deletedRelations) && ($link->getLinkType() <> "manytoone")) {
+      if (array_key_exists($link->getName(), $this->_deletedRelations) && ($link->getAdapterType() <> "manytoone")) {
         $link->remove($this);
       }
     }

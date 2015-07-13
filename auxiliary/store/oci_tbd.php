@@ -329,9 +329,9 @@ print_r(oci_error($stid));
 	 * Add a relationship to the model
 	 *
 	 * @param One_Model $model
-	 * @param One_Link $link
+	 * @param One_Relation_Adapter $link
 	 */
-	public function addRelations(One_Model $model, One_Link $link)
+	public function addRelations(One_Model $model, One_Relation_Adapter $link)
 	{
 		$added = $model->getAddedRelations();
 
@@ -393,9 +393,9 @@ print_r(oci_error($stid));
 	 * Save a relationship of the model
 	 *
 	 * @param One_Model $model
-	 * @param One_Link $link
+	 * @param One_Relation_Adapter $link
 	 */
-	public function saveRelations(One_Model $model, One_Link $link)
+	public function saveRelations(One_Model $model, One_Relation_Adapter $link)
 	{
 		$modified = $model->getModifiedRelations();
 
@@ -457,9 +457,9 @@ print_r(oci_error($stid));
 	 * Delete a relationship from the model
 	 *
 	 * @param One_Model $model
-	 * @param One_Link $link
+	 * @param One_Relation_Adapter $link
 	 */
-	public function deleteRelations(One_Model $model, One_Link $link)
+	public function deleteRelations(One_Model $model, One_Relation_Adapter $link)
 	{
 		$deleted = $model->getDeletedRelations();
 

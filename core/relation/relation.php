@@ -53,7 +53,7 @@
     }
 
     /**
-     * Instantiate the links for this scheme under this relationship. Note that we're building the One_Link
+     * Instantiate the links for this scheme under this relationship. Note that we're building the One_Relation_Adapter
      * objects on the side of this scheme only.
      *
      * @param One_Scheme $scheme
@@ -116,7 +116,7 @@
       }
 
       $meta = array_merge($this->meta, $params);
-      $lnk  = new One_Link($meta);
+      $lnk  = new One_Relation_Adapter($meta);
 
       $scheme->addLink($lnk);
     }
