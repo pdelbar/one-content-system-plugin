@@ -104,8 +104,8 @@ class One_Behavior_Slug extends One_Behavior {
 		$ss = strtolower($ss)." ";
 
 		// Replace unacceptable characters
-		$ss = preg_replace( "@&#(\d+);@e", 'chr(\1)', $ss);
-		$ss = preg_replace( "@(&\w+;)@e", 'html_entity_decode("\1")', $ss);
+		$ss = preg_replace( "@&#(\d+);@", 'chr(\1)', $ss);
+		$ss = preg_replace( "@(&\w+;)@", 'html_entity_decode("\1")', $ss);
 
 		$ss = preg_replace("/\W/"," ",$ss);
 

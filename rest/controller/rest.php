@@ -31,7 +31,7 @@ class One_Controller_Rest extends One_Controller {
   public function __construct($options = array()) {
     parent::__construct($options);
 
-    // create and prepara SLIM instance
+    // create and prepare a SLIM instance
     $this->slim = new \Slim\Slim($this->_defaultSettings());
     $this->slim->response->headers->set('Content-Type', 'application/json');
   }
@@ -67,7 +67,7 @@ class One_Controller_Rest extends One_Controller {
 
   }
 
-  public function defaultRouteHandler() {
+  public static function defaultRouteHandler() {
     echo "one|content REST handler";
   }
 
@@ -89,8 +89,9 @@ class One_Controller_Rest extends One_Controller {
       }
       echo self::toPrettyJson($response);
     } catch (Exception $e) {
-      $this->slim->response()->status(400);
-      $this->slim->response()->header('X-Status-Reason', $e->getMessage());
+        $this->slim->response()->status(400);
+        $this->slim->response()->header('X-Status-Reason', $e->getMessage());
+      print_r($e);
     }
   }
 
