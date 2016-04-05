@@ -9,7 +9,7 @@
   class One_Scheme_Reader_Xml
   {
     /**
-     * Loads a scheme along with it's attributes, behaviors, relations, tasks, store and other information about the
+     * Loads a scheme along with its attributes, behaviors, relations, tasks, store and other information about the
      * scheme
      *
      * @param $schemeName
@@ -233,7 +233,8 @@
               $nodeName = $child->nodeName;
               $content  = $child->textContent;
               if (in_array($nodeName, array('title', 'description', 'image', 'group', 'grouporder'))) {
-                $scheme->$nodeName = $content;
+                $scheme->set("info.$nodeName", $content);
+//                $scheme->$nodeName = $content;
               }
               elseif ($nodeName == 'options') {
                 $options = preg_split('!\s*,\s*!', $content);
